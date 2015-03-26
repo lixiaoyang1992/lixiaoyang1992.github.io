@@ -1,0 +1,12 @@
+# Site settings
+title: 李晓阳的Blog
+email: lixiaoyang2345@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  ゆきりん
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://blog.lixiaoyang.com" # the base hostname & protocol for your site
+twitter_username: lixiaoyang1992
+github_username:  lixiaoyang1992
+
+# Build settings
+markdown: kramdown
