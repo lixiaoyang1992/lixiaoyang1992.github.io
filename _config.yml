@@ -4,19 +4,18 @@ permalink: /:categories/:year/:month/:day/:title
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 highlighter: pygments
-# Site settings
-title: 李晓阳的Blog
-tagline: Site Tagline
-email: lixiaoyang2345@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  ゆきりん
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://blog.lixiaoyang.com" # the base hostname & protocol for your site
-twitter_username: lixiaoyang1992
-github_username:  lixiaoyang1992
 
-# Build settings
-markdown: kramdown
+# Themes are encouraged to use these universal variables 
+# so be sure to set them if your theme uses them.
+#
+title : 李晓阳的Blog
+tagline: ゆきりん
+author :
+  name : 李晓阳
+  email : lixiaoyang2345@gmail.com
+  github : lixiaoyang1992
+  twitter : lixiaoyang1992
+  feedburner : lixiaoyang1992
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -26,7 +25,7 @@ markdown: kramdown
 # Else if you are pushing to username.github.io, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://username.github.io
+production_url : http://lixiaoyang1992.github.io
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
