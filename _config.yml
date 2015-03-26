@@ -73,16 +73,12 @@ JB :
   categories_path : /categories.html
   tags_path : /tags.html
   atom_path : /atom.xml
-  rss_path : /rss.xml
 
   # Settings for comments helper
   # Set 'provider' to the comment provider you want to use.
   # Set 'provider' to false to turn commenting off globally.
   #
   comments :
-    provider : disqus
-    disqus :
-      short_name : jekyllbootstrap
     livefyre :
       site_id : 123
     intensedebate :
