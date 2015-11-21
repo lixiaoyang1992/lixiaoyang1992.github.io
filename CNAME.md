@@ -1,1 +1,1 @@
-blog.lixiaoyang.cn
+lixiaoyang.cn
