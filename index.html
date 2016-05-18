@@ -403,6 +403,63 @@ ReactDOM.render(
 <h2 id="Demo体验"><a href="#Demo体验" class="headerlink" title="Demo体验"></a>Demo体验</h2><p>  先下几个demo，体验一下react的神奇。</p>
 <p>  执行<br>        git clone git@github.com:ruanyf/react-demos.git</p>
 <p>  就可以在demo中感受react的与众不同了。</p>
+<h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><p>  项目是需要构建的，我们做项目的时候，肯定不能像做demo一样直接静态文件引入就完成了的。这里介绍的是npm，npm用于构建项目，可以调试、测试、发布等等，由于它很灵活，你可以用它做很多事情。</p>
+<p>  这里我们也直接clone一个starter project</p>
+<p>  执行  </p>
+<pre><code>git clone git@github.com:reactjs/redux.git
+cd examples/shopping-cart/
+npm install
+npm start
+</code></pre><p>  npm主要的配置文件是package.json  </p>
+<pre><code>{
+  &quot;name&quot;: &quot;redux-shopping-cart-example&quot;,
+  &quot;version&quot;: &quot;0.0.0&quot;,
+  &quot;description&quot;: &quot;Redux shopping-cart example&quot;,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;node server.js&quot;,
+    &quot;test&quot;: &quot;cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register&quot;,
+    &quot;test:watch&quot;: &quot;npm test -- --watch&quot;
+  },
+  &quot;repository&quot;: {
+    &quot;type&quot;: &quot;git&quot;,
+    &quot;url&quot;: &quot;https://github.com/reactjs/redux.git&quot;
+  },
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;bugs&quot;: {
+    &quot;url&quot;: &quot;https://github.com/reactjs/redux/issues&quot;
+  },
+  &quot;homepage&quot;: &quot;http://redux.js.org&quot;,
+  &quot;dependencies&quot;: {
+    &quot;babel-polyfill&quot;: &quot;^6.3.14&quot;,
+    &quot;react&quot;: &quot;^0.14.7&quot;,
+    &quot;react-dom&quot;: &quot;^0.14.7&quot;,
+    &quot;react-redux&quot;: &quot;^4.2.1&quot;,
+    &quot;redux&quot;: &quot;^3.2.1&quot;,
+    &quot;redux-thunk&quot;: &quot;^1.0.3&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;babel-core&quot;: &quot;^6.3.15&quot;,
+    &quot;babel-loader&quot;: &quot;^6.2.0&quot;,
+    &quot;babel-preset-es2015&quot;: &quot;^6.3.13&quot;,
+    &quot;babel-preset-react&quot;: &quot;^6.3.13&quot;,
+    &quot;babel-preset-react-hmre&quot;: &quot;^1.1.1&quot;,
+    &quot;cross-env&quot;: &quot;^1.0.7&quot;,
+    &quot;enzyme&quot;: &quot;^2.0.0&quot;,
+    &quot;expect&quot;: &quot;^1.20.1&quot;,
+    &quot;express&quot;: &quot;^4.13.3&quot;,
+    &quot;json-loader&quot;: &quot;^0.5.3&quot;,
+    &quot;react-addons-test-utils&quot;: &quot;^0.14.7&quot;,
+    &quot;redux-logger&quot;: &quot;^2.0.1&quot;,
+    &quot;mocha&quot;: &quot;^2.2.5&quot;,
+    &quot;node-libs-browser&quot;: &quot;^0.5.2&quot;,
+    &quot;webpack&quot;: &quot;^1.9.11&quot;,
+    &quot;webpack-dev-middleware&quot;: &quot;^1.2.0&quot;,
+    &quot;webpack-hot-middleware&quot;: &quot;^2.9.1&quot;
+  }
+}
+</code></pre><p>  我们通过以上文件大概可以了解配置的信息。</p>
+<p>  我们在 <a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a> 访问到你刚刚启动的项目，是一个简单的购物车页面。</p>
+<p>  下一篇会讲到基础的语法。</p>
 <p>  参考链接：<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">React 入门实例教程</a> by 阮一峰</p>
 
           
