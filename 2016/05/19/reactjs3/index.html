@@ -84,19 +84,28 @@
 
 
 
-<meta name="description" content="这个周末装了黑苹果，开始学Swift。还是斯坦福的公开课，还是那个教授Paul Hegarty，去年就是看他的公开课学的Objective c，世界名校的老师确实不太一样，感谢这个白胡子老头。
-第一个demo计算器还没有做完，完整的体验等做完了再写。">
+<meta name="description" content="Starter Kit再回到我们的购物车项目（这个项目会一直作为我们的Starter Kit）。
+程序入口我们在执行 npm start 命令的时候，实际上是执行了 node server.js。这是在package.json中配置的。  
+&amp;quot;scripts&amp;quot;: {
+&amp;quot;start&amp;quot;: &amp;quot;node server.js&amp;quot;,
+&amp;quot;tes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift学习第一天">
-<meta property="og:url" content="http://lixoayang.cn/2015/03/29/2015-3-29-blog/index.html">
+<meta property="og:title" content="reactjs－Starter Kit">
+<meta property="og:url" content="http://lixoayang.cn/2016/05/19/reactjs3/index.html">
 <meta property="og:site_name" content="Lixiaoyang’s blog">
-<meta property="og:description" content="这个周末装了黑苹果，开始学Swift。还是斯坦福的公开课，还是那个教授Paul Hegarty，去年就是看他的公开课学的Objective c，世界名校的老师确实不太一样，感谢这个白胡子老头。
-第一个demo计算器还没有做完，完整的体验等做完了再写。">
-<meta property="og:updated_time" content="2015-11-21T13:03:04.000Z">
+<meta property="og:description" content="Starter Kit再回到我们的购物车项目（这个项目会一直作为我们的Starter Kit）。
+程序入口我们在执行 npm start 命令的时候，实际上是执行了 node server.js。这是在package.json中配置的。  
+&amp;quot;scripts&amp;quot;: {
+&amp;quot;start&amp;quot;: &amp;quot;node server.js&amp;quot;,
+&amp;quot;tes">
+<meta property="og:updated_time" content="2016-05-19T04:02:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift学习第一天">
-<meta name="twitter:description" content="这个周末装了黑苹果，开始学Swift。还是斯坦福的公开课，还是那个教授Paul Hegarty，去年就是看他的公开课学的Objective c，世界名校的老师确实不太一样，感谢这个白胡子老头。
-第一个demo计算器还没有做完，完整的体验等做完了再写。">
+<meta name="twitter:title" content="reactjs－Starter Kit">
+<meta name="twitter:description" content="Starter Kit再回到我们的购物车项目（这个项目会一直作为我们的Starter Kit）。
+程序入口我们在执行 npm start 命令的时候，实际上是执行了 node server.js。这是在package.json中配置的。  
+&amp;quot;scripts&amp;quot;: {
+&amp;quot;start&amp;quot;: &amp;quot;node server.js&amp;quot;,
+&amp;quot;tes">
 
 
 
@@ -114,7 +123,7 @@
   };
 </script>
 
-  <title> Swift学习第一天 | Lixiaoyang’s blog </title>
+  <title> reactjs－Starter Kit | Lixiaoyang’s blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -234,7 +243,7 @@
             
             
               
-                Swift学习第一天
+                reactjs－Starter Kit
               
             
           </h1>
@@ -246,30 +255,11 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-03-29T00:00:00+08:00" content="2015-03-29">
-              2015-03-29
+            <time itemprop="dateCreated" datetime="2016-05-19T10:35:17+08:00" content="2016-05-19">
+              2016-05-19
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -293,8 +283,73 @@
       
 
       
-        <p>这个周末装了黑苹果，开始学Swift。还是斯坦福的公开课，还是那个教授Paul Hegarty，去年就是看他的公开课学的Objective c，世界名校的老师确实不太一样，感谢这个白胡子老头。</p>
-<p>第一个demo计算器还没有做完，完整的体验等做完了再写。</p>
+        <h2 id="Starter-Kit"><a href="#Starter-Kit" class="headerlink" title="Starter Kit"></a>Starter Kit</h2><p>再回到我们的购物车项目（这个项目会一直作为我们的Starter Kit）。</p>
+<h2 id="程序入口"><a href="#程序入口" class="headerlink" title="程序入口"></a>程序入口</h2><p>我们在执行 npm start 命令的时候，实际上是执行了 node server.js。这是在package.json中配置的。  </p>
+<pre><code>&quot;scripts&quot;: {
+&quot;start&quot;: &quot;node server.js&quot;,
+&quot;test&quot;: &quot;cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register&quot;,
+&quot;test:watch&quot;: &quot;npm test -- --watch&quot;
+},
+</code></pre><p>  我们还可以执行一下测试命令 npm test</p>
+<p>  在 server.js (这里涉及express，暂时不管)中  </p>
+<pre><code>app.get(&quot;/&quot;, function(req, res) {
+res.sendFile(\__dirname + &apos;/index.html&apos;)
+})
+</code></pre><p>  这段代码指定了‘／’请求返回index.html页面。</p>
+<h2 id="单页应用"><a href="#单页应用" class="headerlink" title="单页应用"></a>单页应用</h2><p>我们要做的是一个单页应用（SPA），所以html页面只有一个就够了  </p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Redux shopping cart example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;root&quot;&gt;
+&lt;/div&gt;
+&lt;script src=&quot;/static/bundle.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p>在Facebook的定义中react只是Just the UI，要解决数据流、各个组件之间交互的问题，官方提出了FLUX解决方案，我们选择了其中一种实现——redux。<br>其核心思想是保持数据的单向流动，主要包含三个部分dispatcher、store和views。<br>正常的使用场景是：我们或view发起一个action，产生或者获取一些数据，然后由dispatcher分发，在store更新和维护数据，再根据store来渲染UI。  </p>
+<p>这里我们先按照官方的指导写好最外层的代码。</p>
+<pre><code>import &apos;babel-polyfill&apos;
+import React from &apos;react&apos;
+import { render } from &apos;react-dom&apos;
+import { createStore, applyMiddleware } from &apos;redux&apos;
+import { Provider } from &apos;react-redux&apos;
+import logger from &apos;redux-logger&apos;
+import thunk from &apos;redux-thunk&apos;
+import reducer from &apos;./reducers&apos;
+import { getAllProducts } from &apos;./actions&apos;
+import App from &apos;./containers/App&apos;
+
+const middleware = process.env.NODE_ENV === &apos;production&apos; ?
+  [ thunk ] :
+  [ thunk, logger() ]
+
+const store = createStore(
+  reducer,
+  applyMiddleware(...middleware)
+)
+
+store.dispatch(getAllProducts())
+
+render(
+  &lt;Provider store={store}&gt;
+    &lt;App /&gt;
+  &lt;/Provider&gt;,
+  document.getElementById(&apos;root&apos;)
+)
+</code></pre><h2 id="基础react语法"><a href="#基础react语法" class="headerlink" title="基础react语法"></a>基础react语法</h2><p>react最常见的写法如下</p>
+<pre><code>var HelloMessage = React.createClass({
+  render: function() {
+    return &lt;div&gt;Hello {this.props.name}&lt;/div&gt;;
+  }
+});
+
+ReactDOM.render(
+  &lt;HelloMessage name=&quot;John&quot; /&gt;,
+  document.getElementById(&apos;container&apos;)
+);
+</code></pre><p>react使用jsx语法，支持html和js混编。<br>在html中加一对大括号{}就可以在里面写js了。</p>
 
       
     </div>
@@ -319,17 +374,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/03/28/2015-3-28-book/" rel="next" title="白夜行">
-                <i class="fa fa-chevron-left"></i> 白夜行
+              <a href="/2016/05/17/reactjs2/" rel="next" title="reactjs教程—npm">
+                <i class="fa fa-chevron-left"></i> reactjs教程—npm
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/03/30/2015-3-30-blog/" rel="prev" title="Swift学习第二课">
-                Swift学习第二课 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -443,7 +494,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Starter-Kit"><span class="nav-number">1.</span> <span class="nav-text">Starter Kit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序入口"><span class="nav-number">2.</span> <span class="nav-text">程序入口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单页应用"><span class="nav-number">3.</span> <span class="nav-text">单页应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux"><span class="nav-number">4.</span> <span class="nav-text">Redux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础react语法"><span class="nav-number">5.</span> <span class="nav-text">基础react语法</span></a></li></ol></div>
             
           </div>
         </section>

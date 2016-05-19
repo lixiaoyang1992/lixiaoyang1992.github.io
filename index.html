@@ -233,8 +233,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/17/reactjs2/" itemprop="url">
-                  reactjs教程2
+                <a class="post-title-link" href="/2016/05/19/reactjs3/" itemprop="url">
+                  reactjs－Starter Kit
                 </a>
               
             
@@ -247,8 +247,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-17T22:29:00+08:00" content="2016-05-17">
-              2016-05-17
+            <time itemprop="dateCreated" datetime="2016-05-19T10:35:17+08:00" content="2016-05-19">
+              2016-05-19
             </time>
           </span>
 
@@ -277,20 +277,61 @@
       
         
           
-            <h2 id="单页应用"><a href="#单页应用" class="headerlink" title="单页应用"></a>单页应用</h2><p>我们要做的是一个单页应用（SPA），所以html页面只有一个就够了  </p>
+            <h2 id="Starter-Kit"><a href="#Starter-Kit" class="headerlink" title="Starter Kit"></a>Starter Kit</h2><p>再回到我们的购物车项目（这个项目会一直作为我们的Starter Kit）。</p>
+<h2 id="程序入口"><a href="#程序入口" class="headerlink" title="程序入口"></a>程序入口</h2><p>我们在执行 npm start 命令的时候，实际上是执行了 node server.js。这是在package.json中配置的。  </p>
+<pre><code>&quot;scripts&quot;: {
+&quot;start&quot;: &quot;node server.js&quot;,
+&quot;test&quot;: &quot;cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register&quot;,
+&quot;test:watch&quot;: &quot;npm test -- --watch&quot;
+},
+</code></pre><p>  我们还可以执行一下测试命令 npm test</p>
+<p>  在 server.js (这里涉及express，暂时不管)中  </p>
+<pre><code>app.get(&quot;/&quot;, function(req, res) {
+res.sendFile(\__dirname + &apos;/index.html&apos;)
+})
+</code></pre><p>  这段代码指定了‘／’请求返回index.html页面。</p>
+<h2 id="单页应用"><a href="#单页应用" class="headerlink" title="单页应用"></a>单页应用</h2><p>我们要做的是一个单页应用（SPA），所以html页面只有一个就够了  </p>
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-  &lt;meta charset=&quot;utf-8&quot;&gt;
-  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
-  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./index.css&quot;/&gt;
+&lt;title&gt;Redux shopping cart example&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;div id=&quot;content&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;root&quot;&gt;
+&lt;/div&gt;
+&lt;script src=&quot;/static/bundle.js&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
-&lt;script src=&quot;./common.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;./index.js&quot;&gt;&lt;/script&gt;
 &lt;/html&gt;
+</code></pre><h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p>在Facebook的定义中react只是Just the UI，要解决数据流、各个组件之间交互的问题，官方提出了FLUX解决方案，我们选择了其中一种实现——redux。<br>其核心思想是保持数据的单向流动，主要包含三个部分dispatcher、store和views。<br>正常的使用场景是：我们或view发起一个action，产生或者获取一些数据，然后由dispatcher分发，在store更新和维护数据，再根据store来渲染UI。  </p>
+<p>这里我们先按照官方的指导写好最外层的代码。</p>
+<pre><code>import &apos;babel-polyfill&apos;
+import React from &apos;react&apos;
+import { render } from &apos;react-dom&apos;
+import { createStore, applyMiddleware } from &apos;redux&apos;
+import { Provider } from &apos;react-redux&apos;
+import logger from &apos;redux-logger&apos;
+import thunk from &apos;redux-thunk&apos;
+import reducer from &apos;./reducers&apos;
+import { getAllProducts } from &apos;./actions&apos;
+import App from &apos;./containers/App&apos;
+
+const middleware = process.env.NODE_ENV === &apos;production&apos; ?
+  [ thunk ] :
+  [ thunk, logger() ]
+
+const store = createStore(
+  reducer,
+  applyMiddleware(...middleware)
+)
+
+store.dispatch(getAllProducts())
+
+render(
+  &lt;Provider store={store}&gt;
+    &lt;App /&gt;
+  &lt;/Provider&gt;,
+  document.getElementById(&apos;root&apos;)
+)
 </code></pre><h2 id="基础react语法"><a href="#基础react语法" class="headerlink" title="基础react语法"></a>基础react语法</h2><p>react最常见的写法如下</p>
 <pre><code>var HelloMessage = React.createClass({
   render: function() {
@@ -352,8 +393,118 @@ ReactDOM.render(
             
               
                 
+                <a class="post-title-link" href="/2016/05/17/reactjs2/" itemprop="url">
+                  reactjs教程—npm
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-17T22:29:00+08:00" content="2016-05-17">
+              2016-05-17
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="npm介绍"><a href="#npm介绍" class="headerlink" title="npm介绍"></a>npm介绍</h2><p>NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具。</p>
+<h2 id="npm创建项目"><a href="#npm创建项目" class="headerlink" title="npm创建项目"></a>npm创建项目</h2><p>在任意目录下执行  </p>
+<pre><code>npm init
+</code></pre><p>  依次输入<br>  name: (lixiaoyang) react<br>  version: (1.0.0) 1.0.0<br>  description: a demo for react<br>  entry point: (index.js)<br>  test command:<br>  git repository:<br>  keywords:<br>  author:<br>  license: (ISC)<br>  当然不想填的项目你也可以一路回车过去，然后在当前目录下就会生成package.json文件</p>
+<pre><code>{
+&quot;name&quot;: &quot;react&quot;,
+&quot;version&quot;: &quot;1.0.0&quot;,
+&quot;description&quot;: &quot;a demo for react&quot;,
+&quot;main&quot;: &quot;index.js&quot;,
+&quot;scripts&quot;: {
+&quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+},
+&quot;author&quot;: &quot;&quot;,
+&quot;license&quot;: &quot;ISC&quot;
+}
+</code></pre><p>这样一个项目的基础就搭建好了，你需要做的就是将你需要的模块一点点的引进来。</p>
+<h2 id="Complementary-Tools"><a href="#Complementary-Tools" class="headerlink" title="Complementary Tools"></a>Complementary Tools</h2><p>NodeJS的社区的一大特点就是提供了大量的工具供你随意挑选。在<a href="https://github.com/facebook/react/wiki/Complementary-Tools" target="_blank" rel="external">Complementary Tools</a>，有官方收集的各种支持工具，可以随意探索。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/17/reactjs1/" itemprop="url">
-                  reactjs教程1
+                  reactjs教程-Demo体验
                 </a>
               
             
@@ -460,7 +611,6 @@ npm start
 }
 </code></pre><p>  我们通过以上文件大概可以了解配置的信息。</p>
 <p>  我们在 <a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a> 访问到你刚刚启动的项目，是一个简单的购物车页面。</p>
-<p>  下一篇会讲到基础的语法。</p>
 <p>  参考链接：<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">React 入门实例教程</a> by 阮一峰</p>
 
           
@@ -1286,7 +1436,7 @@ npm start
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

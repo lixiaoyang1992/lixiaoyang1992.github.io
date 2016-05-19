@@ -84,31 +84,25 @@
 
 
 
-<meta name="description" content="单页应用我们要做的是一个单页应用（SPA），所以html页面只有一个就够了  
-&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;head&amp;gt;
-  &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
-  &amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;IE=edge">
+<meta name="description" content="npm介绍NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具。
+npm创建项目在任意目录下执行  
+npm init
+  依次输入  name: (lixiaoyang) react  version: (1.0.0) 1.0.0  description: a demo for react  entry point: (index.js)  test co">
 <meta property="og:type" content="article">
-<meta property="og:title" content="reactjs教程2">
+<meta property="og:title" content="reactjs教程—npm">
 <meta property="og:url" content="http://lixoayang.cn/2016/05/17/reactjs2/index.html">
 <meta property="og:site_name" content="Lixiaoyang’s blog">
-<meta property="og:description" content="单页应用我们要做的是一个单页应用（SPA），所以html页面只有一个就够了  
-&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;head&amp;gt;
-  &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
-  &amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;IE=edge">
-<meta property="og:updated_time" content="2016-05-17T15:09:28.000Z">
+<meta property="og:description" content="npm介绍NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具。
+npm创建项目在任意目录下执行  
+npm init
+  依次输入  name: (lixiaoyang) react  version: (1.0.0) 1.0.0  description: a demo for react  entry point: (index.js)  test co">
+<meta property="og:updated_time" content="2016-05-19T03:35:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="reactjs教程2">
-<meta name="twitter:description" content="单页应用我们要做的是一个单页应用（SPA），所以html页面只有一个就够了  
-&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;head&amp;gt;
-  &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
-  &amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;IE=edge">
+<meta name="twitter:title" content="reactjs教程—npm">
+<meta name="twitter:description" content="npm介绍NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具。
+npm创建项目在任意目录下执行  
+npm init
+  依次输入  name: (lixiaoyang) react  version: (1.0.0) 1.0.0  description: a demo for react  entry point: (index.js)  test co">
 
 
 
@@ -126,7 +120,7 @@
   };
 </script>
 
-  <title> reactjs教程2 | Lixiaoyang’s blog </title>
+  <title> reactjs教程—npm | Lixiaoyang’s blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -246,7 +240,7 @@
             
             
               
-                reactjs教程2
+                reactjs教程—npm
               
             
           </h1>
@@ -286,32 +280,23 @@
       
 
       
-        <h2 id="单页应用"><a href="#单页应用" class="headerlink" title="单页应用"></a>单页应用</h2><p>我们要做的是一个单页应用（SPA），所以html页面只有一个就够了  </p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;utf-8&quot;&gt;
-  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
-  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./index.css&quot;/&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div id=&quot;content&quot;&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;script src=&quot;./common.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;./index.js&quot;&gt;&lt;/script&gt;
-&lt;/html&gt;
-</code></pre><h2 id="基础react语法"><a href="#基础react语法" class="headerlink" title="基础react语法"></a>基础react语法</h2><p>react最常见的写法如下</p>
-<pre><code>var HelloMessage = React.createClass({
-  render: function() {
-    return &lt;div&gt;Hello {this.props.name}&lt;/div&gt;;
-  }
-});
-
-ReactDOM.render(
-  &lt;HelloMessage name=&quot;John&quot; /&gt;,
-  document.getElementById(&apos;container&apos;)
-);
-</code></pre><p>react使用jsx语法，支持html和js混编。<br>在html中加一对大括号{}就可以在里面写js了。</p>
+        <h2 id="npm介绍"><a href="#npm介绍" class="headerlink" title="npm介绍"></a>npm介绍</h2><p>NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具。</p>
+<h2 id="npm创建项目"><a href="#npm创建项目" class="headerlink" title="npm创建项目"></a>npm创建项目</h2><p>在任意目录下执行  </p>
+<pre><code>npm init
+</code></pre><p>  依次输入<br>  name: (lixiaoyang) react<br>  version: (1.0.0) 1.0.0<br>  description: a demo for react<br>  entry point: (index.js)<br>  test command:<br>  git repository:<br>  keywords:<br>  author:<br>  license: (ISC)<br>  当然不想填的项目你也可以一路回车过去，然后在当前目录下就会生成package.json文件</p>
+<pre><code>{
+&quot;name&quot;: &quot;react&quot;,
+&quot;version&quot;: &quot;1.0.0&quot;,
+&quot;description&quot;: &quot;a demo for react&quot;,
+&quot;main&quot;: &quot;index.js&quot;,
+&quot;scripts&quot;: {
+&quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+},
+&quot;author&quot;: &quot;&quot;,
+&quot;license&quot;: &quot;ISC&quot;
+}
+</code></pre><p>这样一个项目的基础就搭建好了，你需要做的就是将你需要的模块一点点的引进来。</p>
+<h2 id="Complementary-Tools"><a href="#Complementary-Tools" class="headerlink" title="Complementary Tools"></a>Complementary Tools</h2><p>NodeJS的社区的一大特点就是提供了大量的工具供你随意挑选。在<a href="https://github.com/facebook/react/wiki/Complementary-Tools" target="_blank" rel="external">Complementary Tools</a>，有官方收集的各种支持工具，可以随意探索。</p>
 
       
     </div>
@@ -342,13 +327,17 @@ ReactDOM.render(
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/17/reactjs1/" rel="next" title="reactjs教程1">
-                <i class="fa fa-chevron-left"></i> reactjs教程1
+              <a href="/2016/05/17/reactjs1/" rel="next" title="reactjs教程-Demo体验">
+                <i class="fa fa-chevron-left"></i> reactjs教程-Demo体验
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/19/reactjs3/" rel="prev" title="reactjs－Starter Kit">
+                reactjs－Starter Kit <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -416,7 +405,7 @@ ReactDOM.render(
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -462,7 +451,7 @@ ReactDOM.render(
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单页应用"><span class="nav-number">1.</span> <span class="nav-text">单页应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础react语法"><span class="nav-number">2.</span> <span class="nav-text">基础react语法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#npm介绍"><span class="nav-number">1.</span> <span class="nav-text">npm介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm创建项目"><span class="nav-number">2.</span> <span class="nav-text">npm创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Complementary-Tools"><span class="nav-number">3.</span> <span class="nav-text">Complementary Tools</span></a></li></ol></div>
             
           </div>
         </section>
