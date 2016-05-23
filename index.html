@@ -233,6 +233,158 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/23/reactjs4/" itemprop="url">
+                  reactjs－开始写项目
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-23T23:09:01+08:00" content="2016-05-23">
+              2016-05-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Starter-Kit"><a href="#Starter-Kit" class="headerlink" title="Starter Kit"></a>Starter Kit</h2><p>再回到我们的购物车项目（这个项目会一直作为我们的Starter Kit）。</p>
+<h2 id="程序入口"><a href="#程序入口" class="headerlink" title="程序入口"></a>程序入口</h2><p>我们在执行 npm start 命令的时候，实际上是执行了 node server.js。这是在package.json中配置的。  </p>
+<pre><code>&quot;scripts&quot;: {
+&quot;start&quot;: &quot;node server.js&quot;,
+&quot;test&quot;: &quot;cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register&quot;,
+&quot;test:watch&quot;: &quot;npm test -- --watch&quot;
+},
+</code></pre><p>  我们还可以执行一下测试命令 npm test</p>
+<p>  在 server.js (这里涉及express，暂时不管)中  </p>
+<pre><code>app.get(&quot;/&quot;, function(req, res) {
+res.sendFile(\__dirname + &apos;/index.html&apos;)
+})
+</code></pre><p>  这段代码指定了‘／’请求返回index.html页面。</p>
+<h2 id="单页应用"><a href="#单页应用" class="headerlink" title="单页应用"></a>单页应用</h2><p>我们要做的是一个单页应用（SPA），所以html页面只有一个就够了  </p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Redux shopping cart example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;root&quot;&gt;
+&lt;/div&gt;
+&lt;script src=&quot;/static/bundle.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p>在Facebook的定义中react只是Just the UI，要解决数据流、各个组件之间交互的问题，官方提出了FLUX解决方案，我们选择了其中一种实现——redux。<br>其核心思想是保持数据的单向流动，主要包含三个部分dispatcher、store和views。<br>正常的使用场景是：我们或view发起一个action，产生或者获取一些数据，然后由dispatcher分发，在store更新和维护数据，再根据store来渲染UI。  </p>
+<p>这里我们先按照官方的指导写好最外层的代码。</p>
+<pre><code>import &apos;babel-polyfill&apos;
+import React from &apos;react&apos;
+import { render } from &apos;react-dom&apos;
+import { createStore, applyMiddleware } from &apos;redux&apos;
+import { Provider } from &apos;react-redux&apos;
+import logger from &apos;redux-logger&apos;
+import thunk from &apos;redux-thunk&apos;
+import reducer from &apos;./reducers&apos;
+import { getAllProducts } from &apos;./actions&apos;
+import App from &apos;./containers/App&apos;
+
+const middleware = process.env.NODE_ENV === &apos;production&apos; ?
+  [ thunk ] :
+  [ thunk, logger() ]
+
+const store = createStore(
+  reducer,
+  applyMiddleware(...middleware)
+)
+
+store.dispatch(getAllProducts())
+
+render(
+  &lt;Provider store={store}&gt;
+    &lt;App /&gt;
+  &lt;/Provider&gt;,
+  document.getElementById(&apos;root&apos;)
+)
+</code></pre><p>这里的Provider，store等内容，稍后讲到。</p>
+<h2 id="container-与-component"><a href="#container-与-component" class="headerlink" title="container 与 component"></a>container 与 component</h2><p>我们常把视图分为容器和组件两部分，为了让视图更加的清晰。</p>
+<p>在容器中我们定义各种方法,统一维护各种组件的状态；在组件里，只负责显示UI和可以被复用就可以了。</p>
+<p>明确容器和组件各自的职责非常重要！！！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/19/reactnative1/" itemprop="url">
                   reactnative1
                 </a>
@@ -338,7 +490,7 @@ react-native run-android
               
                 
                 <a class="post-title-link" href="/2016/05/19/reactjs3/" itemprop="url">
-                  reactjs－Starter Kit
+                  reactjs－基础语法
                 </a>
               
             
@@ -381,62 +533,7 @@ react-native run-android
       
         
           
-            <h2 id="Starter-Kit"><a href="#Starter-Kit" class="headerlink" title="Starter Kit"></a>Starter Kit</h2><p>再回到我们的购物车项目（这个项目会一直作为我们的Starter Kit）。</p>
-<h2 id="程序入口"><a href="#程序入口" class="headerlink" title="程序入口"></a>程序入口</h2><p>我们在执行 npm start 命令的时候，实际上是执行了 node server.js。这是在package.json中配置的。  </p>
-<pre><code>&quot;scripts&quot;: {
-&quot;start&quot;: &quot;node server.js&quot;,
-&quot;test&quot;: &quot;cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register&quot;,
-&quot;test:watch&quot;: &quot;npm test -- --watch&quot;
-},
-</code></pre><p>  我们还可以执行一下测试命令 npm test</p>
-<p>  在 server.js (这里涉及express，暂时不管)中  </p>
-<pre><code>app.get(&quot;/&quot;, function(req, res) {
-res.sendFile(\__dirname + &apos;/index.html&apos;)
-})
-</code></pre><p>  这段代码指定了‘／’请求返回index.html页面。</p>
-<h2 id="单页应用"><a href="#单页应用" class="headerlink" title="单页应用"></a>单页应用</h2><p>我们要做的是一个单页应用（SPA），所以html页面只有一个就够了  </p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;title&gt;Redux shopping cart example&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div id=&quot;root&quot;&gt;
-&lt;/div&gt;
-&lt;script src=&quot;/static/bundle.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p>在Facebook的定义中react只是Just the UI，要解决数据流、各个组件之间交互的问题，官方提出了FLUX解决方案，我们选择了其中一种实现——redux。<br>其核心思想是保持数据的单向流动，主要包含三个部分dispatcher、store和views。<br>正常的使用场景是：我们或view发起一个action，产生或者获取一些数据，然后由dispatcher分发，在store更新和维护数据，再根据store来渲染UI。  </p>
-<p>这里我们先按照官方的指导写好最外层的代码。</p>
-<pre><code>import &apos;babel-polyfill&apos;
-import React from &apos;react&apos;
-import { render } from &apos;react-dom&apos;
-import { createStore, applyMiddleware } from &apos;redux&apos;
-import { Provider } from &apos;react-redux&apos;
-import logger from &apos;redux-logger&apos;
-import thunk from &apos;redux-thunk&apos;
-import reducer from &apos;./reducers&apos;
-import { getAllProducts } from &apos;./actions&apos;
-import App from &apos;./containers/App&apos;
-
-const middleware = process.env.NODE_ENV === &apos;production&apos; ?
-  [ thunk ] :
-  [ thunk, logger() ]
-
-const store = createStore(
-  reducer,
-  applyMiddleware(...middleware)
-)
-
-store.dispatch(getAllProducts())
-
-render(
-  &lt;Provider store={store}&gt;
-    &lt;App /&gt;
-  &lt;/Provider&gt;,
-  document.getElementById(&apos;root&apos;)
-)
-</code></pre><h2 id="基础react语法"><a href="#基础react语法" class="headerlink" title="基础react语法"></a>基础react语法</h2><p>react最常见的写法如下</p>
+            <h2 id="基础react语法"><a href="#基础react语法" class="headerlink" title="基础react语法"></a>基础react语法</h2><p>react最常见的写法如下</p>
 <pre><code>var HelloMessage = React.createClass({
   render: function() {
     return &lt;div&gt;Hello {this.props.name}&lt;/div&gt;;
@@ -447,7 +544,47 @@ ReactDOM.render(
   &lt;HelloMessage name=&quot;John&quot; /&gt;,
   document.getElementById(&apos;container&apos;)
 );
-</code></pre><p>react使用jsx语法，支持html和js混编。<br>在html中加一对大括号{}就可以在里面写js了。</p>
+</code></pre><p>react使用jsx语法，支持html和js混编。遇到 HTML 标签（以 &lt; 开头），就用 HTML 规则解析；遇到代码块（以 { 开头），就用 JavaScript 规则解析。  </p>
+<h2 id="组件与复用"><a href="#组件与复用" class="headerlink" title="组件与复用"></a>组件与复用</h2><p>react中用的非常多的就是组件化，这应该也是web未来发展的方向，这种复用非常方便的方式也方便了开发。  </p>
+<pre><code>ReactDOM.render(
+  &lt;div&gt;
+    &lt;HelloMessage name=&quot;John&quot; /&gt;
+    &lt;HelloMessage name=&quot;Frank&quot; /&gt;
+    &lt;HelloMessage name=&quot;Didier&quot; /&gt;
+  &lt;/div&gt;,
+  document.getElementById(&apos;container&apos;)
+);
+</code></pre><p>很简单的，我们就复用了组件。</p>
+<h2 id="state与props"><a href="#state与props" class="headerlink" title="state与props"></a>state与props</h2><p>这是所有组件都具有的，也是非常重要的两个属性。  </p>
+<p>state是组件本身的状态，一旦组件被设置了新的state就会触发render重新渲染。一般包含的是是否显示，是否可用等等组件本身的状态，都是与外部环境无关的内容。</p>
+<p>props是由外部传递进来的参数，一般数据都是以参数的身份被传递进来，在flux模型中外部数据都是维护在store中的，所以作为参数传递是必不可少的。  </p>
+<p>一定要区分好state与props负责的范围，维护适当的数据。我在刚开始接触的时候以为把所有的数据都放在store里分层最彻底，把许多诸如visible之类的简单数据都放到了store中，反而在后期操作起来更繁琐。</p>
+<pre><code>var Demo = React.createClass({
+  getInitialState: function() {
+    return {visible: false};
+  },
+  handleClick: function(event) {
+    this.setState({visible: !this.state.visible});
+  },
+  render: function() {
+    return (
+      &lt;p onClick={this.handleClick}&gt;
+         {this.state.visible?
+           &apos;隐藏&apos;
+           ：‘显示’}
+      &lt;/p&gt;
+    );
+  }
+});
+
+ReactDOM.render(
+  &lt;Demo /&gt;,
+  document.getElementById(&apos;example&apos;)
+);
+</code></pre><p>每次点击之后都会更改状态，重新渲染。</p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>一个组件在它创建、显示和接受新的状态、参数时，会按照顺序调用一系列方法，就是生命周期方法。了解了这些对于做交互维护UI非常有帮助。  </p>
+<p>这部分我没什么好说的，官网上的说明已经非常棒了<a href="http://reactjs.cn/react/docs/component-specs.html" target="_blank" rel="external">官方文档中文版</a></p>
+<p>  参考链接：<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">React 入门实例教程</a> by 阮一峰<br>  我在学习的伊始，收到了很多启发。</p>
 
           
         
@@ -828,7 +965,11 @@ npm start
       
         
           
-            <h4 id="以下是我最近读过的书，并附上购买链接，少量会有读后感"><a href="#以下是我最近读过的书，并附上购买链接，少量会有读后感" class="headerlink" title="以下是我最近读过的书，并附上购买链接，少量会有读后感"></a>以下是我最近读过的书，并附上购买链接，少量会有读后感</h4><h5 id="本书单不定时更新，按照看的先后倒序排列"><a href="#本书单不定时更新，按照看的先后倒序排列" class="headerlink" title="本书单不定时更新，按照看的先后倒序排列"></a>本书单不定时更新，按照看的先后倒序排列</h5><p><a href="https://www.amazon.cn/gp/product/B00EC431SI" target="_blank" rel="external">当我们谈论爱情时我们在谈论什么 (卡佛作品)</a>   </p>
+            <h4 id="以下是我最近读过的书，并附上购买链接，少量会有读后感"><a href="#以下是我最近读过的书，并附上购买链接，少量会有读后感" class="headerlink" title="以下是我最近读过的书，并附上购买链接，少量会有读后感"></a>以下是我最近读过的书，并附上购买链接，少量会有读后感</h4><h5 id="本书单不定时更新，按照看的先后倒序排列"><a href="#本书单不定时更新，按照看的先后倒序排列" class="headerlink" title="本书单不定时更新，按照看的先后倒序排列"></a>本书单不定时更新，按照看的先后倒序排列</h5><p><a href="https://www.amazon.cn/dp/B0099MSHJQ" target="_blank" rel="external">动物农场</a>  </p>
+<blockquote>
+<p>仿佛几十年年前就有人预言了今天发生的情况</p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B00EC431SI" target="_blank" rel="external">当我们谈论爱情时我们在谈论什么 (卡佛作品)</a>   </p>
 <blockquote>
 <p>极简风格的作品</p>
 </blockquote>
@@ -1386,122 +1527,13 @@ npm start
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/03/26/2015-3-26-blog/" itemprop="url">
-                  迁移
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-03-26T00:00:00+08:00" content="2015-03-26">
-              2015-03-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随便说说/" itemprop="url" rel="index">
-                    <span itemprop="name">随便说说</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>博客迁移到了GitHub。<br>我会坚持写下去！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1540,7 +1572,7 @@ npm start
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
