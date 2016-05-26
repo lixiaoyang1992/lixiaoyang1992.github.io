@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="Maven," />
 
 
 
@@ -84,34 +84,31 @@
 
 
 
-<meta name="description" content="这是一系列介绍reactjs＋redux+react-router等开发的教程
-准备  读到这篇文章的可能是一个萌萌的妹子，她可能还有点天然呆，所以要讲得更细一点。  
-  首先她要安装以下几个软件:
-  git 最新的就可以node.js 4.4.4LTS版本
-Demo体验  先下几个demo，体验一下react的神奇。
-  执行
-git clone git@github.com:ruanyf/">
+<meta name="description" content="dedicated to you.  
+下载Maven 官网的下载链接是：Maven下载下载，解压到你喜欢的目录
+配置环境变量Maven 官网的配置指导是：Maven配置
+系统变量：MAVEN_HOME = D:\Dev\apache-maven  （你解压的目录）系统变量：path = %MAVEN_HOME%\bin  
+on mac
+export MAVEN_HOME=/Users/lixi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="reactjs教程-Demo体验">
-<meta property="og:url" content="http://lixoayang.cn/2016/05/17/reactjs1/index.html">
+<meta property="og:title" content="Apache Maven 入门">
+<meta property="og:url" content="http://lixoayang.cn/2016/05/26/maven1/index.html">
 <meta property="og:site_name" content="Lixiaoyang’s blog">
-<meta property="og:description" content="这是一系列介绍reactjs＋redux+react-router等开发的教程
-准备  读到这篇文章的可能是一个萌萌的妹子，她可能还有点天然呆，所以要讲得更细一点。  
-  首先她要安装以下几个软件:
-  git 最新的就可以node.js 4.4.4LTS版本
-Demo体验  先下几个demo，体验一下react的神奇。
-  执行
-git clone git@github.com:ruanyf/">
-<meta property="og:updated_time" content="2016-05-19T03:33:07.000Z">
+<meta property="og:description" content="dedicated to you.  
+下载Maven 官网的下载链接是：Maven下载下载，解压到你喜欢的目录
+配置环境变量Maven 官网的配置指导是：Maven配置
+系统变量：MAVEN_HOME = D:\Dev\apache-maven  （你解压的目录）系统变量：path = %MAVEN_HOME%\bin  
+on mac
+export MAVEN_HOME=/Users/lixi">
+<meta property="og:updated_time" content="2016-05-26T03:14:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="reactjs教程-Demo体验">
-<meta name="twitter:description" content="这是一系列介绍reactjs＋redux+react-router等开发的教程
-准备  读到这篇文章的可能是一个萌萌的妹子，她可能还有点天然呆，所以要讲得更细一点。  
-  首先她要安装以下几个软件:
-  git 最新的就可以node.js 4.4.4LTS版本
-Demo体验  先下几个demo，体验一下react的神奇。
-  执行
-git clone git@github.com:ruanyf/">
+<meta name="twitter:title" content="Apache Maven 入门">
+<meta name="twitter:description" content="dedicated to you.  
+下载Maven 官网的下载链接是：Maven下载下载，解压到你喜欢的目录
+配置环境变量Maven 官网的配置指导是：Maven配置
+系统变量：MAVEN_HOME = D:\Dev\apache-maven  （你解压的目录）系统变量：path = %MAVEN_HOME%\bin  
+on mac
+export MAVEN_HOME=/Users/lixi">
 
 
 
@@ -129,7 +126,7 @@ git clone git@github.com:ruanyf/">
   };
 </script>
 
-  <title> reactjs教程-Demo体验 | Lixiaoyang’s blog </title>
+  <title> Apache Maven 入门 | Lixiaoyang’s blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +246,7 @@ git clone git@github.com:ruanyf/">
             
             
               
-                reactjs教程-Demo体验
+                Apache Maven 入门
               
             
           </h1>
@@ -261,8 +258,8 @@ git clone git@github.com:ruanyf/">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-17T22:25:50+08:00" content="2016-05-17">
-              2016-05-17
+            <time itemprop="dateCreated" datetime="2016-05-26T09:09:38+08:00" content="2016-05-26">
+              2016-05-26
             </time>
           </span>
 
@@ -272,8 +269,8 @@ git clone git@github.com:ruanyf/">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/17/reactjs1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/17/reactjs1/" itemprop="commentsCount"></span>
+                <a href="/2016/05/26/maven1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/26/maven1/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -296,71 +293,77 @@ git clone git@github.com:ruanyf/">
       
 
       
-        <p>这是一系列介绍reactjs＋redux+react-router等开发的教程</p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>  读到这篇文章的可能是一个萌萌的妹子，她可能还有点天然呆，所以要讲得更细一点。  </p>
-<p>  首先她要安装以下几个软件:</p>
-<p>  <a href="https://git-scm.com/download/" target="_blank" rel="external">git</a> 最新的就可以<br><a href="https://nodejs.org/en/" target="_blank" rel="external">node.js</a> 4.4.4LTS版本</p>
-<h2 id="Demo体验"><a href="#Demo体验" class="headerlink" title="Demo体验"></a>Demo体验</h2><p>  先下几个demo，体验一下react的神奇。</p>
-<p>  执行</p>
-<pre><code>git clone git@github.com:ruanyf/react-demos.git
-</code></pre><p>  就可以在demo中感受react的与众不同了。</p>
-<h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><p>  项目是需要构建的，我们做项目的时候，肯定不能像做demo一样直接静态文件引入就完成了的。这里介绍的是npm，npm用于构建项目，可以调试、测试、发布等等，由于它很灵活，你可以用它做很多事情。</p>
-<p>  这里我们也直接clone一个starter project</p>
-<p>  执行  </p>
-<pre><code>git clone git@github.com:reactjs/redux.git
-cd examples/shopping-cart/
-npm install
-npm start
-</code></pre><p>  npm主要的配置文件是package.json  </p>
-<pre><code>{
-  &quot;name&quot;: &quot;redux-shopping-cart-example&quot;,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;description&quot;: &quot;Redux shopping-cart example&quot;,
-  &quot;scripts&quot;: {
-    &quot;start&quot;: &quot;node server.js&quot;,
-    &quot;test&quot;: &quot;cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register&quot;,
-    &quot;test:watch&quot;: &quot;npm test -- --watch&quot;
-  },
-  &quot;repository&quot;: {
-    &quot;type&quot;: &quot;git&quot;,
-    &quot;url&quot;: &quot;https://github.com/reactjs/redux.git&quot;
-  },
-  &quot;license&quot;: &quot;MIT&quot;,
-  &quot;bugs&quot;: {
-    &quot;url&quot;: &quot;https://github.com/reactjs/redux/issues&quot;
-  },
-  &quot;homepage&quot;: &quot;http://redux.js.org&quot;,
-  &quot;dependencies&quot;: {
-    &quot;babel-polyfill&quot;: &quot;^6.3.14&quot;,
-    &quot;react&quot;: &quot;^0.14.7&quot;,
-    &quot;react-dom&quot;: &quot;^0.14.7&quot;,
-    &quot;react-redux&quot;: &quot;^4.2.1&quot;,
-    &quot;redux&quot;: &quot;^3.2.1&quot;,
-    &quot;redux-thunk&quot;: &quot;^1.0.3&quot;
-  },
-  &quot;devDependencies&quot;: {
-    &quot;babel-core&quot;: &quot;^6.3.15&quot;,
-    &quot;babel-loader&quot;: &quot;^6.2.0&quot;,
-    &quot;babel-preset-es2015&quot;: &quot;^6.3.13&quot;,
-    &quot;babel-preset-react&quot;: &quot;^6.3.13&quot;,
-    &quot;babel-preset-react-hmre&quot;: &quot;^1.1.1&quot;,
-    &quot;cross-env&quot;: &quot;^1.0.7&quot;,
-    &quot;enzyme&quot;: &quot;^2.0.0&quot;,
-    &quot;expect&quot;: &quot;^1.20.1&quot;,
-    &quot;express&quot;: &quot;^4.13.3&quot;,
-    &quot;json-loader&quot;: &quot;^0.5.3&quot;,
-    &quot;react-addons-test-utils&quot;: &quot;^0.14.7&quot;,
-    &quot;redux-logger&quot;: &quot;^2.0.1&quot;,
-    &quot;mocha&quot;: &quot;^2.2.5&quot;,
-    &quot;node-libs-browser&quot;: &quot;^0.5.2&quot;,
-    &quot;webpack&quot;: &quot;^1.9.11&quot;,
-    &quot;webpack-dev-middleware&quot;: &quot;^1.2.0&quot;,
-    &quot;webpack-hot-middleware&quot;: &quot;^2.9.1&quot;
-  }
-}
-</code></pre><p>  我们通过以上文件大概可以了解配置的信息。</p>
-<p>  我们在 <a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a> 访问到你刚刚启动的项目，是一个简单的购物车页面。</p>
-<p>  参考链接：<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">React 入门实例教程</a> by 阮一峰</p>
+        <p>dedicated to you.  </p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>Maven 官网的下载链接是：<a href="http://maven.apache.org/download.cgi" target="_blank" rel="external">Maven下载</a><br>下载，解压到你喜欢的目录</p>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>Maven 官网的配置指导是：<a href="http://maven.apache.org/install.html" target="_blank" rel="external">Maven配置</a></p>
+<p>系统变量：MAVEN_HOME = D:\Dev\apache-maven  （你解压的目录）<br>系统变量：path = %MAVEN_HOME%\bin  </p>
+<p>on mac</p>
+<p>export MAVEN_HOME=/Users/lixiaoyang/Documents/apache-maven;<br>export PATH=$PATH:$MAVEN_HOME/bin;</p>
+<p>然后试一下  </p>
+<pre><code>$ mvn -v
+</code></pre><p>如果有结果就安装成功了</p>
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><p>执行命令  </p>
+<pre><code>mvn archetype:generate -DgroupId=cn.lixiaoyang.helloworld -DartifactId=helloworld -Dpackage=cn.lixiaoyang.helloworld -Dversion=1.0-SNAPSHOT
+</code></pre><p>会下载一些东西，最后会问你一些问题，一路回车就行了。  </p>
+<p>然后我们可以尝试构建了</p>
+<pre><code>cd helloworld
+mvn package
+java -cp target/helloworld-1.0-SNAPSHOT.jar cn.lixiaoyang.helloworld.App
+</code></pre><p>控制台输出 Hello World! 代表成功了。</p>
+<h2 id="POM-Project-Object-Model"><a href="#POM-Project-Object-Model" class="headerlink" title="POM (Project Object Model)"></a>POM (Project Object Model)</h2><p>所谓万物皆对象，一个工程当然也是对象。</p>
+<pre><code>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+  &lt;groupId&gt;cn.lixiaoyang.helloworld&lt;/groupId&gt;
+  &lt;artifactId&gt;helloworld&lt;/artifactId&gt;
+  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+  &lt;packaging&gt;jar&lt;/packaging&gt;
+
+  &lt;name&gt;helloworld&lt;/name&gt;
+  &lt;url&gt;http://maven.apache.org&lt;/url&gt;
+
+  &lt;properties&gt;
+    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+  &lt;/properties&gt;
+
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;version&gt;3.8.1&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/project&gt;
+</code></pre><p>在 POM 中，groupId, artifactId, packaging, version 叫作 maven 坐标，它能唯一的确定一个项目。有了 maven 坐标，我们就可以用它来指定我们的项目所依赖的其他项目，插件，或者父项目。一般 maven 坐标写成如下的格式：</p>
+<pre><code>groupId:artifactId:packaging:version
+</code></pre><p>像我们的例子就会写成：</p>
+<pre><code>cn.lixiaoyang.helloworld: helloworld: jar: 1.0-SNAPSHOT
+</code></pre><p>我们的 helloworld 示例很简单，但是大项目一般会分成几个子项目。在这种情况下，每个子项目就会有自己的 POM 文件，然后它们会有一个共同的父项目。这样只要构建父项目就能够构建所有的子项目了。子项目的 POM 会继承父项目的 POM。</p>
+<h2 id="Maven-生命周期"><a href="#Maven-生命周期" class="headerlink" title="Maven 生命周期"></a>Maven 生命周期</h2><p>我们用的第二个命令是：mvn package。这里的 package 是一个maven的生命周期阶段 (lifecycle phase )。生命周期指项目的构建过程，它包含了一系列的有序的阶段 (phase)，而一个阶段就是构建过程中的一个步骤。  </p>
+<p>那么生命周期阶段和上面说的插件目标之间是什么关系呢？插件目标可以绑定到生命周期阶段上。一个生命周期阶段可以绑定多个插件目标。当 maven 在构建过程中逐步的通过每个阶段时，会执行该阶段所有的插件目标。  </p>
+<p>maven 能支持不同的生命周期，但是最常用的是默认的Maven生命周期 (default Maven lifecycle )。如果你没有对它进行任何的插件配置或者定制的话，那么上面的命令 mvn package 会依次执行默认生命周期中直到包括 package 阶段前的所有阶段的插件目标：</p>
+<p>process-resources 阶段：resources:resources</p>
+<p>compile 阶段：compiler:compile</p>
+<p>process-classes 阶段：(默认无目标)</p>
+<p>process-test-resources 阶段：resources:testResources</p>
+<p>test-compile 阶段：compiler:testCompile</p>
+<p>test 阶段：surefire:test</p>
+<p>prepare-package 阶段：(默认无目标)</p>
+<p>package 阶段：jar:jar</p>
+<h2 id="Maven-依赖管理"><a href="#Maven-依赖管理" class="headerlink" title="Maven 依赖管理"></a>Maven 依赖管理</h2><p>之前我们说过，maven 坐标能够确定一个项目。换句话说，我们可以用它来解决依赖关系。在 POM 中，依赖关系是在 dependencies 部分中定义的。在上面的 POM 例子中，我们用 dependencies 定义了对于 junit 的依赖：</p>
+<p>Xml 代码</p>
+<pre><code>&lt;dependencies&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;junit&lt;/groupId&gt;
+    &lt;artifactId&gt;junit&lt;/artifactId&gt;
+    &lt;version&gt;3.8.1&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre><p>那这个例子很简单，但是实际开发中我们会有复杂得多的依赖关系，因为被依赖的 jar 文件会有自己的依赖关系。那么我们是不是需要把那些间接依赖的 jar 文件也都定义在POM中呢？答案是不需要，因为 maven 提供了传递依赖的特性。</p>
+<p>所谓传递依赖是指 maven 会检查被依赖的 jar 文件，把它的依赖关系纳入最终解决的依赖关系链中。</p>
 
       
     </div>
@@ -382,7 +385,7 @@ npm start
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag">#javascript</a>
+            <a href="/tags/Maven/" rel="tag">#Maven</a>
           
         </div>
       
@@ -391,17 +394,13 @@ npm start
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/17/books/" rel="next" title="书单">
-                <i class="fa fa-chevron-left"></i> 书单
+              <a href="/2016/05/23/reactjs4/" rel="next" title="reactjs－开始写项目">
+                <i class="fa fa-chevron-left"></i> reactjs－开始写项目
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/17/reactjs2/" rel="prev" title="reactjs教程—npm">
-                reactjs教程—npm <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -416,10 +415,10 @@ npm start
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/05/17/reactjs1/"
-     data-title="reactjs教程-Demo体验"
+        <div class="ds-share flat" data-thread-key="2016/05/26/maven1/"
+     data-title="Apache Maven 入门"
      data-content=""
-     data-url="http://lixoayang.cn/2016/05/17/reactjs1/">
+     data-url="http://lixoayang.cn/2016/05/26/maven1/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -446,8 +445,8 @@ npm start
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/17/reactjs1/"
-           data-title="reactjs教程-Demo体验" data-url="http://lixoayang.cn/2016/05/17/reactjs1/">
+      <div class="ds-thread" data-thread-key="2016/05/26/maven1/"
+           data-title="Apache Maven 入门" data-url="http://lixoayang.cn/2016/05/26/maven1/">
       </div>
     
   </div>
@@ -538,7 +537,7 @@ npm start
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo体验"><span class="nav-number">2.</span> <span class="nav-text">Demo体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm"><span class="nav-number">3.</span> <span class="nav-text">npm</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载"><span class="nav-number">1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境变量"><span class="nav-number">2.</span> <span class="nav-text">配置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-World"><span class="nav-number">3.</span> <span class="nav-text">Hello World</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POM-Project-Object-Model"><span class="nav-number">4.</span> <span class="nav-text">POM (Project Object Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-生命周期"><span class="nav-number">5.</span> <span class="nav-text">Maven 生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-依赖管理"><span class="nav-number">6.</span> <span class="nav-text">Maven 依赖管理</span></a></li></ol></div>
             
           </div>
         </section>
