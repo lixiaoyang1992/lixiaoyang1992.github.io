@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="博客迁移到了GitHub。我会坚持写下去！">
+<meta name="description" content="入手SamsungGalaxyS7edge两个月了，实际上手android6.0也2个月了，对于新的权限系统有了切实的体验，也领略了微博等国产应用的无耻。今天参照 官方的指南 也写一遍如何在android6.0中获取权限。
+声明权限第一步和之前一样，在 Manifest 里面把我们需要的权限声明。  
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="迁移">
-<meta property="og:url" content="http://lixoayang.cn/2015/03/26/2015-3-26-blog/index.html">
+<meta property="og:title" content="在ART获取权限">
+<meta property="og:url" content="http://lixoayang.cn/2016/05/30/permissions-ART/index.html">
 <meta property="og:site_name" content="Lixiaoyang’s blog">
-<meta property="og:description" content="博客迁移到了GitHub。我会坚持写下去！">
-<meta property="og:updated_time" content="2015-11-21T13:06:02.000Z">
+<meta property="og:description" content="入手SamsungGalaxyS7edge两个月了，实际上手android6.0也2个月了，对于新的权限系统有了切实的体验，也领略了微博等国产应用的无耻。今天参照 官方的指南 也写一遍如何在android6.0中获取权限。
+声明权限第一步和之前一样，在 Manifest 里面把我们需要的权限声明。  
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;">
+<meta property="og:updated_time" content="2016-05-30T15:12:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="迁移">
-<meta name="twitter:description" content="博客迁移到了GitHub。我会坚持写下去！">
+<meta name="twitter:title" content="在ART获取权限">
+<meta name="twitter:description" content="入手SamsungGalaxyS7edge两个月了，实际上手android6.0也2个月了，对于新的权限系统有了切实的体验，也领略了微博等国产应用的无耻。今天参照 官方的指南 也写一遍如何在android6.0中获取权限。
+声明权限第一步和之前一样，在 Manifest 里面把我们需要的权限声明。  
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;">
 
 
 
@@ -111,7 +117,7 @@
   };
 </script>
 
-  <title> 迁移 | Lixiaoyang’s blog </title>
+  <title> 在ART获取权限 | Lixiaoyang’s blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -241,7 +247,7 @@
             
             
               
-                迁移
+                在ART获取权限
               
             
           </h1>
@@ -253,8 +259,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-03-26T00:00:00+08:00" content="2015-03-26">
-              2015-03-26
+            <time itemprop="dateCreated" datetime="2016-05-30T08:41:01+08:00" content="2016-05-30">
+              2016-05-30
             </time>
           </span>
 
@@ -267,8 +273,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随便说说/" itemprop="url" rel="index">
-                    <span itemprop="name">随便说说</span>
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
                   </a>
                 </span>
 
@@ -283,8 +289,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/03/26/2015-3-26-blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/26/2015-3-26-blog/" itemprop="commentsCount"></span>
+                <a href="/2016/05/30/permissions-ART/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/30/permissions-ART/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -307,7 +313,84 @@
       
 
       
-        <p>博客迁移到了GitHub。<br>我会坚持写下去！</p>
+        <p>入手SamsungGalaxyS7edge两个月了，实际上手android6.0也2个月了，对于新的权限系统有了切实的体验，也领略了微博等国产应用的无耻。今天参照 <a href="https://developer.android.com/training/permissions/index.html" target="_blank" rel="external">官方的指南</a> 也写一遍如何在android6.0中获取权限。</p>
+<h2 id="声明权限"><a href="#声明权限" class="headerlink" title="声明权限"></a>声明权限</h2><p>第一步和之前一样，在 Manifest 里面把我们需要的权限声明。  </p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;cn.lixiaoyang.permissions&quot;&gt;
+
+  &lt;uses-permission android:name=&quot;android.permission.SEND_SMS&quot;/&gt;
+
+  &lt;application
+      android:allowBackup=&quot;true&quot;
+      android:icon=&quot;@mipmap/ic_launcher&quot;
+      android:label=&quot;@string/app_name&quot;
+      android:supportsRtl=&quot;true&quot;
+      android:theme=&quot;@style/AppTheme&quot;&gt;
+    &lt;activity
+        android:name=&quot;.MainActivity&quot;
+        android:label=&quot;@string/app_name&quot;
+        android:theme=&quot;@style/AppTheme.NoActionBar&quot;&gt;
+      &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.intent.action.MAIN&quot;/&gt;
+
+        &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot;/&gt;
+      &lt;/intent-filter&gt;
+    &lt;/activity&gt;
+  &lt;/application&gt;
+
+&lt;/manifest&gt;
+</code></pre><h2 id="运行时获取权限"><a href="#运行时获取权限" class="headerlink" title="运行时获取权限"></a>运行时获取权限</h2><p>在android6.0之后，用户在应用运行时给权限，而不是在安装的时候。这给了用户更大的自由来决定给应用什么权限。必入，用户可以给一个照相应用访问摄像头的权限，而不给获取位置信息的权限。  </p>
+<h3 id="检查权限"><a href="#检查权限" class="headerlink" title="检查权限"></a>检查权限</h3><p>首先要检查是否获得了权限</p>
+<pre><code>int permissionCheck = ContextCompat.checkSelfPermission(thisActivity, Manifest.permission.SEND_SMS);
+</code></pre><h3 id="获取权限"><a href="#获取权限" class="headerlink" title="获取权限"></a>获取权限</h3><pre><code>if (ContextCompat.checkSelfPermission(thisActivity, Manifest.permission.SEND_SMS)
+            != PackageManager.PERMISSION_GRANTED) {
+
+          if (ActivityCompat.shouldShowRequestPermissionRationale(thisActivity,
+              Manifest.permission.SEND_SMS)) {
+
+            // Show an expanation to the user *asynchronously* -- don&apos;t block
+            // this thread waiting for the user&apos;s response! After the user
+            // sees the explanation, try again to request the permission.
+
+          } else {
+
+            // 获取权限
+
+            ActivityCompat.requestPermissions(thisActivity,
+                new String[] { Manifest.permission.SEND_SMS }, MY_PERMISSIONS_REQUEST_SEND_SMS);
+
+            // 回调的requestCode
+          }
+        }
+</code></pre><h3 id="回调"><a href="#回调" class="headerlink" title="回调"></a>回调</h3><pre><code>@Override public void onRequestPermissionsResult(int requestCode, String permissions[],
+      int[] grantResults) {
+    switch (requestCode) {
+      case MY_PERMISSIONS_REQUEST_SEND_SMS: {
+        // If request is cancelled, the result arrays are empty.
+        if (grantResults.length &gt; 0 &amp;&amp; grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+          // 获取成功
+          // permission was granted, yay! Do the
+          // contacts-related task you need to do.
+
+        } else {
+
+          // permission denied, boo! Disable the
+          // functionality that depends on this permission.
+        }
+        return;
+      }
+
+      // other &apos;case&apos; lines to check for other
+      // permissions this app might request
+    }
+  }
+</code></pre><h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><ol>
+<li>只获取你需要的权限；</li>
+<li>告诉用户你为什么需要这个权限；</li>
+<li>不要一口气把所有需要的权限都申请下来，只在你需要的时候申请。</li>
+</ol>
 
       
     </div>
@@ -327,18 +410,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/05/26/maven1/" rel="next" title="Apache Maven 入门">
+                <i class="fa fa-chevron-left"></i> Apache Maven 入门
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/03/28/2015-3-28-book/" rel="prev" title="白夜行">
-                白夜行 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -353,10 +442,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/03/26/2015-3-26-blog/"
-     data-title="迁移"
+        <div class="ds-share flat" data-thread-key="2016/05/30/permissions-ART/"
+     data-title="在ART获取权限"
      data-content=""
-     data-url="http://lixoayang.cn/2015/03/26/2015-3-26-blog/">
+     data-url="http://lixoayang.cn/2016/05/30/permissions-ART/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -383,8 +472,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/03/26/2015-3-26-blog/"
-           data-title="迁移" data-url="http://lixoayang.cn/2015/03/26/2015-3-26-blog/">
+      <div class="ds-thread" data-thread-key="2016/05/30/permissions-ART/"
+           data-title="在ART获取权限" data-url="http://lixoayang.cn/2016/05/30/permissions-ART/">
       </div>
     
   </div>
@@ -554,7 +643,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明权限"><span class="nav-number">1.</span> <span class="nav-text">声明权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行时获取权限"><span class="nav-number">2.</span> <span class="nav-text">运行时获取权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检查权限"><span class="nav-number">2.1.</span> <span class="nav-text">检查权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取权限"><span class="nav-number">2.2.</span> <span class="nav-text">获取权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回调"><span class="nav-number">2.3.</span> <span class="nav-text">回调</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最佳实践"><span class="nav-number">3.</span> <span class="nav-text">最佳实践</span></a></li></ol></div>
             
           </div>
         </section>
