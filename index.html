@@ -344,25 +344,24 @@
 <h3 id="检查权限"><a href="#检查权限" class="headerlink" title="检查权限"></a>检查权限</h3><p>首先要检查是否获得了权限</p>
 <pre><code>int permissionCheck = ContextCompat.checkSelfPermission(thisActivity, Manifest.permission.SEND_SMS);
 </code></pre><h3 id="获取权限"><a href="#获取权限" class="headerlink" title="获取权限"></a>获取权限</h3><pre><code>if (ContextCompat.checkSelfPermission(thisActivity, Manifest.permission.SEND_SMS)
-            != PackageManager.PERMISSION_GRANTED) {
+        != PackageManager.PERMISSION_GRANTED) {
 
-          if (ActivityCompat.shouldShowRequestPermissionRationale(thisActivity,
-              Manifest.permission.SEND_SMS)) {
+      if (ActivityCompat.shouldShowRequestPermissionRationale(thisActivity,
+          Manifest.permission.SEND_SMS)) {
+        //用户不给权限的友好提示,引导用户去权限设置页
+        alertNeedPermission();
+      } else {
 
-            // Show an expanation to the user *asynchronously* -- don&apos;t block
-            // this thread waiting for the user&apos;s response! After the user
-            // sees the explanation, try again to request the permission.
+        // 获取权限
 
-          } else {
+        ActivityCompat.requestPermissions(thisActivity,
+            new String[] { Manifest.permission.SEND_SMS }, MY_PERMISSIONS_REQUEST_SEND_SMS);
 
-            // 获取权限
-
-            ActivityCompat.requestPermissions(thisActivity,
-                new String[] { Manifest.permission.SEND_SMS }, MY_PERMISSIONS_REQUEST_SEND_SMS);
-
-            // 回调的requestCode
-          }
-        }
+        // 回调的requestCode
+      }
+    } else {
+      sendSMS();
+    }
 </code></pre><h3 id="回调"><a href="#回调" class="headerlink" title="回调"></a>回调</h3><pre><code>@Override public void onRequestPermissionsResult(int requestCode, String permissions[],
       int[] grantResults) {
     switch (requestCode) {
@@ -370,12 +369,13 @@
         // If request is cancelled, the result arrays are empty.
         if (grantResults.length &gt; 0 &amp;&amp; grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-          // 获取成功
+          sendSMS();
           // permission was granted, yay! Do the
           // contacts-related task you need to do.
 
         } else {
 
+          alertNeedPermission();
           // permission denied, boo! Disable the
           // functionality that depends on this permission.
         }
@@ -386,6 +386,26 @@
       // permissions this app might request
     }
   }
+</code></pre><p>其他方法  </p>
+<pre><code>public void alertNeedPermission() {
+  new AlertDialog.Builder(MainActivity.this).setMessage(&quot;app需要开启权限才能使用此功能&quot;)
+      .setPositiveButton(&quot;设置&quot;, new DialogInterface.OnClickListener() {
+        @Override public void onClick(DialogInterface dialogInterface, int i) {
+          Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+          intent.setData(Uri.parse(&quot;package:&quot; + getPackageName()));
+          startActivity(intent);
+        }
+      })
+      .setNegativeButton(&quot;取消&quot;, null)
+      .create()
+      .show();
+}
+
+public void sendSMS() {
+  Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(&quot;smsto:&quot; + 10086));
+  intent.putExtra(&quot;sms_body&quot;, &quot;短信&quot;);
+  startActivity(intent);
+}
 </code></pre><h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><ol>
 <li>只获取你需要的权限；</li>
 <li>告诉用户你为什么需要这个权限；</li>
