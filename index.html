@@ -243,6 +243,267 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/21/Sortable/" itemprop="url">
+                  拖放排序库 Sortable 使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-21T23:15:27+08:00" content="2016-06-21">
+              2016-06-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/21/Sortable/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/21/Sortable/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天发现了一个非常棒的库<a href="https://github.com/RubaXa/Sortable" target="_blank" rel="external">Sortable</a>，用起来非常的好用。  </p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>他自己的介绍是这样的：<br>Sortable — is a minimalist JavaScript library for reorderable drag-and-drop lists on modern browsers and touch devices. No jQuery. Supports Meteor, AngularJS, React, Polymer and any CSS library, e.g. Bootstrap.</p>
+<p>非常轻量级的拖放排序库，适用于现代浏览器和触摸设备。不需要jQuery，支持很多前端库。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>最基本的使用很简单。  </p>
+<pre><code>&lt;ul id=&quot;items&quot;&gt;
+  &lt;li&gt;item 1&lt;/li&gt;
+  &lt;li&gt;item 2&lt;/li&gt;
+  &lt;li&gt;item 3&lt;/li&gt;
+&lt;/ul&gt;  
+</code></pre><p>然后</p>
+<pre><code>var el = document.getElementById(&apos;items&apos;);
+var sortable = Sortable.create(el);
+</code></pre><p>还可以加上许多配置项</p>
+<pre><code>var sortable = new Sortable(el, {
+    group: &quot;name&quot;,  // or { name: &quot;...&quot;, pull: [true, false, clone], put: [true, false, array] }
+    sort: true,  // sorting inside list
+    delay: 0, // time in milliseconds to define when the sorting should start
+    disabled: false, // Disables the sortable if set to true.
+    store: null,  // @see Store
+    animation: 150,  // ms, animation speed moving items when sorting, `0` — without animation
+    handle: &quot;.my-handle&quot;,  // Drag handle selector within list items
+    filter: &quot;.ignore-elements&quot;,  // Selectors that do not lead to dragging (String or Function)
+    draggable: &quot;.item&quot;,  // Specifies which items inside the element should be draggable
+    ghostClass: &quot;sortable-ghost&quot;,  // Class name for the drop placeholder
+    chosenClass: &quot;sortable-chosen&quot;,  // Class name for the chosen item
+    dataIdAttr: &apos;data-id&apos;,
+
+    forceFallback: false,  // ignore the HTML5 DnD behaviour and force the fallback to kick in
+    fallbackClass: &quot;sortable-fallback&quot;,  // Class name for the cloned DOM Element when using forceFallback
+    fallbackOnBody: false,  // Appends the cloned DOM Element into the Document&apos;s Body
+
+    scroll: true, // or HTMLElement
+    scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
+    scrollSpeed: 10, // px
+
+    setData: function (dataTransfer, dragEl) {
+        dataTransfer.setData(&apos;Text&apos;, dragEl.textContent);
+    },
+
+    // dragging started
+    onStart: function (/**Event*/evt) {
+        evt.oldIndex;  // element index within parent
+    },
+
+    // dragging ended
+    onEnd: function (/**Event*/evt) {
+        evt.oldIndex;  // element&apos;s old index within parent
+        evt.newIndex;  // element&apos;s new index within parent
+    },
+
+    // Element is dropped into the list from another list
+    onAdd: function (/**Event*/evt) {
+        var itemEl = evt.item;  // dragged HTMLElement
+        evt.from;  // previous list
+        // + indexes from onEnd
+    },
+
+    // Changed sorting within list
+    onUpdate: function (/**Event*/evt) {
+        var itemEl = evt.item;  // dragged HTMLElement
+        // + indexes from onEnd
+    },
+
+    // Called by any change to the list (add / update / remove)
+    onSort: function (/**Event*/evt) {
+        // same properties as onUpdate
+    },
+
+    // Element is removed from the list into another list
+    onRemove: function (/**Event*/evt) {
+        // same properties as onUpdate
+    },
+
+    // Attempt to drag a filtered element
+    onFilter: function (/**Event*/evt) {
+        var itemEl = evt.item;  // HTMLElement receiving the `mousedown|tapstart` event.
+    },
+
+    // Event when you move an item in the list or between lists
+    onMove: function (/**Event*/evt) {
+        // Example: http://jsbin.com/tuyafe/1/edit?js,output
+        evt.dragged; // dragged HTMLElement
+        evt.draggedRect; // TextRectangle {left, top, right и bottom}
+        evt.related; // HTMLElement on which have guided
+        evt.relatedRect; // TextRectangle
+        // return false; — for cancel
+    }
+});
+</code></pre><p>其中onStart，onEnd可以获取到拖放前后的序号。</p>
+<h2 id="结合react使用"><a href="#结合react使用" class="headerlink" title="结合react使用"></a>结合react使用</h2><p>有两种方式使用，一种是使用mixins，由于react官方blog说明在es2015（es6）中不在支持mixins，现在已经2016过半了，我们也不用这种方式了，使用另一种基于ref的方式。  </p>
+<pre><code>import * as React from &quot;react&quot;;
+import Sortable from &apos;sortablejs&apos;;
+
+export class SortableExampleEsnext extends React.Component {
+
+  sortableContainersDecorator = (componentBackingInstance) =&gt; {
+    // check if backing instance not null
+    if (componentBackingInstance) {
+      let options = {
+        handle: &quot;.group-title&quot; // Restricts sort start click/touch to the specified element
+      };
+      Sortable.create(componentBackingInstance, options);
+    }
+  };
+
+  sortableGroupDecorator = (componentBackingInstance) =&gt; {
+    // check if backing instance not null
+    if (componentBackingInstance) {
+      let options = {
+        draggable: &quot;div&quot;, // Specifies which items inside the element should be sortable
+        group: &quot;shared&quot;
+      };
+      Sortable.create(componentBackingInstance, options);
+    }
+  };
+
+  render() {
+    return (
+      &lt;div className=&quot;container&quot; ref={this.sortableContainersDecorator}&gt;
+        &lt;div className=&quot;group&quot;&gt;
+          &lt;h2 className=&quot;group-title&quot;&gt;Group 1&lt;/h2&gt;
+          &lt;div className=&quot;group-list&quot; ref={this.sortableGroupDecorator}&gt;
+            &lt;div&gt;Swap them around&lt;/div&gt;
+            &lt;div&gt;Swap us around&lt;/div&gt;
+            &lt;div&gt;Swap things around&lt;/div&gt;
+            &lt;div&gt;Swap everything around&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div className=&quot;group&quot;&gt;
+          &lt;h2 className=&quot;group-title&quot;&gt;Group 2&lt;/h2&gt;
+          &lt;div className=&quot;group-list&quot; ref={this.sortableGroupDecorator}&gt;
+            &lt;div&gt;Swap them around&lt;/div&gt;
+            &lt;div&gt;Swap us around&lt;/div&gt;
+            &lt;div&gt;Swap things around&lt;/div&gt;
+            &lt;div&gt;Swap everything around&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+</code></pre><p>以上是官方的示例。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/30/permissions-ART/" itemprop="url">
                   在ART获取权限
                 </a>
@@ -1748,126 +2009,6 @@ npm start
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/03/30/2015-3-30-blog/" itemprop="url">
-                  Swift学习第二课
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-03-30T00:00:00+08:00" content="2015-03-30">
-              2015-03-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/03/30/2015-3-30-blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/30/2015-3-30-blog/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天一打开iTunesU声音有点不太对，原来白胡子老头生病了。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1913,7 +2054,7 @@ npm start
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1930,7 +2071,7 @@ npm start
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
