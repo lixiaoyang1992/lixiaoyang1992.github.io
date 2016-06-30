@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="TypeScript," />
+  <meta name="keywords" content="TypeScript,react," />
 
 
 
@@ -84,16 +84,52 @@
 
 
 
-<meta name="description" content="官方教程本文代码地址">
+<meta name="description" content="官方教程本文代码地址
+总体来说就是加了一些配置，具体的使用代码还是一样的。
+项目结构mkdir proj
+cd proj
+mkdir src
+cd src
+mkdir components
+cd ..
+mkdir dist
+初始化npm init
+一路回车
+安装依赖npm install -g typescript typings webpack
+npm install --save react">
 <meta property="og:type" content="article">
-<meta property="og:title" content="typescript-react">
+<meta property="og:title" content="typescript react Hello World">
 <meta property="og:url" content="http://lixoayang.cn/2016/06/28/typescript-react/index.html">
 <meta property="og:site_name" content="当我谈论代码时我在谈论什么">
-<meta property="og:description" content="官方教程本文代码地址">
-<meta property="og:updated_time" content="2016-06-28T05:01:20.000Z">
+<meta property="og:description" content="官方教程本文代码地址
+总体来说就是加了一些配置，具体的使用代码还是一样的。
+项目结构mkdir proj
+cd proj
+mkdir src
+cd src
+mkdir components
+cd ..
+mkdir dist
+初始化npm init
+一路回车
+安装依赖npm install -g typescript typings webpack
+npm install --save react">
+<meta property="og:updated_time" content="2016-06-30T16:11:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="typescript-react">
-<meta name="twitter:description" content="官方教程本文代码地址">
+<meta name="twitter:title" content="typescript react Hello World">
+<meta name="twitter:description" content="官方教程本文代码地址
+总体来说就是加了一些配置，具体的使用代码还是一样的。
+项目结构mkdir proj
+cd proj
+mkdir src
+cd src
+mkdir components
+cd ..
+mkdir dist
+初始化npm init
+一路回车
+安装依赖npm install -g typescript typings webpack
+npm install --save react">
 
 
 
@@ -111,7 +147,7 @@
   };
 </script>
 
-  <title> typescript-react | 当我谈论代码时我在谈论什么 </title>
+  <title> typescript react Hello World | 当我谈论代码时我在谈论什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -241,7 +277,7 @@
             
             
               
-                typescript-react
+                typescript react Hello World
               
             
           </h1>
@@ -258,6 +294,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -289,6 +344,112 @@
 
       
         <p><a href="https://www.typescriptlang.org/docs/handbook/react-&amp;-webpack.html" target="_blank" rel="external">官方教程</a><br><a href="https://github.com/lixiaoyang1992/React-Webpack-typescript" target="_blank" rel="external">本文代码地址</a></p>
+<p>总体来说就是加了一些配置，具体的使用代码还是一样的。</p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><pre><code>mkdir proj
+cd proj
+mkdir src
+cd src
+mkdir components
+cd ..
+mkdir dist
+</code></pre><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre><code>npm init
+</code></pre><p>一路回车</p>
+<h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><pre><code>npm install -g typescript typings webpack
+npm install --save react react-dom
+npm install --save-dev ts-loader source-map-loader
+npm link typescript
+typings install --global --save dt~react
+typings install --global --save dt~react-dom
+</code></pre><h4 id="typescript配置文件tsconfig-json"><a href="#typescript配置文件tsconfig-json" class="headerlink" title="typescript配置文件tsconfig.json"></a>typescript配置文件tsconfig.json</h4><pre><code>{
+    &quot;compilerOptions&quot;: {
+        &quot;outDir&quot;: &quot;./dist/&quot;,
+        &quot;sourceMap&quot;: true,
+        &quot;noImplicitAny&quot;: true,
+        &quot;module&quot;: &quot;commonjs&quot;,
+        &quot;target&quot;: &quot;es5&quot;,
+        &quot;jsx&quot;: &quot;react&quot;
+    },
+    &quot;files&quot;: [
+        &quot;./typings/index.d.ts&quot;,
+        &quot;./src/components/Hello.tsx&quot;,
+        &quot;./src/index.tsx&quot;
+    ]
+}
+</code></pre><h4 id="react代码"><a href="#react代码" class="headerlink" title="react代码"></a>react代码</h4><pre><code>import * as React from &quot;react&quot;;
+
+export interface HelloProps { compiler: string; framework: string; }
+
+export class Hello extends React.Component&lt;HelloProps, {}&gt; {
+    render() {
+        return &lt;h1&gt;Hello from {this.props.compiler} and {this.props.framework}!&lt;/h1&gt;;
+    }
+}
+
+
+import * as React from &quot;react&quot;;
+import * as ReactDOM from &quot;react-dom&quot;;
+
+import { Hello } from &quot;./components/Hello&quot;;
+
+ReactDOM.render(
+    &lt;Hello compiler=&quot;TypeScript&quot; framework=&quot;React&quot; /&gt;,
+    document.getElementById(&quot;example&quot;)
+);
+</code></pre><h4 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h4><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot; /&gt;
+        &lt;title&gt;Hello React!&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+
+        &lt;!-- Dependencies --&gt;
+        &lt;script src=&quot;./node_modules/react/dist/react.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;./node_modules/react-dom/dist/react-dom.js&quot;&gt;&lt;/script&gt;
+
+        &lt;!-- Main --&gt;
+        &lt;script src=&quot;./dist/bundle.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h4 id="webpack配置文件webpack-config-js"><a href="#webpack配置文件webpack-config-js" class="headerlink" title="webpack配置文件webpack.config.js"></a>webpack配置文件webpack.config.js</h4><pre><code>module.exports = {
+    entry: &quot;./src/index.tsx&quot;,
+    output: {
+        filename: &quot;./dist/bundle.js&quot;,
+    },
+
+    // Enable sourcemaps for debugging webpack&apos;s output.
+    devtool: &quot;source-map&quot;,
+
+    resolve: {
+        // Add &apos;.ts&apos; and &apos;.tsx&apos; as resolvable extensions.
+        extensions: [&quot;&quot;, &quot;.webpack.js&quot;, &quot;.web.js&quot;, &quot;.ts&quot;, &quot;.tsx&quot;, &quot;.js&quot;]
+    },
+
+    module: {
+        loaders: [
+            // All files with a &apos;.ts&apos; or &apos;.tsx&apos; extension will be handled by &apos;ts-loader&apos;.
+            { test: /\.tsx?$/, loader: &quot;ts-loader&quot; }
+        ],
+
+        preLoaders: [
+            // All output &apos;.js&apos; files will have any sourcemaps re-processed by &apos;source-map-loader&apos;.
+            { test: /\.js$/, loader: &quot;source-map-loader&quot; }
+        ]
+    },
+
+    // When importing a module whose path matches one of the following, just
+    // assume a corresponding global variable exists and use that instead.
+    // This is important because it allows us to avoid bundling all of our
+    // dependencies, which allows browsers to cache those libraries between builds.
+    externals: {
+        &quot;react&quot;: &quot;React&quot;,
+        &quot;react-dom&quot;: &quot;ReactDOM&quot;
+    },
+};
+</code></pre><h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><p>只需执行  </p>
+<pre><code>webpack
+</code></pre><p>然后在浏览器中打开index.html</p>
 
       
     </div>
@@ -312,6 +473,8 @@
           
             <a href="/tags/TypeScript/" rel="tag">#TypeScript</a>
           
+            <a href="/tags/react/" rel="tag">#react</a>
+          
         </div>
       
 
@@ -319,13 +482,17 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/28/typescript1/" rel="next" title="TypeScript快速上手">
-                <i class="fa fa-chevron-left"></i> TypeScript快速上手
+              <a href="/2016/06/28/typescript1/" rel="next" title="TypeScript Hello World">
+                <i class="fa fa-chevron-left"></i> TypeScript Hello World
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/30/angular2/" rel="prev" title="typescript angular2 Hello World">
+                typescript angular2 Hello World <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -341,7 +508,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2016/06/28/typescript-react/"
-     data-title="typescript-react"
+     data-title="typescript react Hello World"
      data-content=""
      data-url="http://lixoayang.cn/2016/06/28/typescript-react/">
   <div class="ds-share-inline">
@@ -371,7 +538,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/06/28/typescript-react/"
-           data-title="typescript-react" data-url="http://lixoayang.cn/2016/06/28/typescript-react/">
+           data-title="typescript react Hello World" data-url="http://lixoayang.cn/2016/06/28/typescript-react/">
       </div>
     
   </div>
@@ -416,7 +583,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -433,7 +600,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -527,7 +694,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目结构"><span class="nav-number">1.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">2.</span> <span class="nav-text">初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装依赖"><span class="nav-number">2.1.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#typescript配置文件tsconfig-json"><span class="nav-number">2.2.</span> <span class="nav-text">typescript配置文件tsconfig.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#react代码"><span class="nav-number">2.3.</span> <span class="nav-text">react代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#index-html"><span class="nav-number">2.4.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack配置文件webpack-config-js"><span class="nav-number">2.5.</span> <span class="nav-text">webpack配置文件webpack.config.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行"><span class="nav-number">2.6.</span> <span class="nav-text">运行</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

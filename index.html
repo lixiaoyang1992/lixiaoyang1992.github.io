@@ -243,8 +243,276 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/30/angular2/" itemprop="url">
+                  typescript angular2 Hello World
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-30T23:25:55+08:00" content="2016-06-30">
+              2016-06-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/30/angular2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/30/angular2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://angular.io/docs/ts/latest/quickstart.html" target="_blank" rel="external">官方教程</a><br><a href="https://github.com/lixiaoyang1992/typescript_angular2" target="_blank" rel="external">本文代码地址</a></p>
+<h3 id="创建与配置配置项目"><a href="#创建与配置配置项目" class="headerlink" title="创建与配置配置项目"></a>创建与配置配置项目</h3><h4 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h4><pre><code>mkdir angular2-quickstart
+cd    angular2-quickstart
+</code></pre><h4 id="创建配置文件"><a href="#创建配置文件" class="headerlink" title="创建配置文件"></a>创建配置文件</h4><p>package.json</p>
+<pre><code>{
+  &quot;name&quot;: &quot;angular2-quickstart&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;tsc &amp;&amp; concurrently \&quot;npm run tsc:w\&quot; \&quot;npm run lite\&quot; &quot;,
+    &quot;lite&quot;: &quot;lite-server&quot;,
+    &quot;postinstall&quot;: &quot;typings install&quot;,
+    &quot;tsc&quot;: &quot;tsc&quot;,
+    &quot;tsc:w&quot;: &quot;tsc -w&quot;,
+    &quot;typings&quot;: &quot;typings&quot;
+  },
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;dependencies&quot;: {
+    &quot;@angular/common&quot;:  &quot;2.0.0-rc.3&quot;,
+    &quot;@angular/compiler&quot;:  &quot;2.0.0-rc.3&quot;,
+    &quot;@angular/core&quot;:  &quot;2.0.0-rc.3&quot;,
+    &quot;@angular/forms&quot;: &quot;0.1.1&quot;,
+    &quot;@angular/http&quot;:  &quot;2.0.0-rc.3&quot;,
+    &quot;@angular/platform-browser&quot;:  &quot;2.0.0-rc.3&quot;,
+    &quot;@angular/platform-browser-dynamic&quot;:  &quot;2.0.0-rc.3&quot;,
+    &quot;@angular/router&quot;:  &quot;3.0.0-alpha.8&quot;,
+    &quot;@angular/router-deprecated&quot;:  &quot;2.0.0-rc.2&quot;,
+    &quot;@angular/upgrade&quot;:  &quot;2.0.0-rc.3&quot;,
+    &quot;systemjs&quot;: &quot;0.19.27&quot;,
+    &quot;core-js&quot;: &quot;^2.4.0&quot;,
+    &quot;reflect-metadata&quot;: &quot;^0.1.3&quot;,
+    &quot;rxjs&quot;: &quot;5.0.0-beta.6&quot;,
+    &quot;zone.js&quot;: &quot;^0.6.12&quot;,
+    &quot;angular2-in-memory-web-api&quot;: &quot;0.0.12&quot;,
+    &quot;bootstrap&quot;: &quot;^3.3.6&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;concurrently&quot;: &quot;^2.0.0&quot;,
+    &quot;lite-server&quot;: &quot;^2.2.0&quot;,
+    &quot;typescript&quot;: &quot;^1.8.10&quot;,
+    &quot;typings&quot;:&quot;^1.0.4&quot;
+  }
+}
+</code></pre><p>tsconfig.json</p>
+<pre><code>{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;es5&quot;,
+    &quot;module&quot;: &quot;commonjs&quot;,
+    &quot;moduleResolution&quot;: &quot;node&quot;,
+    &quot;sourceMap&quot;: true,
+    &quot;emitDecoratorMetadata&quot;: true,
+    &quot;experimentalDecorators&quot;: true,
+    &quot;removeComments&quot;: false,
+    &quot;noImplicitAny&quot;: false
+  }
+}
+</code></pre><p>typings.json</p>
+<pre><code>{
+  &quot;globalDependencies&quot;: {
+    &quot;core-js&quot;: &quot;registry:dt/core-js#0.0.0+20160602141332&quot;,
+    &quot;jasmine&quot;: &quot;registry:dt/jasmine#2.2.0+20160621224255&quot;,
+    &quot;node&quot;: &quot;registry:dt/node#6.0.0+20160621231320&quot;
+  }
+}
+</code></pre><p>systemjs.config.js</p>
+<pre><code>(function(global) {
+  // map tells the System loader where to look for things
+  var map = {
+    &apos;app&apos;:                        &apos;app&apos;, // &apos;dist&apos;,
+    &apos;@angular&apos;:                   &apos;node_modules/@angular&apos;,
+    &apos;angular2-in-memory-web-api&apos;: &apos;node_modules/angular2-in-memory-web-api&apos;,
+    &apos;rxjs&apos;:                       &apos;node_modules/rxjs&apos;
+  };
+  // packages tells the System loader how to load when no filename and/or no extension
+  var packages = {
+    &apos;app&apos;:                        { main: &apos;main.js&apos;,  defaultExtension: &apos;js&apos; },
+    &apos;rxjs&apos;:                       { defaultExtension: &apos;js&apos; },
+    &apos;angular2-in-memory-web-api&apos;: { main: &apos;index.js&apos;, defaultExtension: &apos;js&apos; },
+  };
+  var ngPackageNames = [
+    &apos;common&apos;,
+    &apos;compiler&apos;,
+    &apos;core&apos;,
+    &apos;forms&apos;,
+    &apos;http&apos;,
+    &apos;platform-browser&apos;,
+    &apos;platform-browser-dynamic&apos;,
+    &apos;router&apos;,
+    &apos;router-deprecated&apos;,
+    &apos;upgrade&apos;,
+  ];
+  // Individual files (~300 requests):
+  function packIndex(pkgName) {
+    packages[&apos;@angular/&apos;+pkgName] = { main: &apos;index.js&apos;, defaultExtension: &apos;js&apos; };
+  }
+  // Bundled (~40 requests):
+  function packUmd(pkgName) {
+    packages[&apos;@angular/&apos;+pkgName] = { main: &apos;/bundles/&apos; + pkgName + &apos;.umd.js&apos;, defaultExtension: &apos;js&apos; };
+  }
+  // Most environments should use UMD; some (Karma) need the individual index files
+  var setPackageConfig = System.packageWithIndex ? packIndex : packUmd;
+  // Add package entries for angular packages
+  ngPackageNames.forEach(setPackageConfig);
+  var config = {
+    map: map,
+    packages: packages
+  };
+  System.config(config);
+})(this);
+</code></pre><p>安装依赖</p>
+<pre><code>npm install
+</code></pre><h3 id="写一个组件"><a href="#写一个组件" class="headerlink" title="写一个组件"></a>写一个组件</h3><pre><code>mkdir app
+</code></pre><p>app/app.component.ts</p>
+<pre><code>import { Component } from &apos;@angular/core&apos;;
+  @Component({
+  selector: &apos;my-app&apos;,
+  template: &apos;&lt;h1&gt;My First Angular 2 App&lt;/h1&gt;&apos;
+})
+export class AppComponent { }
+</code></pre><h3 id="添加入口"><a href="#添加入口" class="headerlink" title="添加入口"></a>添加入口</h3><p>app/main.ts</p>
+<pre><code>import { bootstrap }    from &apos;@angular/platform-browser-dynamic&apos;;
+import { AppComponent } from &apos;./app.component&apos;;
+bootstrap(AppComponent);
+</code></pre><h3 id="添加index-html"><a href="#添加index-html" class="headerlink" title="添加index.html"></a>添加index.html</h3><p>根目录index.html</p>
+<pre><code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Angular 2 QuickStart&lt;/title&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;&gt;
+    &lt;!-- 1. Load libraries --&gt;
+     &lt;!-- Polyfill(s) for older browsers --&gt;
+    &lt;script src=&quot;node_modules/core-js/client/shim.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;node_modules/zone.js/dist/zone.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;node_modules/reflect-metadata/Reflect.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;node_modules/systemjs/dist/system.src.js&quot;&gt;&lt;/script&gt;
+    &lt;!-- 2. Configure SystemJS --&gt;
+    &lt;script src=&quot;systemjs.config.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+      System.import(&apos;app&apos;).catch(function(err){ console.error(err); });
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;!-- 3. Display the application --&gt;
+  &lt;body&gt;
+    &lt;my-app&gt;Loading...&lt;/my-app&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>只需执行  </p>
+<pre><code>npm start
+</code></pre><p>然后在浏览器中打开index.html</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/28/typescript-react/" itemprop="url">
-                  typescript-react
+                  typescript react Hello World
                 </a>
               
             
@@ -262,6 +530,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -295,6 +582,112 @@
         
           
             <p><a href="https://www.typescriptlang.org/docs/handbook/react-&amp;-webpack.html" target="_blank" rel="external">官方教程</a><br><a href="https://github.com/lixiaoyang1992/React-Webpack-typescript" target="_blank" rel="external">本文代码地址</a></p>
+<p>总体来说就是加了一些配置，具体的使用代码还是一样的。</p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><pre><code>mkdir proj
+cd proj
+mkdir src
+cd src
+mkdir components
+cd ..
+mkdir dist
+</code></pre><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre><code>npm init
+</code></pre><p>一路回车</p>
+<h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><pre><code>npm install -g typescript typings webpack
+npm install --save react react-dom
+npm install --save-dev ts-loader source-map-loader
+npm link typescript
+typings install --global --save dt~react
+typings install --global --save dt~react-dom
+</code></pre><h4 id="typescript配置文件tsconfig-json"><a href="#typescript配置文件tsconfig-json" class="headerlink" title="typescript配置文件tsconfig.json"></a>typescript配置文件tsconfig.json</h4><pre><code>{
+    &quot;compilerOptions&quot;: {
+        &quot;outDir&quot;: &quot;./dist/&quot;,
+        &quot;sourceMap&quot;: true,
+        &quot;noImplicitAny&quot;: true,
+        &quot;module&quot;: &quot;commonjs&quot;,
+        &quot;target&quot;: &quot;es5&quot;,
+        &quot;jsx&quot;: &quot;react&quot;
+    },
+    &quot;files&quot;: [
+        &quot;./typings/index.d.ts&quot;,
+        &quot;./src/components/Hello.tsx&quot;,
+        &quot;./src/index.tsx&quot;
+    ]
+}
+</code></pre><h4 id="react代码"><a href="#react代码" class="headerlink" title="react代码"></a>react代码</h4><pre><code>import * as React from &quot;react&quot;;
+
+export interface HelloProps { compiler: string; framework: string; }
+
+export class Hello extends React.Component&lt;HelloProps, {}&gt; {
+    render() {
+        return &lt;h1&gt;Hello from {this.props.compiler} and {this.props.framework}!&lt;/h1&gt;;
+    }
+}
+
+
+import * as React from &quot;react&quot;;
+import * as ReactDOM from &quot;react-dom&quot;;
+
+import { Hello } from &quot;./components/Hello&quot;;
+
+ReactDOM.render(
+    &lt;Hello compiler=&quot;TypeScript&quot; framework=&quot;React&quot; /&gt;,
+    document.getElementById(&quot;example&quot;)
+);
+</code></pre><h4 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h4><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot; /&gt;
+        &lt;title&gt;Hello React!&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id=&quot;example&quot;&gt;&lt;/div&gt;
+
+        &lt;!-- Dependencies --&gt;
+        &lt;script src=&quot;./node_modules/react/dist/react.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;./node_modules/react-dom/dist/react-dom.js&quot;&gt;&lt;/script&gt;
+
+        &lt;!-- Main --&gt;
+        &lt;script src=&quot;./dist/bundle.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h4 id="webpack配置文件webpack-config-js"><a href="#webpack配置文件webpack-config-js" class="headerlink" title="webpack配置文件webpack.config.js"></a>webpack配置文件webpack.config.js</h4><pre><code>module.exports = {
+    entry: &quot;./src/index.tsx&quot;,
+    output: {
+        filename: &quot;./dist/bundle.js&quot;,
+    },
+
+    // Enable sourcemaps for debugging webpack&apos;s output.
+    devtool: &quot;source-map&quot;,
+
+    resolve: {
+        // Add &apos;.ts&apos; and &apos;.tsx&apos; as resolvable extensions.
+        extensions: [&quot;&quot;, &quot;.webpack.js&quot;, &quot;.web.js&quot;, &quot;.ts&quot;, &quot;.tsx&quot;, &quot;.js&quot;]
+    },
+
+    module: {
+        loaders: [
+            // All files with a &apos;.ts&apos; or &apos;.tsx&apos; extension will be handled by &apos;ts-loader&apos;.
+            { test: /\.tsx?$/, loader: &quot;ts-loader&quot; }
+        ],
+
+        preLoaders: [
+            // All output &apos;.js&apos; files will have any sourcemaps re-processed by &apos;source-map-loader&apos;.
+            { test: /\.js$/, loader: &quot;source-map-loader&quot; }
+        ]
+    },
+
+    // When importing a module whose path matches one of the following, just
+    // assume a corresponding global variable exists and use that instead.
+    // This is important because it allows us to avoid bundling all of our
+    // dependencies, which allows browsers to cache those libraries between builds.
+    externals: {
+        &quot;react&quot;: &quot;React&quot;,
+        &quot;react-dom&quot;: &quot;ReactDOM&quot;
+    },
+};
+</code></pre><h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><p>只需执行  </p>
+<pre><code>webpack
+</code></pre><p>然后在浏览器中打开index.html</p>
 
           
         
@@ -345,7 +738,7 @@
               
                 
                 <a class="post-title-link" href="/2016/06/28/typescript1/" itemprop="url">
-                  TypeScript快速上手
+                  TypeScript Hello World
                 </a>
               
             
@@ -363,6 +756,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -1737,177 +2149,6 @@ react-native run-android
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/19/reactjs3/" itemprop="url">
-                  reactjs－基础语法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-19T10:35:17+08:00" content="2016-05-19">
-              2016-05-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/19/reactjs3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/19/reactjs3/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="基础react语法"><a href="#基础react语法" class="headerlink" title="基础react语法"></a>基础react语法</h2><p>react最常见的写法如下</p>
-<pre><code>var HelloMessage = React.createClass({
-  render: function() {
-    return &lt;div&gt;Hello {this.props.name}&lt;/div&gt;;
-  }
-});
-
-ReactDOM.render(
-  &lt;HelloMessage name=&quot;John&quot; /&gt;,
-  document.getElementById(&apos;container&apos;)
-);
-</code></pre><p>react使用jsx语法，支持html和js混编。遇到 HTML 标签（以 &lt; 开头），就用 HTML 规则解析；遇到代码块（以 { 开头），就用 JavaScript 规则解析。  </p>
-<h2 id="组件与复用"><a href="#组件与复用" class="headerlink" title="组件与复用"></a>组件与复用</h2><p>react中用的非常多的就是组件化，这应该也是web未来发展的方向，这种复用非常方便的方式也方便了开发。  </p>
-<pre><code>ReactDOM.render(
-  &lt;div&gt;
-    &lt;HelloMessage name=&quot;John&quot; /&gt;
-    &lt;HelloMessage name=&quot;Frank&quot; /&gt;
-    &lt;HelloMessage name=&quot;Didier&quot; /&gt;
-  &lt;/div&gt;,
-  document.getElementById(&apos;container&apos;)
-);
-</code></pre><p>很简单的，我们就复用了组件。</p>
-<h2 id="state与props"><a href="#state与props" class="headerlink" title="state与props"></a>state与props</h2><p>这是所有组件都具有的，也是非常重要的两个属性。  </p>
-<p>state是组件本身的状态，一旦组件被设置了新的state就会触发render重新渲染。一般包含的是是否显示，是否可用等等组件本身的状态，都是与外部环境无关的内容。</p>
-<p>props是由外部传递进来的参数，一般数据都是以参数的身份被传递进来，在flux模型中外部数据都是维护在store中的，所以作为参数传递是必不可少的。  </p>
-<p>一定要区分好state与props负责的范围，维护适当的数据。我在刚开始接触的时候以为把所有的数据都放在store里分层最彻底，把许多诸如visible之类的简单数据都放到了store中，反而在后期操作起来更繁琐。</p>
-<pre><code>var Demo = React.createClass({
-  getInitialState: function() {
-    return {visible: false};
-  },
-  handleClick: function(event) {
-    this.setState({visible: !this.state.visible});
-  },
-  render: function() {
-    return (
-      &lt;p onClick={this.handleClick}&gt;
-         {this.state.visible?
-           &apos;隐藏&apos;
-           ：‘显示’}
-      &lt;/p&gt;
-    );
-  }
-});
-
-ReactDOM.render(
-  &lt;Demo /&gt;,
-  document.getElementById(&apos;example&apos;)
-);
-</code></pre><p>每次点击之后都会更改状态，重新渲染。</p>
-<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>一个组件在它创建、显示和接受新的状态、参数时，会按照顺序调用一系列方法，就是生命周期方法。了解了这些对于做交互维护UI非常有帮助。  </p>
-<p>这部分我没什么好说的，官网上的说明已经非常棒了<a href="http://reactjs.cn/react/docs/component-specs.html" target="_blank" rel="external">官方文档中文版</a></p>
-<p>  参考链接：<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">React 入门实例教程</a> by 阮一峰<br>  我在学习的伊始，收到了很多启发。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1953,7 +2194,7 @@ ReactDOM.render(
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1970,7 +2211,7 @@ ReactDOM.render(
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
