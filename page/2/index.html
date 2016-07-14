@@ -312,8 +312,7 @@
 
       
         
-          
-            <h2 id="基础react语法"><a href="#基础react语法" class="headerlink" title="基础react语法"></a>基础react语法</h2><p>react最常见的写法如下</p>
+          <h2 id="基础react语法"><a href="#基础react语法" class="headerlink" title="基础react语法"></a>基础react语法</h2><p>react最常见的写法如下</p>
 <pre><code>var HelloMessage = React.createClass({
   render: function() {
     return &lt;div&gt;Hello {this.props.name}&lt;/div&gt;;
@@ -324,49 +323,12 @@ ReactDOM.render(
   &lt;HelloMessage name=&quot;John&quot; /&gt;,
   document.getElementById(&apos;container&apos;)
 );
-</code></pre><p>react使用jsx语法，支持html和js混编。遇到 HTML 标签（以 &lt; 开头），就用 HTML 规则解析；遇到代码块（以 { 开头），就用 JavaScript 规则解析。  </p>
-<h2 id="组件与复用"><a href="#组件与复用" class="headerlink" title="组件与复用"></a>组件与复用</h2><p>react中用的非常多的就是组件化，这应该也是web未来发展的方向，这种复用非常方便的方式也方便了开发。  </p>
-<pre><code>ReactDOM.render(
-  &lt;div&gt;
-    &lt;HelloMessage name=&quot;John&quot; /&gt;
-    &lt;HelloMessage name=&quot;Frank&quot; /&gt;
-    &lt;HelloMessage name=&quot;Didier&quot; /&gt;
-  &lt;/div&gt;,
-  document.getElementById(&apos;container&apos;)
-);
-</code></pre><p>很简单的，我们就复用了组件。</p>
-<h2 id="state与props"><a href="#state与props" class="headerlink" title="state与props"></a>state与props</h2><p>这是所有组件都具有的，也是非常重要的两个属性。  </p>
-<p>state是组件本身的状态，一旦组件被设置了新的state就会触发render重新渲染。一般包含的是是否显示，是否可用等等组件本身的状态，都是与外部环境无关的内容。</p>
-<p>props是由外部传递进来的参数，一般数据都是以参数的身份被传递进来，在flux模型中外部数据都是维护在store中的，所以作为参数传递是必不可少的。  </p>
-<p>一定要区分好state与props负责的范围，维护适当的数据。我在刚开始接触的时候以为把所有的数据都放在store里分层最彻底，把许多诸如visible之类的简单数据都放到了store中，反而在后期操作起来更繁琐。</p>
-<pre><code>var Demo = React.createClass({
-  getInitialState: function() {
-    return {visible: false};
-  },
-  handleClick: function(event) {
-    this.setState({visible: !this.state.visible});
-  },
-  render: function() {
-    return (
-      &lt;p onClick={this.handleClick}&gt;
-         {this.state.visible?
-           &apos;隐藏&apos;
-           ：‘显示’}
-      &lt;/p&gt;
-    );
-  }
-});
-
-ReactDOM.render(
-  &lt;Demo /&gt;,
-  document.getElementById(&apos;example&apos;)
-);
-</code></pre><p>每次点击之后都会更改状态，重新渲染。</p>
-<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>一个组件在它创建、显示和接受新的状态、参数时，会按照顺序调用一系列方法，就是生命周期方法。了解了这些对于做交互维护UI非常有帮助。  </p>
-<p>这部分我没什么好说的，官网上的说明已经非常棒了<a href="http://reactjs.cn/react/docs/component-specs.html" target="_blank" rel="external">官方文档中文版</a></p>
-<p>  参考链接：<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">React 入门实例教程</a> by 阮一峰<br>  我在学习的伊始，收到了很多启发。</p>
-
-          
+</code></pre><p>react使用jsx语法，支持html和js混编。遇到 HTML 标签（以 &lt; 开头），就用 HTML 规则解析；遇到代码块（以 { 开头），就用 JavaScript 规则解析。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/19/reactjs3/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -483,26 +445,12 @@ ReactDOM.render(
 
       
         
-          
-            <h2 id="npm介绍"><a href="#npm介绍" class="headerlink" title="npm介绍"></a>npm介绍</h2><p>NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具。</p>
-<h2 id="npm创建项目"><a href="#npm创建项目" class="headerlink" title="npm创建项目"></a>npm创建项目</h2><p>在任意目录下执行  </p>
-<pre><code>npm init
-</code></pre><p>  依次输入<br>  name: (lixiaoyang) react<br>  version: (1.0.0) 1.0.0<br>  description: a demo for react<br>  entry point: (index.js)<br>  test command:<br>  git repository:<br>  keywords:<br>  author:<br>  license: (ISC)<br>  当然不想填的项目你也可以一路回车过去，然后在当前目录下就会生成package.json文件</p>
-<pre><code>{
-&quot;name&quot;: &quot;react&quot;,
-&quot;version&quot;: &quot;1.0.0&quot;,
-&quot;description&quot;: &quot;a demo for react&quot;,
-&quot;main&quot;: &quot;index.js&quot;,
-&quot;scripts&quot;: {
-&quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
-},
-&quot;author&quot;: &quot;&quot;,
-&quot;license&quot;: &quot;ISC&quot;
-}
-</code></pre><p>这样一个项目的基础就搭建好了，你需要做的就是将你需要的模块一点点的引进来。</p>
-<h2 id="Complementary-Tools"><a href="#Complementary-Tools" class="headerlink" title="Complementary Tools"></a>Complementary Tools</h2><p>NodeJS的社区的一大特点就是提供了大量的工具供你随意挑选。在<a href="https://github.com/facebook/react/wiki/Complementary-Tools" target="_blank" rel="external">Complementary Tools</a>，有官方收集的各种支持工具，可以随意探索。</p>
-
-          
+          <h2 id="npm介绍"><a href="#npm介绍" class="headerlink" title="npm介绍"></a>npm介绍</h2><p>NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/17/reactjs2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -619,74 +567,12 @@ ReactDOM.render(
 
       
         
-          
-            <p>这是一系列介绍reactjs＋redux+react-router等开发的教程</p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>  读到这篇文章的可能是一个萌萌的妹子，她可能还有点天然呆，所以要讲得更细一点。  </p>
-<p>  首先她要安装以下几个软件:</p>
-<p>  <a href="https://git-scm.com/download/" target="_blank" rel="external">git</a> 最新的就可以<br><a href="https://nodejs.org/en/" target="_blank" rel="external">node.js</a> 4.4.4LTS版本</p>
-<h2 id="Demo体验"><a href="#Demo体验" class="headerlink" title="Demo体验"></a>Demo体验</h2><p>  先下几个demo，体验一下react的神奇。</p>
-<p>  执行</p>
-<pre><code>git clone git@github.com:ruanyf/react-demos.git
-</code></pre><p>  就可以在demo中感受react的与众不同了。</p>
-<h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><p>  项目是需要构建的，我们做项目的时候，肯定不能像做demo一样直接静态文件引入就完成了的。这里介绍的是npm，npm用于构建项目，可以调试、测试、发布等等，由于它很灵活，你可以用它做很多事情。</p>
-<p>  这里我们也直接clone一个starter project</p>
-<p>  执行  </p>
-<pre><code>git clone git@github.com:reactjs/redux.git
-cd examples/shopping-cart/
-npm install
-npm start
-</code></pre><p>  npm主要的配置文件是package.json  </p>
-<pre><code>{
-  &quot;name&quot;: &quot;redux-shopping-cart-example&quot;,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;description&quot;: &quot;Redux shopping-cart example&quot;,
-  &quot;scripts&quot;: {
-    &quot;start&quot;: &quot;node server.js&quot;,
-    &quot;test&quot;: &quot;cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register&quot;,
-    &quot;test:watch&quot;: &quot;npm test -- --watch&quot;
-  },
-  &quot;repository&quot;: {
-    &quot;type&quot;: &quot;git&quot;,
-    &quot;url&quot;: &quot;https://github.com/reactjs/redux.git&quot;
-  },
-  &quot;license&quot;: &quot;MIT&quot;,
-  &quot;bugs&quot;: {
-    &quot;url&quot;: &quot;https://github.com/reactjs/redux/issues&quot;
-  },
-  &quot;homepage&quot;: &quot;http://redux.js.org&quot;,
-  &quot;dependencies&quot;: {
-    &quot;babel-polyfill&quot;: &quot;^6.3.14&quot;,
-    &quot;react&quot;: &quot;^0.14.7&quot;,
-    &quot;react-dom&quot;: &quot;^0.14.7&quot;,
-    &quot;react-redux&quot;: &quot;^4.2.1&quot;,
-    &quot;redux&quot;: &quot;^3.2.1&quot;,
-    &quot;redux-thunk&quot;: &quot;^1.0.3&quot;
-  },
-  &quot;devDependencies&quot;: {
-    &quot;babel-core&quot;: &quot;^6.3.15&quot;,
-    &quot;babel-loader&quot;: &quot;^6.2.0&quot;,
-    &quot;babel-preset-es2015&quot;: &quot;^6.3.13&quot;,
-    &quot;babel-preset-react&quot;: &quot;^6.3.13&quot;,
-    &quot;babel-preset-react-hmre&quot;: &quot;^1.1.1&quot;,
-    &quot;cross-env&quot;: &quot;^1.0.7&quot;,
-    &quot;enzyme&quot;: &quot;^2.0.0&quot;,
-    &quot;expect&quot;: &quot;^1.20.1&quot;,
-    &quot;express&quot;: &quot;^4.13.3&quot;,
-    &quot;json-loader&quot;: &quot;^0.5.3&quot;,
-    &quot;react-addons-test-utils&quot;: &quot;^0.14.7&quot;,
-    &quot;redux-logger&quot;: &quot;^2.0.1&quot;,
-    &quot;mocha&quot;: &quot;^2.2.5&quot;,
-    &quot;node-libs-browser&quot;: &quot;^0.5.2&quot;,
-    &quot;webpack&quot;: &quot;^1.9.11&quot;,
-    &quot;webpack-dev-middleware&quot;: &quot;^1.2.0&quot;,
-    &quot;webpack-hot-middleware&quot;: &quot;^2.9.1&quot;
-  }
-}
-</code></pre><p>  我们通过以上文件大概可以了解配置的信息。</p>
-<p>  我们在 <a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a> 访问到你刚刚启动的项目，是一个简单的购物车页面。</p>
-<p>  参考链接：<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">React 入门实例教程</a> by 阮一峰</p>
-
-          
+          <p>这是一系列介绍reactjs＋redux+react-router等开发的教程<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/17/reactjs1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

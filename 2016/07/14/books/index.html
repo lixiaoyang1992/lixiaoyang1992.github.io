@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Maven," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,19 +84,34 @@
 
 
 
-<meta name="description" content="dedicated to you.  
-下载Maven 官网的下载链接是：Maven下载下载，解压到你喜欢的目录">
+<meta name="description" content="以下是我最近读过的书，并附上购买链接，少量会有读后感本书单不定时更新，按照看的先后倒序排列一个陌生女人的来信
+当我谈跑步时,我谈些什么
+了不起的盖茨比
+JavaScript语言精粹
+遇到百分之百的女孩
+你一定爱读的极简欧洲史
+无声告白">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Apache Maven 入门">
-<meta property="og:url" content="http://lixoayang.cn/2016/05/26/maven1/index.html">
+<meta property="og:title" content="书单">
+<meta property="og:url" content="http://lixoayang.cn/2016/07/14/books/index.html">
 <meta property="og:site_name" content="当我谈论代码时我在谈论什么">
-<meta property="og:description" content="dedicated to you.  
-下载Maven 官网的下载链接是：Maven下载下载，解压到你喜欢的目录">
-<meta property="og:updated_time" content="2016-07-14T15:05:40.000Z">
+<meta property="og:description" content="以下是我最近读过的书，并附上购买链接，少量会有读后感本书单不定时更新，按照看的先后倒序排列一个陌生女人的来信
+当我谈跑步时,我谈些什么
+了不起的盖茨比
+JavaScript语言精粹
+遇到百分之百的女孩
+你一定爱读的极简欧洲史
+无声告白">
+<meta property="og:updated_time" content="2016-07-14T15:10:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Apache Maven 入门">
-<meta name="twitter:description" content="dedicated to you.  
-下载Maven 官网的下载链接是：Maven下载下载，解压到你喜欢的目录">
+<meta name="twitter:title" content="书单">
+<meta name="twitter:description" content="以下是我最近读过的书，并附上购买链接，少量会有读后感本书单不定时更新，按照看的先后倒序排列一个陌生女人的来信
+当我谈跑步时,我谈些什么
+了不起的盖茨比
+JavaScript语言精粹
+遇到百分之百的女孩
+你一定爱读的极简欧洲史
+无声告白">
 
 
 
@@ -114,7 +129,7 @@
   };
 </script>
 
-  <title> Apache Maven 入门 | 当我谈论代码时我在谈论什么 </title>
+  <title> 书单 | 当我谈论代码时我在谈论什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -244,7 +259,7 @@
             
             
               
-                Apache Maven 入门
+                书单
               
             
           </h1>
@@ -256,8 +271,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-26T09:09:38+08:00" content="2016-05-26">
-              2016-05-26
+            <time itemprop="dateCreated" datetime="2016-07-14T09:00:00+08:00" content="2016-07-14">
+              2016-07-14
             </time>
           </span>
 
@@ -270,8 +285,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/阅读/" itemprop="url" rel="index">
+                    <span itemprop="name">阅读</span>
                   </a>
                 </span>
 
@@ -286,8 +301,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/26/maven1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/26/maven1/" itemprop="commentsCount"></span>
+                <a href="/2016/07/14/books/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/14/books/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -310,77 +325,96 @@
       
 
       
-        <p>dedicated to you.  </p>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>Maven 官网的下载链接是：<a href="http://maven.apache.org/download.cgi" target="_blank" rel="external">Maven下载</a><br>下载，解压到你喜欢的目录<br><a id="more"></a></p>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>Maven 官网的配置指导是：<a href="http://maven.apache.org/install.html" target="_blank" rel="external">Maven配置</a></p>
-<p>系统变量：MAVEN_HOME = D:\Dev\apache-maven  （你解压的目录）<br>系统变量：path = %MAVEN_HOME%\bin  </p>
-<p>on mac</p>
-<p>export MAVEN_HOME=/Users/lixiaoyang/Documents/apache-maven;<br>export PATH=$PATH:$MAVEN_HOME/bin;</p>
-<p>然后试一下  </p>
-<pre><code>$ mvn -v
-</code></pre><p>如果有结果就安装成功了</p>
-<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><p>执行命令  </p>
-<pre><code>mvn archetype:generate -DgroupId=cn.lixiaoyang.helloworld -DartifactId=helloworld -Dpackage=cn.lixiaoyang.helloworld -Dversion=1.0-SNAPSHOT
-</code></pre><p>会下载一些东西，最后会问你一些问题，一路回车就行了。  </p>
-<p>然后我们可以尝试构建了</p>
-<pre><code>cd helloworld
-mvn package
-java -cp target/helloworld-1.0-SNAPSHOT.jar cn.lixiaoyang.helloworld.App
-</code></pre><p>控制台输出 Hello World! 代表成功了。</p>
-<h2 id="POM-Project-Object-Model"><a href="#POM-Project-Object-Model" class="headerlink" title="POM (Project Object Model)"></a>POM (Project Object Model)</h2><p>所谓万物皆对象，一个工程当然也是对象。</p>
-<pre><code>&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
-  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-
-  &lt;groupId&gt;cn.lixiaoyang.helloworld&lt;/groupId&gt;
-  &lt;artifactId&gt;helloworld&lt;/artifactId&gt;
-  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
-  &lt;packaging&gt;jar&lt;/packaging&gt;
-
-  &lt;name&gt;helloworld&lt;/name&gt;
-  &lt;url&gt;http://maven.apache.org&lt;/url&gt;
-
-  &lt;properties&gt;
-    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-  &lt;/properties&gt;
-
-  &lt;dependencies&gt;
-    &lt;dependency&gt;
-      &lt;groupId&gt;junit&lt;/groupId&gt;
-      &lt;artifactId&gt;junit&lt;/artifactId&gt;
-      &lt;version&gt;3.8.1&lt;/version&gt;
-      &lt;scope&gt;test&lt;/scope&gt;
-    &lt;/dependency&gt;
-  &lt;/dependencies&gt;
-&lt;/project&gt;
-</code></pre><p>在 POM 中，groupId, artifactId, packaging, version 叫作 maven 坐标，它能唯一的确定一个项目。有了 maven 坐标，我们就可以用它来指定我们的项目所依赖的其他项目，插件，或者父项目。一般 maven 坐标写成如下的格式：</p>
-<pre><code>groupId:artifactId:packaging:version
-</code></pre><p>像我们的例子就会写成：</p>
-<pre><code>cn.lixiaoyang.helloworld: helloworld: jar: 1.0-SNAPSHOT
-</code></pre><p>我们的 helloworld 示例很简单，但是大项目一般会分成几个子项目。在这种情况下，每个子项目就会有自己的 POM 文件，然后它们会有一个共同的父项目。这样只要构建父项目就能够构建所有的子项目了。子项目的 POM 会继承父项目的 POM。</p>
-<h2 id="Maven-生命周期"><a href="#Maven-生命周期" class="headerlink" title="Maven 生命周期"></a>Maven 生命周期</h2><p>我们用的第二个命令是：mvn package。这里的 package 是一个maven的生命周期阶段 (lifecycle phase )。生命周期指项目的构建过程，它包含了一系列的有序的阶段 (phase)，而一个阶段就是构建过程中的一个步骤。  </p>
-<p>那么生命周期阶段和上面说的插件目标之间是什么关系呢？插件目标可以绑定到生命周期阶段上。一个生命周期阶段可以绑定多个插件目标。当 maven 在构建过程中逐步的通过每个阶段时，会执行该阶段所有的插件目标。  </p>
-<p>maven 能支持不同的生命周期，但是最常用的是默认的Maven生命周期 (default Maven lifecycle )。如果你没有对它进行任何的插件配置或者定制的话，那么上面的命令 mvn package 会依次执行默认生命周期中直到包括 package 阶段前的所有阶段的插件目标：</p>
-<p>process-resources 阶段：resources:resources</p>
-<p>compile 阶段：compiler:compile</p>
-<p>process-classes 阶段：(默认无目标)</p>
-<p>process-test-resources 阶段：resources:testResources</p>
-<p>test-compile 阶段：compiler:testCompile</p>
-<p>test 阶段：surefire:test</p>
-<p>prepare-package 阶段：(默认无目标)</p>
-<p>package 阶段：jar:jar</p>
-<h2 id="Maven-依赖管理"><a href="#Maven-依赖管理" class="headerlink" title="Maven 依赖管理"></a>Maven 依赖管理</h2><p>之前我们说过，maven 坐标能够确定一个项目。换句话说，我们可以用它来解决依赖关系。在 POM 中，依赖关系是在 dependencies 部分中定义的。在上面的 POM 例子中，我们用 dependencies 定义了对于 junit 的依赖：</p>
-<p>Xml 代码</p>
-<pre><code>&lt;dependencies&gt;
-  &lt;dependency&gt;
-    &lt;groupId&gt;junit&lt;/groupId&gt;
-    &lt;artifactId&gt;junit&lt;/artifactId&gt;
-    &lt;version&gt;3.8.1&lt;/version&gt;
-    &lt;scope&gt;test&lt;/scope&gt;
-  &lt;/dependency&gt;
-&lt;/dependencies&gt;
-</code></pre><p>那这个例子很简单，但是实际开发中我们会有复杂得多的依赖关系，因为被依赖的 jar 文件会有自己的依赖关系。那么我们是不是需要把那些间接依赖的 jar 文件也都定义在POM中呢？答案是不需要，因为 maven 提供了传递依赖的特性。</p>
-<p>所谓传递依赖是指 maven 会检查被依赖的 jar 文件，把它的依赖关系纳入最终解决的依赖关系链中。</p>
+        <h4 id="以下是我最近读过的书，并附上购买链接，少量会有读后感"><a href="#以下是我最近读过的书，并附上购买链接，少量会有读后感" class="headerlink" title="以下是我最近读过的书，并附上购买链接，少量会有读后感"></a>以下是我最近读过的书，并附上购买链接，少量会有读后感</h4><h5 id="本书单不定时更新，按照看的先后倒序排列"><a href="#本书单不定时更新，按照看的先后倒序排列" class="headerlink" title="本书单不定时更新，按照看的先后倒序排列"></a>本书单不定时更新，按照看的先后倒序排列</h5><p><a href="https://www.amazon.cn/dp/B008HK7DIC" target="_blank" rel="external">一个陌生女人的来信</a></p>
+<p><a href="https://www.amazon.cn/dp/B01449CGAO" target="_blank" rel="external">当我谈跑步时,我谈些什么</a></p>
+<p><a href="https://www.amazon.cn/dp/B00EK865WK" target="_blank" rel="external">了不起的盖茨比</a></p>
+<p><a href="https://www.amazon.cn/dp/B0097CON2S" target="_blank" rel="external">JavaScript语言精粹</a></p>
+<p><a href="https://www.amazon.cn/dp/B001DOW6TA" target="_blank" rel="external">遇到百分之百的女孩</a></p>
+<p><a href="https://www.amazon.cn/dp/B00E192518" target="_blank" rel="external">你一定爱读的极简欧洲史</a></p>
+<p><a href="https://www.amazon.cn/dp/B00ZWTY2JO" target="_blank" rel="external">无声告白</a><br><a id="more"></a><br><a href="https://www.amazon.cn/gp/product/B00S4OK1ZS" target="_blank" rel="external">三体全集</a>  </p>
+<blockquote>
+<p>连续不停的读完了第二部和第三部，非常的精彩。</p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B01DK24PC8" target="_blank" rel="external">魔兽世界•迈向冰封王座:阿尔萨斯</a></p>
+<blockquote>
+<p>耳熟能详的故事了</p>
+</blockquote>
+<p><a href="https://www.amazon.cn/dp/B0099MSHJQ" target="_blank" rel="external">动物农场</a>  </p>
+<blockquote>
+<p>仿佛几十年年前就有人预言了今天发生的情况</p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B00EC431SI" target="_blank" rel="external">当我们谈论爱情时我们在谈论什么 (卡佛作品)</a>   </p>
+<blockquote>
+<p>极简风格的作品</p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product" target="_blank" rel="external">一九八四 </a></p>
+<blockquote>
+<p>有的国家把它当成警示灯，有的国家把它当成了说明书<br>还应该看看《美丽新世界》  </p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B01C30EMLC" target="_blank" rel="external">以色列：一个国家的诞生（知乎十一点半作品） (知乎「一小时」系列 11)</a>  </p>
+<p><a href="https://www.amazon.cn/gp/product/B01D2G5HQ0" target="_blank" rel="external">孤独小说家</a>   </p>
+<p><a href="https://www.amazon.cn/gp/product/B00DGO8XLA" target="_blank" rel="external">雪国之劫</a>  </p>
+<p><a href="https://www.amazon.cn/gp/product/B00T2NGQW2" target="_blank" rel="external">无人生还</a></p>
+<p><a href="https://www.amazon.cn/gp/product/B0111G8BDO" target="_blank" rel="external">彷徨之刃</a></p>
+<p><a href="https://www.amazon.cn/gp/product/B00Q3TQMDG" target="_blank" rel="external">苹果三剑客:史蒂夫·乔布斯传(修订版)+乔纳森传+沃兹传(套装共3册)</a></p>
+<blockquote>
+<p>只看了乔布斯传，不愧是多次改变了世界的人</p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B0156DEYQQ" target="_blank" rel="external">重新定义公司:谷歌是如何运营的</a></p>
+<p><a href="https://www.amazon.cn/gp/product/B00KYEFUTI" target="_blank" rel="external">冰与火之歌卷二：4-6列王的纷争（全3册）</a>  </p>
+<blockquote>
+<p>很精彩<br>太长了，一直不敢开坑第三部</p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B00J53P6PC" target="_blank" rel="external">假面饭店</a>  </p>
+<p><a href="https://www.amazon.cn/gp/product/B00KYEFUZC" target="_blank" rel="external">冰与火之歌卷一：1-3权力的游戏（全3册）</a>  </p>
+<blockquote>
+<p>第一季的时候就看了前几章，好几年才填完坑</p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B00T238N2I" target="_blank" rel="external">东方快车谋杀案</a>   </p>
+<blockquote>
+<p>很精彩，不剧透</p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B00A4QLGJY" target="_blank" rel="external">嫌疑人X的献身</a>  </p>
+<blockquote>
+<p>又是爱情，日本人的爱情总是比较特殊</p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B00NOQNHP2/" target="_blank" rel="external">解忧杂货店</a></p>
+<blockquote>
+<p>畅销书，不做评论  </p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B00WM1P75S/" target="_blank" rel="external">岛上书店</a></p>
+<blockquote>
+<p>畅销书，不做评论   </p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B00O0QGPQ8" target="_blank" rel="external">失乐园</a></p>
+<blockquote>
+<p>我爱看小黄书,推荐!<br>涉及了婚外情，再加上在看日剧《昼颜》，火上浇油啊，让人想入非非  </p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B00RRCUBJE" target="_blank" rel="external">永恒的终结</a>  </p>
+<blockquote>
+<p>经典，读完第一遍立刻就读了第二遍；<br>又涉及了爱情  </p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B00OLKODKI" target="_blank" rel="external">何以笙箫默</a>  </p>
+<blockquote>
+<p>我觉得单身狗不适合看言情小说  </p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B007SKEQTQ" target="_blank" rel="external">陆犯焉识</a>  </p>
+<blockquote>
+<p>电影没有把小说给表现完全，传统知识分子的爱情单身狗是读不太懂的  </p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B00QM20GC2" target="_blank" rel="external">秘密</a>  </p>
+<p><a href="https://www.amazon.cn/gp/product/B00EOL1AK0" target="_blank" rel="external">一个人的朝圣</a>  </p>
+<p><a href="https://www.amazon.cn/gp/product/B00QIECRYY" target="_blank" rel="external">东野圭吾作品：信</a>  </p>
+<p><a href="https://www.amazon.cn/gp/product/B00A3MTODE" target="_blank" rel="external">追风筝的人</a>  </p>
+<p><a href="https://www.amazon.cn/gp/product/B00BXX5DDM" target="_blank" rel="external">白夜行</a>  </p>
+<p><a href="https://www.amazon.cn/gp/product/B00967XSIE" target="_blank" rel="external">饥饿游戏(套装共3册)</a>  </p>
+<blockquote>
+<p>相当于是美国的网络小说,和中国的水平差不多  </p>
+</blockquote>
+<p><a href="https://www.amazon.cn/gp/product/B00CE1PKXA" target="_blank" rel="external">悟空传(完美纪念版)</a>  </p>
+<p><a href="https://www.amazon.cn/gp/product/B00JWK8CPE" target="_blank" rel="external">魔兽世界·战争罪行 (《魔兽世界》官方小说系列)</a>  </p>
+<p><a href="https://www.amazon.cn/gp/product/B00G8U7OH8" target="_blank" rel="external">魔兽世界·沃金：部落的暗影 (幻象文库之暴雪系列)</a>  </p>
+<p><a href="https://www.amazon.cn/gp/product/B00J1FT81M" target="_blank" rel="external">魔兽世界·萨尔：巨龙的黄昏 (《魔兽世界》官方小说系列)</a>  </p>
 
       
     </div>
@@ -400,28 +434,18 @@ java -cp target/helloworld-1.0-SNAPSHOT.jar cn.lixiaoyang.helloworld.App
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Maven/" rel="tag">#Maven</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/23/reactjs4/" rel="next" title="reactjs－开始写项目">
-                <i class="fa fa-chevron-left"></i> reactjs－开始写项目
+              <a href="/2016/06/30/angular2/" rel="next" title="typescript angular2 Hello World">
+                <i class="fa fa-chevron-left"></i> typescript angular2 Hello World
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/30/permissions-ART/" rel="prev" title="在ART获取权限">
-                在ART获取权限 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -436,10 +460,10 @@ java -cp target/helloworld-1.0-SNAPSHOT.jar cn.lixiaoyang.helloworld.App
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/05/26/maven1/"
-     data-title="Apache Maven 入门"
+        <div class="ds-share flat" data-thread-key="2016/07/14/books/"
+     data-title="书单"
      data-content=""
-     data-url="http://lixoayang.cn/2016/05/26/maven1/">
+     data-url="http://lixoayang.cn/2016/07/14/books/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -466,8 +490,8 @@ java -cp target/helloworld-1.0-SNAPSHOT.jar cn.lixiaoyang.helloworld.App
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/26/maven1/"
-           data-title="Apache Maven 入门" data-url="http://lixoayang.cn/2016/05/26/maven1/">
+      <div class="ds-thread" data-thread-key="2016/07/14/books/"
+           data-title="书单" data-url="http://lixoayang.cn/2016/07/14/books/">
       </div>
     
   </div>
@@ -623,7 +647,7 @@ java -cp target/helloworld-1.0-SNAPSHOT.jar cn.lixiaoyang.helloworld.App
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载"><span class="nav-number">1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境变量"><span class="nav-number">2.</span> <span class="nav-text">配置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-World"><span class="nav-number">3.</span> <span class="nav-text">Hello World</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POM-Project-Object-Model"><span class="nav-number">4.</span> <span class="nav-text">POM (Project Object Model)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-生命周期"><span class="nav-number">5.</span> <span class="nav-text">Maven 生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-依赖管理"><span class="nav-number">6.</span> <span class="nav-text">Maven 依赖管理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#以下是我最近读过的书，并附上购买链接，少量会有读后感"><span class="nav-number">1.</span> <span class="nav-text">以下是我最近读过的书，并附上购买链接，少量会有读后感</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#本书单不定时更新，按照看的先后倒序排列"><span class="nav-number">1.1.</span> <span class="nav-text">本书单不定时更新，按照看的先后倒序排列</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
