@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="react-native," />
 
 
 
@@ -84,15 +84,16 @@
 
 
 
-<meta name="description" content="inspired by 雷蒙德·卡佛，村上春树">
-<meta property="og:type" content="website">
-<meta property="og:title" content="当我谈论代码时我在谈论什么">
-<meta property="og:url" content="http://lixoayang.cn/tags/Android/index.html">
+<meta name="description" content="项目参考了f8 app 的设计。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用react-native开发知乎日报">
+<meta property="og:url" content="http://lixoayang.cn/2016/07/24/zhihu1/index.html">
 <meta property="og:site_name" content="当我谈论代码时我在谈论什么">
-<meta property="og:description" content="inspired by 雷蒙德·卡佛，村上春树">
+<meta property="og:description" content="项目参考了f8 app 的设计。">
+<meta property="og:updated_time" content="2016-07-24T11:51:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="当我谈论代码时我在谈论什么">
-<meta name="twitter:description" content="inspired by 雷蒙德·卡佛，村上春树">
+<meta name="twitter:title" content="用react-native开发知乎日报">
+<meta name="twitter:description" content="项目参考了f8 app 的设计。">
 
 
 
@@ -110,7 +111,7 @@
   };
 </script>
 
-  <title> 标签: Android | 当我谈论代码时我在谈论什么 </title>
+  <title> 用react-native开发知乎日报 | 当我谈论代码时我在谈论什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,7 +132,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -219,46 +220,223 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Android
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                用react-native开发知乎日报
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-24T18:45:48+08:00" content="2016-07-24">
+              2016-07-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/24/zhihu1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/24/zhihu1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>项目参考了<a href="https://github.com/fbsamples/f8app" target="_blank" rel="external">f8 app</a> 的设计。<br><a id="more"></a></p>
+<h3 id="一份代码，两个平台"><a href="#一份代码，两个平台" class="headerlink" title="一份代码，两个平台"></a>一份代码，两个平台</h3><p>既然要用react－native了，android和iOS当然要只写一份代码了。  </p>
+<p>初始化项目后，根目录创建js文件夹，作为我们的源码文件夹。</p>
+<p>首先要统一首页。js/index.js  </p>
+<pre><code>import React, {Component} from &apos;react&apos;;
+import {
+    AppRegistry,
+    StyleSheet,
+    Text,
+    View
+} from &apos;react-native&apos;;
 
-      <h1 class="post-title">
+export default class zhihu extends Component {
+    render() {
+        return (
+            &lt;View style={styles.container}&gt;
+                &lt;Text style={styles.welcome}&gt;
+                    Welcome to React Native!
+                &lt;/Text&gt;
+                &lt;Text style={styles.instructions}&gt;
+                    To get started, edit index.android.js
+                &lt;/Text&gt;
+                &lt;Text style={styles.instructions}&gt;
+                    Double tap R on your keyboard to reload,{&apos;\n&apos;}
+                    Shake or press menu button for dev menu
+                &lt;/Text&gt;
+            &lt;/View&gt;
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: &apos;center&apos;,
+        alignItems: &apos;center&apos;,
+        backgroundColor: &apos;#F5FCFF&apos;,
+    },
+    welcome: {
+        fontSize: 20,
+        textAlign: &apos;center&apos;,
+        margin: 10,
+    },
+    instructions: {
+        textAlign: &apos;center&apos;,
+        color: &apos;#333333&apos;,
+        marginBottom: 5,
+    },
+});
+</code></pre><p>就是把初始代码挪了个位置。</p>
+<p>把index.ios.js和index.android.js都改为</p>
+<pre><code>import index from &apos;./js/index&apos;
+import {
+    AppRegistry
+} from &apos;react-native&apos;;
+
+AppRegistry.registerComponent(&apos;zhihu&apos;, ()=&gt;index);
+</code></pre><p>这样连个平台就使用同一份代码了。</p>
+
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/05/30/permissions-ART/" itemprop="url">
-              
-                <span itemprop="name">在ART获取权限</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-30T08:41:01+08:00"
-              content="2016-05-30" >
-          05-30
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react-native/" rel="tag">#react-native</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/24/books/" rel="next" title="书单">
+                <i class="fa fa-chevron-left"></i> 书单
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/07/24/zhihu1/"
+     data-title="用react-native开发知乎日报"
+     data-content=""
+     data-url="http://lixoayang.cn/2016/07/24/zhihu1/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -266,6 +444,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/24/zhihu1/"
+           data-title="用react-native开发知乎日报" data-url="http://lixoayang.cn/2016/07/24/zhihu1/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -285,8 +471,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -402,6 +597,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一份代码，两个平台"><span class="nav-number">1.</span> <span class="nav-text">一份代码，两个平台</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -497,6 +703,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
