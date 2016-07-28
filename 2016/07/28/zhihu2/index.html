@@ -93,7 +93,7 @@
 <meta property="og:description" content="本项目源码lixiaoyang1992/zhihu
 今天完成了欢迎页面">
 <meta property="og:image" content="http://lixoayang.cn/2016/07/28/zhihu2/ScreenShotWelcome.png">
-<meta property="og:updated_time" content="2016-07-28T01:23:35.000Z">
+<meta property="og:updated_time" content="2016-07-28T05:22:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用react-native开发知乎日报 2">
 <meta name="twitter:description" content="本项目源码lixiaoyang1992/zhihu
@@ -316,7 +316,7 @@
 <p>今天完成了欢迎页面</p>
 <img src="/2016/07/28/zhihu2/ScreenShotWelcome.png" alt="ScreenShotWelcome.png" title="">
 <a id="more"></a>
-<h3 id="欢迎页"><a href="#欢迎页" class="headerlink" title="欢迎页"></a>欢迎页</h3><h4 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h4><p>欢迎页面需要获取启动图片，对应的api <a href="https://news-at.zhihu.com/api/4/start-image/1080*1776" target="_blank" rel="external">https://news-at.zhihu.com/api/4/start-image/1080*1776</a></p>
+<h3 id="api调用"><a href="#api调用" class="headerlink" title="api调用"></a>api调用</h3><p>欢迎页面需要获取启动图片，对应的api <a href="https://news-at.zhihu.com/api/4/start-image/1080*1776" target="_blank" rel="external">https://news-at.zhihu.com/api/4/start-image/1080*1776</a></p>
 <p>建立js/api/zhihu.js</p>
 <pre><code>export default {
 
@@ -334,6 +334,117 @@
     },
 
 }
+</code></pre><p>在react-native中，只能使用fetch来做网络请求，使用promise来处理</p>
+<p>其余的action部分正常调用即可</p>
+<p>至此，api的调用方法写好了</p>
+<h3 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h3><p>和普通的react写法一样。</p>
+<h3 id="WelcomeContainer"><a href="#WelcomeContainer" class="headerlink" title="WelcomeContainer"></a>WelcomeContainer</h3><p>获取屏幕的高和宽，显示全屏图片的时候会用到。</p>
+<pre><code>import {
+    AppRegistry,
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    StatusBar
+} from &apos;react-native&apos;;
+
+var {height, width} = Dimensions.get(&apos;window&apos;);
+
+//android要把状态栏的高度减去才是全屏高度
+if (StatusBar.currentHeight)
+    height -= StatusBar.currentHeight
+</code></pre><p>react-native中使用js来添加样式，语法类似css稍作变化，如backgroundColor 取代 background-color。</p>
+<pre><code>const styles = StyleSheet.create({
+    fullScreen: {
+        width: width,
+        height: height,
+    },
+    bottomBar: {
+        width: width,
+        backgroundColor: &apos;#000000&apos;,
+    },
+    transparentBackgroud: {
+        backgroundColor: &apos;#00000000&apos;,
+    },
+    textCentre: {
+        textAlign: &apos;center&apos;,
+    },
+    textLargeWhite: {
+        fontSize: 22,
+        textAlign: &apos;left&apos;,
+        color: &apos;white&apos;,
+    },
+    textNormalWhite: {
+        fontSize: 16,
+        textAlign: &apos;left&apos;,
+        color: &apos;white&apos;,
+    },
+});
+</code></pre><p>view的写法和普通的react没有区别，只是要调用对应的component来绘制试图。</p>
+<pre><code>class Zhihu extends Component {
+
+    componentWillMount() {
+        this.props.fetchStartImage();
+    }
+
+    render() {
+        return (
+            &lt;View style={{
+                    backgroundColor: '#000000',
+                }}&gt;
+
+                &lt;Image source={{uri: this.props.data.img}}&gt;
+
+                    &lt;View style={[styles.fullScreen, {
+                        backgroundColor: &apos;#00000033&apos;,
+                    }]}&gt;
+
+                        &lt;View style={{
+                                position: 'absolute',
+                                bottom: 0
+                            }}&gt;
+                            &lt;Text style={[styles.textCentre, styles.transparentBackgroud, {
+                                fontSize: 16,
+                                margin: 8,
+                                color: &apos;white&apos;,
+                            }]}&gt;
+                                {this.props.data.text}
+                            &lt;/Text&gt;
+
+                            &lt;View style={[styles.bottomBar, {
+                                padding: 20
+                            }]}&gt;
+                                &lt;Text style={[styles.textLargeWhite, {}]}&gt;
+                                    知乎日报
+                                &lt;/Text&gt;
+                                &lt;Text style={[styles.textNormalWhite, {
+                                    marginTop: 6,
+                                }]}&gt;
+                                    每日三次，每次七分钟
+                                &lt;/Text&gt;
+
+                            &lt;/View&gt;
+                        &lt;/View&gt;
+                    &lt;/View&gt;
+
+
+                &lt;/Image&gt;
+
+            &lt;/View&gt;
+        );
+    }
+}
+
+const mapStateToProps = (state) =&gt; {
+    return {
+        data: reducerData(state.welcomeReducer),
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    {fetchStartImage}
+)(Zhihu)
 </code></pre>
       
     </div>
@@ -572,7 +683,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#欢迎页"><span class="nav-number">1.</span> <span class="nav-text">欢迎页</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络请求"><span class="nav-number">1.1.</span> <span class="nav-text">网络请求</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#api调用"><span class="nav-number">1.</span> <span class="nav-text">api调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reducer"><span class="nav-number">2.</span> <span class="nav-text">reducer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WelcomeContainer"><span class="nav-number">3.</span> <span class="nav-text">WelcomeContainer</span></a></li></ol></div>
             
           </div>
         </section>
