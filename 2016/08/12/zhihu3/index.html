@@ -85,21 +85,20 @@
 
 
 <meta name="description" content="本项目源码lixiaoyang1992/zhihu
-项目参考了f8 app 的设计。  
-所有 API 均由 知乎（Zhihu.Inc） 提供，参考开源项目izzyleung/ZhihuDailyPurify，获取与共享之行为或有侵犯知乎权益的嫌疑。若被告知需停止共享与使用，本人会及时删除此页面与整个项目。请您了解相关情况，并遵守知乎协议。">
+今天完成了首页列表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="用react-native开发知乎日报 1.搭建项目">
-<meta property="og:url" content="http://lixoayang.cn/2016/07/24/zhihu1/index.html">
+<meta property="og:title" content="用react-native开发知乎日报 3.首页列表">
+<meta property="og:url" content="http://lixoayang.cn/2016/08/12/zhihu3/index.html">
 <meta property="og:site_name" content="当我谈论代码时我在谈论什么">
 <meta property="og:description" content="本项目源码lixiaoyang1992/zhihu
-项目参考了f8 app 的设计。  
-所有 API 均由 知乎（Zhihu.Inc） 提供，参考开源项目izzyleung/ZhihuDailyPurify，获取与共享之行为或有侵犯知乎权益的嫌疑。若被告知需停止共享与使用，本人会及时删除此页面与整个项目。请您了解相关情况，并遵守知乎协议。">
-<meta property="og:updated_time" content="2016-08-12T07:19:48.000Z">
+今天完成了首页列表">
+<meta property="og:image" content="http://lixoayang.cn/2016/08/12/zhihu3/listview.png">
+<meta property="og:updated_time" content="2016-08-12T07:57:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用react-native开发知乎日报 1.搭建项目">
+<meta name="twitter:title" content="用react-native开发知乎日报 3.首页列表">
 <meta name="twitter:description" content="本项目源码lixiaoyang1992/zhihu
-项目参考了f8 app 的设计。  
-所有 API 均由 知乎（Zhihu.Inc） 提供，参考开源项目izzyleung/ZhihuDailyPurify，获取与共享之行为或有侵犯知乎权益的嫌疑。若被告知需停止共享与使用，本人会及时删除此页面与整个项目。请您了解相关情况，并遵守知乎协议。">
+今天完成了首页列表">
+<meta name="twitter:image" content="http://lixoayang.cn/2016/08/12/zhihu3/listview.png">
 
 
 
@@ -117,7 +116,7 @@
   };
 </script>
 
-  <title> 用react-native开发知乎日报 1.搭建项目 | 当我谈论代码时我在谈论什么 </title>
+  <title> 用react-native开发知乎日报 3.首页列表 | 当我谈论代码时我在谈论什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -247,7 +246,7 @@
             
             
               
-                用react-native开发知乎日报 1.搭建项目
+                用react-native开发知乎日报 3.首页列表
               
             
           </h1>
@@ -259,8 +258,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-24T18:45:48+08:00" content="2016-07-24">
-              2016-07-24
+            <time itemprop="dateCreated" datetime="2016-08-12T19:51:02+08:00" content="2016-08-12">
+              2016-08-12
             </time>
           </span>
 
@@ -289,8 +288,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/24/zhihu1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/24/zhihu1/" itemprop="commentsCount"></span>
+                <a href="/2016/08/12/zhihu3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/12/zhihu3/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -314,67 +313,63 @@
 
       
         <p>本项目源码<a href="https://github.com/lixiaoyang1992/zhihu" target="_blank" rel="external">lixiaoyang1992/zhihu</a></p>
-<p>项目参考了<a href="https://github.com/fbsamples/f8app" target="_blank" rel="external">f8 app</a> 的设计。  </p>
-<p>所有 API 均由 知乎（Zhihu.Inc） 提供，参考开源项目<a href="https://github.com/izzyleung/ZhihuDailyPurify/wiki/%E7%9F%A5%E4%B9%8E%E6%97%A5%E6%8A%A5-API-%E5%88%86%E6%9E%90" target="_blank" rel="external">izzyleung/ZhihuDailyPurify</a>，获取与共享之行为或有侵犯知乎权益的嫌疑。若被告知需停止共享与使用，本人会及时删除此页面与整个项目。<br>请您了解相关情况，并遵守知乎协议。</p>
+<p>今天完成了首页列表</p>
+<img src="/2016/08/12/zhihu3/listview.png" alt="listview.png" title="">
 <a id="more"></a>
-<h3 id="一份代码，两个平台"><a href="#一份代码，两个平台" class="headerlink" title="一份代码，两个平台"></a>一份代码，两个平台</h3><p>既然要用react－native了，android和iOS当然要只写一份代码了。  </p>
-<p>初始化项目后，根目录创建js文件夹，作为我们的源码文件夹。</p>
-<p>首先要统一首页，创建js/index.js  </p>
-<pre><code>import React, {Component} from &apos;react&apos;;
-import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View
-} from &apos;react-native&apos;;
-
-export default class zhihu extends Component {
-    render() {
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>要用到ListView，有两个必不可少的参数：dataSource数据源，renderRow每一行的渲染函数。</p>
+<pre><code>render() {
         return (
             &lt;View style={styles.container}&gt;
-                &lt;Text style={styles.welcome}&gt;
-                    Welcome to React Native!
-                &lt;/Text&gt;
-                &lt;Text style={styles.instructions}&gt;
-                    To get started, edit index.android.js
-                &lt;/Text&gt;
-                &lt;Text style={styles.instructions}&gt;
-                    Double tap R on your keyboard to reload,{&apos;\n&apos;}
-                    Shake or press menu button for dev menu
-                &lt;/Text&gt;
+                {
+                    this.props.data.stories &amp;&amp; this.props.data.stories.length &gt; 0 ?
+                        &lt;ListView
+                            dataSource={this.state.dataSource}
+                            renderRow={this.renderListItem}
+                        /&gt; :
+                        &lt;Text&gt;
+                            加载中
+                        &lt;/Text&gt;
+                }
             &lt;/View&gt;
         );
     }
+</code></pre><p>获取数据的要从服务器后台获取数据。<br>每一次数据改变的时候都需要cloneWithRows。</p>
+<pre><code>constructor(props) {
+    super(props);
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) =&gt; r1 !== r2});
+    this.state = {
+        ds: ds,
+        dataSource: ds.cloneWithRows([])
+    };
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: &apos;center&apos;,
-        alignItems: &apos;center&apos;,
-        backgroundColor: &apos;#F5FCFF&apos;,
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: &apos;center&apos;,
-        margin: 10,
-    },
-    instructions: {
-        textAlign: &apos;center&apos;,
-        color: &apos;#333333&apos;,
-        marginBottom: 5,
-    },
-});
-</code></pre><p>就是把初始代码挪了个位置。</p>
-<p>把index.ios.js和index.android.js都改为</p>
-<pre><code>import index from &apos;./js/index&apos;
-import {
-    AppRegistry
-} from &apos;react-native&apos;;
+componentWillMount() {
+    this.props.fetchLatestNews();
+}
 
-AppRegistry.registerComponent(&apos;zhihu&apos;, ()=&gt;index);
-</code></pre><p>这样连个平台就使用同一份代码了。</p>
-<h3 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h3><p>react要和官方推出的flux架构结合使用，redux是一种非常优秀的实现，在之前的文章中介绍过如何使用。</p>
+componentWillReceiveProps(nextProps) {
+    if (nextProps.data.stories) {
+        let dataSource = this.state.ds.cloneWithRows(nextProps.data.stories);
+        this.setState({
+            dataSource
+        });
+    }
+}
+</code></pre><p>行渲染，只需要把文字和图片显示出来即可。</p>
+<pre><code>renderListItem(rowData) {
+    return &lt;View style={{
+            width: width,
+            backgroundColor: '#E9E9E9'
+        }}&gt;
+        &lt;View style={styles.row}&gt;
+            &lt;Text style={styles.text}&gt;
+                {rowData.title}
+            &lt;/Text&gt;
+            {rowData.images ? &lt;Image style={styles.thumb} source={{uri: rowData.images[0]}}/&gt; : null}
+        &lt;/View&gt;
+    &lt;/View&gt;
+}
+</code></pre><p>就这样，没什么难点。</p>
 
       
     </div>
@@ -405,17 +400,13 @@ AppRegistry.registerComponent(&apos;zhihu&apos;, ()=&gt;index);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/24/books/" rel="next" title="书单">
-                <i class="fa fa-chevron-left"></i> 书单
+              <a href="/2016/08/07/Love/" rel="next" title="好想把你写进我的代码里">
+                <i class="fa fa-chevron-left"></i> 好想把你写进我的代码里
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/28/zhihu2/" rel="prev" title="用react-native开发知乎日报 2.闪屏页面">
-                用react-native开发知乎日报 2.闪屏页面 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -430,10 +421,10 @@ AppRegistry.registerComponent(&apos;zhihu&apos;, ()=&gt;index);
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/07/24/zhihu1/"
-     data-title="用react-native开发知乎日报 1.搭建项目"
+        <div class="ds-share flat" data-thread-key="2016/08/12/zhihu3/"
+     data-title="用react-native开发知乎日报 3.首页列表"
      data-content=""
-     data-url="http://lixoayang.cn/2016/07/24/zhihu1/">
+     data-url="http://lixoayang.cn/2016/08/12/zhihu3/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -460,8 +451,8 @@ AppRegistry.registerComponent(&apos;zhihu&apos;, ()=&gt;index);
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/24/zhihu1/"
-           data-title="用react-native开发知乎日报 1.搭建项目" data-url="http://lixoayang.cn/2016/07/24/zhihu1/">
+      <div class="ds-thread" data-thread-key="2016/08/12/zhihu3/"
+           data-title="用react-native开发知乎日报 3.首页列表" data-url="http://lixoayang.cn/2016/08/12/zhihu3/">
       </div>
     
   </div>
@@ -617,7 +608,7 @@ AppRegistry.registerComponent(&apos;zhihu&apos;, ()=&gt;index);
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一份代码，两个平台"><span class="nav-number">1.</span> <span class="nav-text">一份代码，两个平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redux"><span class="nav-number">2.</span> <span class="nav-text">redux</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#列表"><span class="nav-number">1.</span> <span class="nav-text">列表</span></a></li></ol></div>
             
           </div>
         </section>
