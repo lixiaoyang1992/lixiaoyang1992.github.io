@@ -312,7 +312,7 @@
 
       
         
-          <p>reqwest是一个非常轻量级的ajax库，项目源码 <a href="https://github.com/ded/reqwest">ded/reqwest</a>。作者的名字就是在占人便宜，但是他真的是一个大神：CEO, Founder at agent.com。<br>
+          <p>reqwest是一个非常轻量级的ajax库，项目源码 <a href="https://github.com/ded/reqwest">ded/reqwest</a>。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/06/reqwest/#more" rel="contents">
               阅读全文 &raquo;
@@ -434,37 +434,12 @@
 
       
         
-          
-            <p>本项目源码 <a href="https://github.com/lixiaoyang1992/zhihu" target="_blank" rel="external">lixiaoyang1992/zhihu</a></p>
-<p>列表中的项，点击后可以跳转到对应的详情页。点击事件用到TouchableHighlight。</p>
-<pre><code>renderListItem(rowData) {
-        return &lt;View style={{
-                width: width,
-                backgroundColor: '#E9E9E9'
-            }}&gt;
-            &lt;TouchableHighlight onPress={()=&gt; {
-                this.onPress(rowData);
-            }}&gt;
-                &lt;View style={styles.row}&gt;
-                    &lt;Text style={styles.text}&gt;
-                        {rowData.title}
-                    &lt;/Text&gt;
-                    {rowData.images ? &lt;Image style={styles.thumb} source={{uri: rowData.images[0]}}/&gt; : null}
-                &lt;/View&gt;
-
-            &lt;/TouchableHighlight&gt;
-        &lt;/View&gt;
-    }
-
-onPress(rowData) {
-    this.props.navigator.push({
-        name: &apos;detail&apos;,
-        id: rowData.id
-    });
-}
-</code></pre><p>onPress方法中使用页面导航。</p>
-
-          
+          <p>本项目源码 <a href="https://github.com/lixiaoyang1992/zhihu">lixiaoyang1992/zhihu</a><br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/23/zhihu4/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
