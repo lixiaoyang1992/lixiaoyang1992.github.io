@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="reactjs," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="这是一系列介绍reactjs＋redux+react-router等开发的教程">
+<meta name="description" content="eslint是一个是一个QA工具，用来避免低级错误和统一代码的风格，项目源码 eslint/eslint。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="reactjs教程-Demo体验">
-<meta property="og:url" content="http://lixoayang.cn/2016/05/17/reactjs1/index.html">
+<meta property="og:title" content="eslint">
+<meta property="og:url" content="http://lixoayang.cn/2016/11/02/eslint/index.html">
 <meta property="og:site_name" content="当我谈论代码时我在谈论什么">
-<meta property="og:description" content="这是一系列介绍reactjs＋redux+react-router等开发的教程">
-<meta property="og:updated_time" content="2016-07-14T15:05:49.000Z">
+<meta property="og:description" content="eslint是一个是一个QA工具，用来避免低级错误和统一代码的风格，项目源码 eslint/eslint。">
+<meta property="og:updated_time" content="2016-11-02T05:54:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="reactjs教程-Demo体验">
-<meta name="twitter:description" content="这是一系列介绍reactjs＋redux+react-router等开发的教程">
+<meta name="twitter:title" content="eslint">
+<meta name="twitter:description" content="eslint是一个是一个QA工具，用来避免低级错误和统一代码的风格，项目源码 eslint/eslint。">
 
 
 
@@ -111,7 +111,7 @@
   };
 </script>
 
-  <title> reactjs教程-Demo体验 | 当我谈论代码时我在谈论什么 </title>
+  <title> eslint | 当我谈论代码时我在谈论什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -241,7 +241,7 @@
             
             
               
-                reactjs教程-Demo体验
+                eslint
               
             
           </h1>
@@ -253,8 +253,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-17T22:25:50+08:00" content="2016-05-17">
-              2016-05-17
+            <time itemprop="dateCreated" datetime="2016-11-02T13:32:24+08:00" content="2016-11-02">
+              2016-11-02
             </time>
           </span>
 
@@ -283,8 +283,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/17/reactjs1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/17/reactjs1/" itemprop="commentsCount"></span>
+                <a href="/2016/11/02/eslint/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/02/eslint/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -307,71 +307,14 @@
       
 
       
-        <p>这是一系列介绍reactjs＋redux+react-router等开发的教程<br><a id="more"></a></p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>  读到这篇文章的可能是一个萌萌的妹子，她可能还有点天然呆，所以要讲得更细一点。  </p>
-<p>  首先她要安装以下几个软件:</p>
-<p>  <a href="https://git-scm.com/download/" target="_blank" rel="external">git</a> 最新的就可以<br><a href="https://nodejs.org/en/" target="_blank" rel="external">node.js</a> 4.4.4LTS版本</p>
-<h2 id="Demo体验"><a href="#Demo体验" class="headerlink" title="Demo体验"></a>Demo体验</h2><p>  先下几个demo，体验一下react的神奇。</p>
-<p>  执行</p>
-<pre><code>git clone git@github.com:ruanyf/react-demos.git
-</code></pre><p>  就可以在demo中感受react的与众不同了。</p>
-<h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><p>  项目是需要构建的，我们做项目的时候，肯定不能像做demo一样直接静态文件引入就完成了的。这里介绍的是npm，npm用于构建项目，可以调试、测试、发布等等，由于它很灵活，你可以用它做很多事情。</p>
-<p>  这里我们也直接clone一个starter project</p>
-<p>  执行  </p>
-<pre><code>git clone git@github.com:reactjs/redux.git
-cd examples/shopping-cart/
-npm install
-npm start
-</code></pre><p>  npm主要的配置文件是package.json  </p>
-<pre><code>{
-  &quot;name&quot;: &quot;redux-shopping-cart-example&quot;,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;description&quot;: &quot;Redux shopping-cart example&quot;,
-  &quot;scripts&quot;: {
-    &quot;start&quot;: &quot;node server.js&quot;,
-    &quot;test&quot;: &quot;cross-env NODE_ENV=test mocha --recursive --compilers js:babel-register&quot;,
-    &quot;test:watch&quot;: &quot;npm test -- --watch&quot;
-  },
-  &quot;repository&quot;: {
-    &quot;type&quot;: &quot;git&quot;,
-    &quot;url&quot;: &quot;https://github.com/reactjs/redux.git&quot;
-  },
-  &quot;license&quot;: &quot;MIT&quot;,
-  &quot;bugs&quot;: {
-    &quot;url&quot;: &quot;https://github.com/reactjs/redux/issues&quot;
-  },
-  &quot;homepage&quot;: &quot;http://redux.js.org&quot;,
-  &quot;dependencies&quot;: {
-    &quot;babel-polyfill&quot;: &quot;^6.3.14&quot;,
-    &quot;react&quot;: &quot;^0.14.7&quot;,
-    &quot;react-dom&quot;: &quot;^0.14.7&quot;,
-    &quot;react-redux&quot;: &quot;^4.2.1&quot;,
-    &quot;redux&quot;: &quot;^3.2.1&quot;,
-    &quot;redux-thunk&quot;: &quot;^1.0.3&quot;
-  },
-  &quot;devDependencies&quot;: {
-    &quot;babel-core&quot;: &quot;^6.3.15&quot;,
-    &quot;babel-loader&quot;: &quot;^6.2.0&quot;,
-    &quot;babel-preset-es2015&quot;: &quot;^6.3.13&quot;,
-    &quot;babel-preset-react&quot;: &quot;^6.3.13&quot;,
-    &quot;babel-preset-react-hmre&quot;: &quot;^1.1.1&quot;,
-    &quot;cross-env&quot;: &quot;^1.0.7&quot;,
-    &quot;enzyme&quot;: &quot;^2.0.0&quot;,
-    &quot;expect&quot;: &quot;^1.20.1&quot;,
-    &quot;express&quot;: &quot;^4.13.3&quot;,
-    &quot;json-loader&quot;: &quot;^0.5.3&quot;,
-    &quot;react-addons-test-utils&quot;: &quot;^0.14.7&quot;,
-    &quot;redux-logger&quot;: &quot;^2.0.1&quot;,
-    &quot;mocha&quot;: &quot;^2.2.5&quot;,
-    &quot;node-libs-browser&quot;: &quot;^0.5.2&quot;,
-    &quot;webpack&quot;: &quot;^1.9.11&quot;,
-    &quot;webpack-dev-middleware&quot;: &quot;^1.2.0&quot;,
-    &quot;webpack-hot-middleware&quot;: &quot;^2.9.1&quot;
-  }
-}
-</code></pre><p>  我们通过以上文件大概可以了解配置的信息。</p>
-<p>  我们在 <a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a> 访问到你刚刚启动的项目，是一个简单的购物车页面。</p>
-<p>  参考链接：<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">React 入门实例教程</a> by 阮一峰</p>
+        <p>eslint是一个是一个QA工具，用来避免低级错误和统一代码的风格，项目源码 <a href="https://github.com/eslint/eslint/" target="_blank" rel="external">eslint/eslint</a>。<br><a id="more"></a><br>在项目中使用非常简单，支持jsx语法。</p>
+<pre><code>npm i -g eslint
+eslint --init
+</code></pre><p>然后在它给出的选项中选择，为了方便的话，可以直接选择流行的配置：Google、Airbnb、Standard中选择。当然也可以自定义详细完整的配置设置在<a href="http://eslint.org/docs/user-guide/command-line-interface" target="_blank" rel="external">官网</a>能够找到。</p>
+<p>然后就可以检查代码了。</p>
+<pre><code>eslint src
+</code></pre><p>一下子输出了超多的error和warning信息，原来自己平时不注意的代码习惯其实非常的差，分号、空格、tab等等都太不严谨了。</p>
+<p>总之，这是一款非常实用的工具，尤其是语法的检查、多人协作统一代码风格非常有用。这两天做测试学习了很多有用的工具。</p>
 
       
     </div>
@@ -393,7 +336,7 @@ npm start
       
         <div class="post-tags">
           
-            <a href="/tags/reactjs/" rel="tag">#reactjs</a>
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
           
         </div>
       
@@ -402,17 +345,13 @@ npm start
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/04/01/2015-4-1-blog/" rel="next" title="centos部署">
-                <i class="fa fa-chevron-left"></i> centos部署
+              <a href="/2016/09/06/reqwest/" rel="next" title="reqwest源码分析">
+                <i class="fa fa-chevron-left"></i> reqwest源码分析
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/17/reactjs2/" rel="prev" title="reactjs教程—npm">
-                reactjs教程—npm <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -427,10 +366,10 @@ npm start
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/05/17/reactjs1/"
-     data-title="reactjs教程-Demo体验"
+        <div class="ds-share flat" data-thread-key="2016/11/02/eslint/"
+     data-title="eslint"
      data-content=""
-     data-url="http://lixoayang.cn/2016/05/17/reactjs1/">
+     data-url="http://lixoayang.cn/2016/11/02/eslint/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -457,8 +396,8 @@ npm start
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/17/reactjs1/"
-           data-title="reactjs教程-Demo体验" data-url="http://lixoayang.cn/2016/05/17/reactjs1/">
+      <div class="ds-thread" data-thread-key="2016/11/02/eslint/"
+           data-title="eslint" data-url="http://lixoayang.cn/2016/11/02/eslint/">
       </div>
     
   </div>
@@ -614,7 +553,7 @@ npm start
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo体验"><span class="nav-number">2.</span> <span class="nav-text">Demo体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm"><span class="nav-number">3.</span> <span class="nav-text">npm</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
