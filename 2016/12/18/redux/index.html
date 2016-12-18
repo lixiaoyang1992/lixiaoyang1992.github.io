@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next pisces use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="reactjs," />
 
 
 
@@ -84,23 +84,29 @@
 
 
 
-<meta name="description" content="inspired by 雷蒙德·卡佛，村上春树">
+<meta name="description" content="如果你使用过react，那你应该听说过或用过另一个库reactjs/redux。
+react的核心思想之一是根据state来渲染页面，而state应该是immutable的，redux很好的维护了state。
+redux的api一共只用5个，可以说是相当的简洁。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redux">
+<meta property="og:title" content="redux源码分析">
 <meta property="og:url" content="http://lixoayang.cn/2016/12/18/redux/index.html">
-<meta property="og:site_name" content="当我谈论代码时我在谈论什么">
-<meta property="og:description" content="inspired by 雷蒙德·卡佛，村上春树">
-<meta property="og:updated_time" content="2016-12-18T14:51:25.000Z">
+<meta property="og:site_name" content="当我谈代码时我谈些什么">
+<meta property="og:description" content="如果你使用过react，那你应该听说过或用过另一个库reactjs/redux。
+react的核心思想之一是根据state来渲染页面，而state应该是immutable的，redux很好的维护了state。
+redux的api一共只用5个，可以说是相当的简洁。">
+<meta property="og:updated_time" content="2016-12-18T15:21:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redux">
-<meta name="twitter:description" content="inspired by 雷蒙德·卡佛，村上春树">
+<meta name="twitter:title" content="redux源码分析">
+<meta name="twitter:description" content="如果你使用过react，那你应该听说过或用过另一个库reactjs/redux。
+react的核心思想之一是根据state来渲染页面，而state应该是immutable的，redux很好的维护了state。
+redux的api一共只用5个，可以说是相当的简洁。">
 
 
 
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -111,7 +117,7 @@
   };
 </script>
 
-  <title> redux | 当我谈论代码时我在谈论什么 </title>
+  <title> redux源码分析 | 当我谈代码时我谈些什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -142,7 +148,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">当我谈论代码时我在谈论什么</span>
+      <span class="site-title">当我谈代码时我谈些什么</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -241,7 +247,7 @@
             
             
               
-                redux
+                redux源码分析
               
             
           </h1>
@@ -258,6 +264,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -288,7 +313,14 @@
       
 
       
-        
+        <p>如果你使用过react，那你应该听说过或用过另一个库<a href="https://github.com/reactjs/redux" target="_blank" rel="external">reactjs/redux</a>。</p>
+<p>react的核心思想之一是根据state来渲染页面，而state应该是immutable的，redux很好的维护了state。</p>
+<p>redux的api一共只用5个，可以说是相当的简洁。<br><a id="more"></a></p>
+<h3 id="createStore"><a href="#createStore" class="headerlink" title="createStore"></a>createStore</h3><pre><code>function createStore(reducer, preloadedState, enhancer)
+</code></pre><p>创建一个redux store来维护state，唯一的修改数据的方法就是dispatch()。<br>store在应用中应该只有一份，这是reudx和flux的区别，使得整个架构更加的精简。</p>
+<p>reducer：根据现有的state和action，来生成一个新的state。<br>如果你有多个reducer，应该使用combineReducers合并成一个。</p>
+<p>preloadedState：</p>
+
       
     </div>
 
@@ -307,13 +339,19 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/reactjs/" rel="tag">#reactjs</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/11/1111/" rel="next" title="你让我变成更好的自己">
-                <i class="fa fa-chevron-left"></i> 你让我变成更好的自己
+              <a href="/2016/11/02/eslint/" rel="next" title="eslint">
+                <i class="fa fa-chevron-left"></i> eslint
               </a>
             
           </div>
@@ -334,7 +372,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2016/12/18/redux/"
-     data-title="redux"
+     data-title="redux源码分析"
      data-content=""
      data-url="http://lixoayang.cn/2016/12/18/redux/">
   <div class="ds-share-inline">
@@ -364,7 +402,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/12/18/redux/"
-           data-title="redux" data-url="http://lixoayang.cn/2016/12/18/redux/">
+           data-title="redux源码分析" data-url="http://lixoayang.cn/2016/12/18/redux/">
       </div>
     
   </div>
@@ -409,7 +447,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -520,7 +558,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#createStore"><span class="nav-number">1.</span> <span class="nav-text">createStore</span></a></li></ol></div>
             
           </div>
         </section>
@@ -553,7 +591,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -618,6 +656,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
