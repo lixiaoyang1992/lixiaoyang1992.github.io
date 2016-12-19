@@ -94,7 +94,7 @@ redux的api一共只用5个，可以说是相当的简洁。">
 <meta property="og:description" content="如果你使用过react，那你应该听说过或用过另一个库reactjs/redux。
 react的核心思想之一是根据state来渲染页面，而state应该是immutable的，redux很好的维护了state。
 redux的api一共只用5个，可以说是相当的简洁。">
-<meta property="og:updated_time" content="2016-12-18T15:21:15.000Z">
+<meta property="og:updated_time" content="2016-12-19T01:00:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redux源码分析">
 <meta name="twitter:description" content="如果你使用过react，那你应该听说过或用过另一个库reactjs/redux。
@@ -316,10 +316,30 @@ redux的api一共只用5个，可以说是相当的简洁。">
         <p>如果你使用过react，那你应该听说过或用过另一个库<a href="https://github.com/reactjs/redux" target="_blank" rel="external">reactjs/redux</a>。</p>
 <p>react的核心思想之一是根据state来渲染页面，而state应该是immutable的，redux很好的维护了state。</p>
 <p>redux的api一共只用5个，可以说是相当的简洁。<br><a id="more"></a></p>
-<h3 id="createStore"><a href="#createStore" class="headerlink" title="createStore"></a>createStore</h3><pre><code>function createStore(reducer, preloadedState, enhancer)
+<h1 id="createStore"><a href="#createStore" class="headerlink" title="createStore"></a>createStore</h1><pre><code>function createStore(reducer, preloadedState, enhancer)
 </code></pre><p>创建一个redux store来维护state，唯一的修改数据的方法就是dispatch()。<br>store在应用中应该只有一份，这是reudx和flux的区别，使得整个架构更加的精简。</p>
 <p>reducer：根据现有的state和action，来生成一个新的state。<br>如果你有多个reducer，应该使用combineReducers合并成一个。</p>
-<p>preloadedState：</p>
+<p>preloadedState：初始化的state。</p>
+<p>enhancer：对store处理的增强，用来拓展第三方的支持，比如用applyMiddleware加载中间件，react-redux就是一个非常优秀的用来和react结合的中间件。</p>
+<p>随后声明了一些变量和函数，并且return</p>
+<pre><code>return {
+    dispatch,
+    subscribe,
+    getState,
+    replaceReducer,
+    [$$observable]: observable
+}
+</code></pre><p>在之前dispatch({ type: ActionTypes.INIT })，做了一个初始化的操作。</p>
+<h2 id="dispatch"><a href="#dispatch" class="headerlink" title="dispatch"></a>dispatch</h2><p>在dispatch方法中，唯一的参数是action，action应该是一个简单对象，type属性是必备的，其他的数据部分是可选的。<br>dispatch方法首先对action进行了检查，然后是isDispatching的判断，这里做了一个简单的锁，调用了currentReducer来根据currentState和action来生成新的state。<br>然后是listeners监听方法的调用。<br>return结果是action本身。</p>
+<p>其余的几个函数没有被调用，是供外部调用的。</p>
+<h1 id="combineReducers"><a href="#combineReducers" class="headerlink" title="combineReducers"></a>combineReducers</h1><p>combineReducers也只有一个参数reducers，常常是这种形式,一个巨大的对象：</p>
+<pre><code>combineReducers({
+    myReducer:reducer,
+    offlineOrder,
+    offlineOrderModal,
+    indexNoticeReducer,
+})
+</code></pre><p>它的作用是将参数中包含的不同的reducer函数组合成一个函数，着个函数可以调用每一个child函数，并且将它们的结果放到一个state对象中。</p>
 
       
     </div>
@@ -558,7 +578,7 @@ redux的api一共只用5个，可以说是相当的简洁。">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#createStore"><span class="nav-number">1.</span> <span class="nav-text">createStore</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#createStore"><span class="nav-number">1.</span> <span class="nav-text">createStore</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dispatch"><span class="nav-number">1.1.</span> <span class="nav-text">dispatch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#combineReducers"><span class="nav-number">2.</span> <span class="nav-text">combineReducers</span></a></li></ol></div>
             
           </div>
         </section>
