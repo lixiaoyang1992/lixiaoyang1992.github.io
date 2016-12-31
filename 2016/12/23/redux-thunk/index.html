@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="reactjs," />
 
 
 
@@ -84,15 +84,16 @@
 
 
 
-<meta name="description" content="inspired by 雷蒙德·卡佛，村上春树">
-<meta property="og:type" content="website">
-<meta property="og:title" content="当我谈代码时我谈些什么">
-<meta property="og:url" content="http://lixoayang.cn/archives/page/3/index.html">
+<meta name="description" content="Redux Thunk是一个redux的thunk中间件，项目源码gaearon/redux-thunk。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redux-thunk源码分析">
+<meta property="og:url" content="http://lixoayang.cn/2016/12/23/redux-thunk/index.html">
 <meta property="og:site_name" content="当我谈代码时我谈些什么">
-<meta property="og:description" content="inspired by 雷蒙德·卡佛，村上春树">
+<meta property="og:description" content="Redux Thunk是一个redux的thunk中间件，项目源码gaearon/redux-thunk。">
+<meta property="og:updated_time" content="2016-12-28T05:39:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="当我谈代码时我谈些什么">
-<meta name="twitter:description" content="inspired by 雷蒙德·卡佛，村上春树">
+<meta name="twitter:title" content="redux-thunk源码分析">
+<meta name="twitter:description" content="Redux Thunk是一个redux的thunk中间件，项目源码gaearon/redux-thunk。">
 
 
 
@@ -110,7 +111,7 @@
   };
 </script>
 
-  <title> 归档 | 当我谈代码时我谈些什么 </title>
+  <title> redux-thunk源码分析 | 当我谈代码时我谈些什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,7 +132,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -219,181 +220,212 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 24 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/03/30/2015-3-30-blog/" itemprop="url">
-              
-                <span itemprop="name">Swift学习第二课</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-03-30T00:00:00+08:00"
-              content="2015-03-30" >
-          03-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/03/29/2015-3-29-blog/" itemprop="url">
-              
-                <span itemprop="name">Swift学习第一天</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-03-29T00:00:00+08:00"
-              content="2015-03-29" >
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/03/28/2015-3-28-book/" itemprop="url">
-              
-                <span itemprop="name">白夜行</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-03-28T00:00:00+08:00"
-              content="2015-03-28" >
-          03-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/03/26/2015-3-26-blog/" itemprop="url">
-              
-                <span itemprop="name">迁移</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-03-26T00:00:00+08:00"
-              content="2015-03-26" >
-          03-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                redux-thunk源码分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-23T14:46:08+08:00" content="2016-12-23">
+              2016-12-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/23/redux-thunk/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/23/redux-thunk/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
 
 
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Redux Thunk是一个redux的thunk中间件，项目源码<a href="https://github.com/gaearon/redux-thunk" target="_blank" rel="external">gaearon/redux-thunk</a>。<br><a id="more"></a></p>
+<p>所谓thunk函数，就是”传名调用”的一种实现策略，实现惰性求值。</p>
+<pre><code>// calculation of 1 + 2 is immediate
+// x === 3
+let x = 1 + 2;
+
+// calculation of 1 + 2 is delayed
+// foo can be called later to perform the calculation
+// foo is a thunk!
+let foo = () =&gt; 1 + 2;
+</code></pre><p>我在没有使用x的时候，1+2就已经被计算完了，而foo只有被调用时，foo()才是3.</p>
+<hr>
+<p>在使用redux的时候，我们可能会使用发两种action。</p>
+<pre><code>const INCREMENT_COUNTER = &apos;INCREMENT_COUNTER&apos;;
+
+function increment() {
+  //同步action
+  return {
+    type: INCREMENT_COUNTER
+  };
+}
+
+//thunk action creators
+function incrementAsync() {
+  return dispatch =&gt; {
+    setTimeout(() =&gt; {
+      // Yay! Can invoke sync or async actions with `dispatch`
+      //异步action
+      dispatch(increment());
+    }, 1000);
+  };
+}
+</code></pre><p>同步的action正常就会dispatch出去，而异步的action是无法return的，导致网络请求之后无法发出action。<br>而redux-thunk很巧妙的根据返回的类型，如果是function，就把dispatch和getState作为参数传入了回调函数，在回调函数中完成了dispatch。</p>
+<pre><code>function createThunkMiddleware(extraArgument) {
+  return ({ dispatch, getState }) =&gt; next =&gt; action =&gt; {
+    if (typeof action === &apos;function&apos;) {
+      return action(dispatch, getState, extraArgument);
+    }
+
+    return next(action);
+  };
+}
+
+const thunk = createThunkMiddleware();
+thunk.withExtraArgument = createThunkMiddleware;
+
+export default thunk;
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/reactjs/" rel="tag">#reactjs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/22/react-redux/" rel="next" title="react-redux源码分析">
+                <i class="fa fa-chevron-left"></i> react-redux源码分析
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/12/23/redux-thunk/"
+     data-title="redux-thunk源码分析"
+     data-content=""
+     data-url="http://lixoayang.cn/2016/12/23/redux-thunk/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -401,6 +433,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/23/redux-thunk/"
+           data-title="redux-thunk源码分析" data-url="http://lixoayang.cn/2016/12/23/redux-thunk/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -420,8 +460,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -537,6 +586,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -639,11 +699,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   

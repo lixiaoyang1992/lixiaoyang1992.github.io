@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="reactjs," />
 
 
 
@@ -84,15 +84,19 @@
 
 
 
-<meta name="description" content="inspired by 雷蒙德·卡佛，村上春树">
-<meta property="og:type" content="website">
-<meta property="og:title" content="当我谈代码时我谈些什么">
-<meta property="og:url" content="http://lixoayang.cn/archives/page/3/index.html">
+<meta name="description" content="redux要和react结合使用，官方出品的reactjs/react-redux是必不可少的。
+一共只有3个api：Provider, connectAdvanced, connect，非常的精简。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-redux源码分析">
+<meta property="og:url" content="http://lixoayang.cn/2016/12/22/react-redux/index.html">
 <meta property="og:site_name" content="当我谈代码时我谈些什么">
-<meta property="og:description" content="inspired by 雷蒙德·卡佛，村上春树">
+<meta property="og:description" content="redux要和react结合使用，官方出品的reactjs/react-redux是必不可少的。
+一共只有3个api：Provider, connectAdvanced, connect，非常的精简。">
+<meta property="og:updated_time" content="2016-12-29T01:21:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="当我谈代码时我谈些什么">
-<meta name="twitter:description" content="inspired by 雷蒙德·卡佛，村上春树">
+<meta name="twitter:title" content="react-redux源码分析">
+<meta name="twitter:description" content="redux要和react结合使用，官方出品的reactjs/react-redux是必不可少的。
+一共只有3个api：Provider, connectAdvanced, connect，非常的精简。">
 
 
 
@@ -110,7 +114,7 @@
   };
 </script>
 
-  <title> 归档 | 当我谈代码时我谈些什么 </title>
+  <title> react-redux源码分析 | 当我谈代码时我谈些什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,7 +135,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -219,181 +223,190 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 24 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/03/30/2015-3-30-blog/" itemprop="url">
-              
-                <span itemprop="name">Swift学习第二课</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-03-30T00:00:00+08:00"
-              content="2015-03-30" >
-          03-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/03/29/2015-3-29-blog/" itemprop="url">
-              
-                <span itemprop="name">Swift学习第一天</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-03-29T00:00:00+08:00"
-              content="2015-03-29" >
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/03/28/2015-3-28-book/" itemprop="url">
-              
-                <span itemprop="name">白夜行</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-03-28T00:00:00+08:00"
-              content="2015-03-28" >
-          03-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/03/26/2015-3-26-blog/" itemprop="url">
-              
-                <span itemprop="name">迁移</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-03-26T00:00:00+08:00"
-              content="2015-03-26" >
-          03-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                react-redux源码分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-22T13:07:46+08:00" content="2016-12-22">
+              2016-12-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/22/react-redux/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/22/react-redux/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
 
 
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>redux要和react结合使用，官方出品的<a href="https://github.com/reactjs/react-redux" target="_blank" rel="external">reactjs/react-redux</a>是必不可少的。</p>
+<p>一共只有3个api：Provider, connectAdvanced, connect，非常的精简。<br><a id="more"></a></p>
+<h1 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h1><p>Provider是一个react Component，作用就是调用connect()是可以使用store。</p>
+<pre><code>export default class Provider extends Component {
+  //使全局都能拿到唯一的store
+  getChildContext() {
+    return { store: this.store }
+  }
+
+  constructor(props, context) {
+    super(props, context)
+    this.store = props.store
+  }
+
+  render() {
+    return Children.only(this.props.children)
+  }
+}
+</code></pre><p>Provider store和children是必需的props。</p>
+<h1 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h1><p>connect的作用是把一个react component和store关联起来。</p>
+<h1 id="connectAdvanced"><a href="#connectAdvanced" class="headerlink" title="connectAdvanced"></a>connectAdvanced</h1><p>connectAdvanced</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/reactjs/" rel="tag">#reactjs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/18/redux/" rel="next" title="redux源码分析">
+                <i class="fa fa-chevron-left"></i> redux源码分析
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/23/redux-thunk/" rel="prev" title="redux-thunk源码分析">
+                redux-thunk源码分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/12/22/react-redux/"
+     data-title="react-redux源码分析"
+     data-content=""
+     data-url="http://lixoayang.cn/2016/12/22/react-redux/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -401,6 +414,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/22/react-redux/"
+           data-title="react-redux源码分析" data-url="http://lixoayang.cn/2016/12/22/react-redux/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -420,8 +441,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -537,6 +567,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Provider"><span class="nav-number">1.</span> <span class="nav-text">Provider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#connect"><span class="nav-number">2.</span> <span class="nav-text">connect</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#connectAdvanced"><span class="nav-number">3.</span> <span class="nav-text">connectAdvanced</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -639,11 +680,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
