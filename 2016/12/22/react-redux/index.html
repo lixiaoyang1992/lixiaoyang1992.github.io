@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="当我谈代码时我谈些什么">
 <meta property="og:description" content="redux要和react结合使用，官方出品的reactjs/react-redux是必不可少的。
 一共只有3个api：Provider, connectAdvanced, connect，非常的精简。">
-<meta property="og:updated_time" content="2016-12-29T01:21:56.000Z">
+<meta property="og:updated_time" content="2017-01-11T03:24:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-redux源码分析">
 <meta name="twitter:description" content="redux要和react结合使用，官方出品的reactjs/react-redux是必不可少的。
@@ -329,9 +329,70 @@
   }
 }
 </code></pre><p>Provider store和children是必需的props。</p>
-<h1 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h1><p>connect的作用是把一个react component和store关联起来。</p>
+<pre><code>Provider.propTypes = {
+  store: storeShape.isRequired,
+  children: PropTypes.element.isRequired
+}
+Provider.childContextTypes = {
+  store: storeShape.isRequired
+}
+</code></pre><p>而store的必需项是对应的redux store的参数。</p>
+<p>export default PropTypes.shape({<br>  subscribe: PropTypes.func.isRequired,<br>  dispatch: PropTypes.func.isRequired,<br>  getState: PropTypes.func.isRequired<br>})</p>
 <h1 id="connectAdvanced"><a href="#connectAdvanced" class="headerlink" title="connectAdvanced"></a>connectAdvanced</h1><p>connectAdvanced</p>
+<h1 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h1><p>connect的作用是把一个react component和store关联起来，返回一个新的组件。</p>
+<pre><code>export function createConnect({
+  connectHOC = connectAdvanced,
+  mapStateToPropsFactories = defaultMapStateToPropsFactories,
+  mapDispatchToPropsFactories = defaultMapDispatchToPropsFactories,
+  mergePropsFactories = defaultMergePropsFactories,
+  selectorFactory = defaultSelectorFactory
+} = {}) {
+  return function connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    mergeProps,
+    {
+      pure = true,
+      areStatesEqual = strictEqual,
+      areOwnPropsEqual = shallowEqual,
+      areStatePropsEqual = shallowEqual,
+      areMergedPropsEqual = shallowEqual,
+      ...extraOptions
+    } = {}
+  ) {
+    const initMapStateToProps = match(mapStateToProps, mapStateToPropsFactories, &apos;mapStateToProps&apos;)
+    const initMapDispatchToProps = match(mapDispatchToProps, mapDispatchToPropsFactories, &apos;mapDispatchToProps&apos;)
+    const initMergeProps = match(mergeProps, mergePropsFactories, &apos;mergeProps&apos;)
 
+    return connectHOC(selectorFactory, {
+      // used in error messages
+      methodName: &apos;connect&apos;,
+
+      // used to compute Connect&apos;s displayName from the wrapped component&apos;s displayName.
+      getDisplayName: name =&gt; `Connect(${name})`,
+
+      // if mapStateToProps is falsy, the Connect component doesn&apos;t subscribe to store state changes
+      shouldHandleStateChanges: Boolean(mapStateToProps),
+
+      // passed through to selectorFactory
+      initMapStateToProps,
+      initMapDispatchToProps,
+      initMergeProps,
+      pure,
+      areStatesEqual,
+      areOwnPropsEqual,
+      areStatePropsEqual,
+      areMergedPropsEqual,
+
+      // any extra options args can override defaults of connect or connectAdvanced
+      ...extraOptions
+    })
+  }
+}
+
+export default createConnect()
+//export的是createConnect函数的返回结果
+</code></pre>
       
     </div>
 
@@ -462,7 +523,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -470,7 +531,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -479,7 +540,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -573,7 +634,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Provider"><span class="nav-number">1.</span> <span class="nav-text">Provider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#connect"><span class="nav-number">2.</span> <span class="nav-text">connect</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#connectAdvanced"><span class="nav-number">3.</span> <span class="nav-text">connectAdvanced</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Provider"><span class="nav-number">1.</span> <span class="nav-text">Provider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#connectAdvanced"><span class="nav-number">2.</span> <span class="nav-text">connectAdvanced</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#connect"><span class="nav-number">3.</span> <span class="nav-text">connect</span></a></li></ol></div>
             
           </div>
         </section>
@@ -592,7 +653,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
