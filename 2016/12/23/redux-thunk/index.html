@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://lixoayang.cn/2016/12/23/redux-thunk/index.html">
 <meta property="og:site_name" content="当我谈代码时我谈些什么">
 <meta property="og:description" content="Redux Thunk是一个redux的thunk中间件，项目源码gaearon/redux-thunk。">
-<meta property="og:updated_time" content="2016-12-28T05:39:38.000Z">
+<meta property="og:updated_time" content="2017-02-22T07:35:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redux-thunk源码分析">
 <meta name="twitter:description" content="Redux Thunk是一个redux的thunk中间件，项目源码gaearon/redux-thunk。">
@@ -323,7 +323,7 @@ let foo = () =&gt; 1 + 2;
 <pre><code>const INCREMENT_COUNTER = &apos;INCREMENT_COUNTER&apos;;
 
 function increment() {
-  //同步action
+  //正常的action
   return {
     type: INCREMENT_COUNTER
   };
@@ -331,6 +331,7 @@ function increment() {
 
 //thunk action creators
 function incrementAsync() {
+  //特殊
   return dispatch =&gt; {
     setTimeout(() =&gt; {
       // Yay! Can invoke sync or async actions with `dispatch`
@@ -339,7 +340,7 @@ function incrementAsync() {
     }, 1000);
   };
 }
-</code></pre><p>同步的action正常就会dispatch出去，而异步的action是无法return的，导致网络请求之后无法发出action。<br>而redux-thunk很巧妙的根据返回的类型，如果是function，就把dispatch和getState作为参数传入了回调函数，在回调函数中完成了dispatch。</p>
+</code></pre><p>正常的actionCreator返回的action是对象，正常会dispatch出去。<br>而特殊情况下返回的是fuction，无法dispatch的，比如网络请求之后无法发出action。<br>而redux-thunk很巧妙的根据返回的类型，如果是function，就把dispatch和getState作为参数传入了回调函数，在回调函数中完成了dispatch。<br>这样就可以在actionCreator里return一个回调函数。</p>
 <pre><code>function createThunkMiddleware(extraArgument) {
   return ({ dispatch, getState }) =&gt; next =&gt; action =&gt; {
     if (typeof action === &apos;function&apos;) {

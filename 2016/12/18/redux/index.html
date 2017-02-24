@@ -94,7 +94,7 @@ redux的api一共只用5个，可以说是相当的简洁。">
 <meta property="og:description" content="如果你使用过react，那你应该听说过或用过另一个库reactjs/redux。
 react的核心思想之一是根据state来渲染页面，而state应该是immutable的，redux很好的维护了state。
 redux的api一共只用5个，可以说是相当的简洁。">
-<meta property="og:updated_time" content="2016-12-20T04:03:17.000Z">
+<meta property="og:updated_time" content="2017-02-22T07:31:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redux源码分析">
 <meta name="twitter:description" content="如果你使用过react，那你应该听说过或用过另一个库reactjs/redux。
@@ -317,11 +317,11 @@ redux的api一共只用5个，可以说是相当的简洁。">
 <p>react的核心思想之一是根据state来渲染页面，而state应该是immutable的，redux很好的维护了state。</p>
 <p>redux的api一共只用5个，可以说是相当的简洁。<br><a id="more"></a></p>
 <h1 id="createStore"><a href="#createStore" class="headerlink" title="createStore"></a>createStore</h1><pre><code>function createStore(reducer, preloadedState, enhancer)
-</code></pre><p>创建一个redux store来维护state，唯一的修改数据的方法就是dispatch()。<br>store在应用中应该只有一份，这是reudx和flux的区别，使得整个架构更加的精简。</p>
-<p>reducer：根据现有的state和action，来生成一个新的state。<br>如果你有多个reducer，应该使用combineReducers合并成一个。</p>
-<p>preloadedState：初始化的state。</p>
-<p>enhancer：对store处理的增强，用来拓展第三方的支持，比如用applyMiddleware加载中间件，react-redux就是一个非常优秀的用来和react结合的中间件。</p>
-<p>随后声明了一些变量和函数，并且return</p>
+</code></pre><p>创建一个redux store来维护state，唯一的修改数据的方法就是dispatch()。<br>store在应用中应该只有一份，这是reudx和flux的区别，使得整个架构更加的精简。<br>为了反映state是如何根据action变化的，应当把多个reducer用combineReducers合并成一个。</p>
+<p>reducer：根据现有的state和action，来生成一个新的state。</p>
+<p>preloadedState：初始化的state。<br>如果你使用了combineReducers，那么preloadedState应当是一个‘拥有所有combineReducers的key’的对象。</p>
+<p>enhancer：对store处理的增强，用来拓展第三方的支持，只支持用applyMiddleware加载中间件。<br>这也是redux的伟大之处。</p>
+<p>看一下return</p>
 <pre><code>return {
     dispatch,
     subscribe,
@@ -330,26 +330,90 @@ redux的api一共只用5个，可以说是相当的简洁。">
     [$$observable]: observable
 }
 </code></pre><p>在之前dispatch({ type: ActionTypes.INIT })，做了一个初始化的操作。</p>
-<h2 id="dispatch"><a href="#dispatch" class="headerlink" title="dispatch"></a>dispatch</h2><p>在dispatch方法中，唯一的参数是action，action应该是一个简单对象，type属性是必备的，其他的数据部分是可选的。<br>dispatch方法首先对action进行了检查，然后是isDispatching的判断，这里做了一个简单的锁，调用了currentReducer来根据currentState和action来生成新的state。<br>然后是listeners监听方法的调用。<br>return结果是action本身。</p>
-<p>其余的几个函数没有被调用，是供外部调用的。</p>
-<h2 id="subscribe"><a href="#subscribe" class="headerlink" title="subscribe"></a>subscribe</h2><p>检查参数listener是否为函数。<br>ensureCanMutateNextListeners拷贝currentListeners到nextListeners。<br>将参数listener push 到 nextListeners。<br>返回的是将参数listener 从 nextListeners去除的函数。</p>
-<h2 id="getState"><a href="#getState" class="headerlink" title="getState"></a>getState</h2><p>返回currentState。</p>
-<h2 id="replaceReducer"><a href="#replaceReducer" class="headerlink" title="replaceReducer"></a>replaceReducer</h2><p>顾名思义，用nextReducer来替换currentReducer，然后dispatch({ type: ActionTypes.INIT })。<br>可用于多次添加reducer，不需一次性初始化所有。</p>
-<h2 id="observable"><a href="#observable" class="headerlink" title="observable"></a>observable</h2><p>返回一个订阅函数，用于外部订阅state的变化。</p>
+<h2 id="dispatch"><a href="#dispatch" class="headerlink" title="dispatch"></a>dispatch</h2><p>dispatch发送action，这是唯一的途径来触发state的变化。</p>
+<pre><code>function dispatch(action) {
+    if (!isPlainObject(action)) {
+    throw new Error(
+        &apos;Actions must be plain objects. &apos; +
+        &apos;Use custom middleware for async actions.&apos;
+    )
+    }
+
+    if (typeof action.type === &apos;undefined&apos;) {
+    throw new Error(
+        &apos;Actions may not have an undefined &quot;type&quot; property. &apos; +
+        &apos;Have you misspelled a constant?&apos;
+    )
+    }
+
+    if (isDispatching) {
+    throw new Error(&apos;Reducers may not dispatch actions.&apos;)
+    }
+
+    try {
+    isDispatching = true
+    //更新state
+    currentState = currentReducer(currentState, action)
+    } finally {
+    isDispatching = false
+    }
+
+    //调用监听回调
+    const listeners = currentListeners = nextListeners
+    for (let i = 0; i &lt; listeners.length; i++) {
+    const listener = listeners[i]
+    listener()
+    }
+
+    return action
+}
+</code></pre><p>在dispatch方法中，唯一的参数是action，action应该是一个简单对象，type属性是必备的，其他的数据部分是可选的。<br>dispatch方法首先对action进行了检查，然后是isDispatching的判断，这里做了一个简单的锁，调用了currentReducer来根据currentState和action来生成新的state。<br>然后是listeners监听方法的调用。<br>return结果是action本身。</p>
+<h2 id="subscribe"><a href="#subscribe" class="headerlink" title="subscribe"></a>subscribe</h2><p>添加一个change listener。<br>当action被发送，state tree变化的时候被调用。</p>
+<pre><code>function subscribe(listener) {
+    if (typeof listener !== &apos;function&apos;) {
+    throw new Error(&apos;Expected listener to be a function.&apos;)
+    }
+
+    let isSubscribed = true
+
+    ensureCanMutateNextListeners()
+    nextListeners.push(listener)
+
+    return function unsubscribe() {
+    if (!isSubscribed) {
+        return
+    }
+
+    isSubscribed = false
+
+    ensureCanMutateNextListeners()
+    const index = nextListeners.indexOf(listener)
+    nextListeners.splice(index, 1)
+    }
+}
+</code></pre><p>ensureCanMutateNextListeners将currentListeners拷贝到nextListeners。<br>将参数listener push 到 nextListeners。</p>
+<p>返回的是将参数listener 从 nextListeners去除的函数。</p>
+<h2 id="getState"><a href="#getState" class="headerlink" title="getState"></a>getState</h2><pre><code>function getState() {
+    return currentState
+}
+</code></pre><p>返回currentState。</p>
+<h2 id="replaceReducer"><a href="#replaceReducer" class="headerlink" title="replaceReducer"></a>replaceReducer</h2><p>顾名思义，用nextReducer来替换currentReducer，然后dispatch({ type: ActionTypes.INIT })。<br>可用于动态添加reducer，或者热加载。</p>
+<h2 id="observable"><a href="#observable" class="headerlink" title="observable"></a>observable</h2><p>返回一个订阅函数，用于外部订阅state的变化。<br>这个是给rx的库用的。</p>
 <h1 id="combineReducers"><a href="#combineReducers" class="headerlink" title="combineReducers"></a>combineReducers</h1><p>combineReducers也只有一个参数reducers，常常是这种形式,一个巨大的对象：</p>
 <pre><code>combineReducers({
     myReducer:reducer,
     offlineOrder
 })
-</code></pre><p>它的作用是将参数中包含的不同的reducer函数组合成一个reducer函数，着个函数可以调用每一个child函数，并且将它们的结果放到一个state对象中。</p>
+</code></pre><p>它的作用是将参数中包含的不同的reducer函数组合成一个reducer函数，这个函数可以调用每一个child函数，并且将它们的结果放到一个state对象中。</p>
 <p>首先按照键值对遍历参数reducers，依次检查值的类型是否为函数,并存放在finalReducers中。<br>然后调用assertReducerSanity来检查每个reducer是否能处两个测试action，需要保证每个reducer都有一个初始state。</p>
-<p>combineReducers返回的也是一个reducer函数，在调用getUnexpectedStateShapeWarningMessage检查过参数之后，依次按照reducers的key，使用对应的state和action来调用对应的reducer方法，将返回结果放到nextState中，并且根据nextStateForKey !== previousStateForKey 前后state是否发生了变化来判断，没变化返回之前的state，变化了返回新的state。</p>
-<h1 id="bindActionCreators"><a href="#bindActionCreators" class="headerlink" title="bindActionCreators"></a>bindActionCreators</h1><pre><code>function bindActionCreators(actionCreators, dispatch)
-</code></pre><p>actionCreators如果是一个function，直接return</p>
-<pre><code>function bindActionCreator(actionCreator, dispatch) {
+<p>combineReducers返回的也是一个reducer函数，接收旧的state和action，生成新的state。<br>在调用getUnexpectedStateShapeWarningMessage检查过参数之后，依次按照reducers的key，使用对应的state和action来调用对应的reducer方法，将返回结果放到nextState中，并且根据nextStateForKey !== previousStateForKey 前后state是否发生了变化来判断，没变化返回之前的state，变化了返回新的state。</p>
+<h1 id="bindActionCreators"><a href="#bindActionCreators" class="headerlink" title="bindActionCreators"></a>bindActionCreators</h1><pre><code>function bindActionCreator(actionCreator, dispatch) {
   return (...args) =&gt; dispatch(actionCreator(...args))
 }
-</code></pre><p>如果actionCreators是一个对象，按照键值对依次执行bindActionCreator，将返回结果放到boundActionCreators中return回去。</p>
+</code></pre><p>返回一个dispatch actionCreator产生的action的函数。</p>
+<pre><code>function bindActionCreators(actionCreators, dispatch)
+</code></pre><p>actionCreators如果是一个function，直接return bindActionCreator</p>
+<p>如果actionCreators是一个对象，按照键值对依次执行bindActionCreator，将返回结果放到boundActionCreators对象中中return回去。</p>
 <h1 id="applyMiddleware"><a href="#applyMiddleware" class="headerlink" title="applyMiddleware"></a>applyMiddleware</h1><pre><code>export default function applyMiddleware(...middlewares) {
   return (createStore) =&gt; (reducer, preloadedState, enhancer) =&gt; {
     var store = createStore(reducer, preloadedState, enhancer)
@@ -381,8 +445,19 @@ redux的api一共只用5个，可以说是相当的简洁。">
     dispatch
   }
 </code></pre><p>这时的dispatch就不是初始的状态，而是在基础上增强了许多其他的功能。</p>
-<h1 id="compose"><a href="#compose" class="headerlink" title="compose"></a>compose</h1><pre><code>function compose(...funcs)
-</code></pre><p>首先过滤参数，只保留函数类型的。</p>
+<h1 id="compose"><a href="#compose" class="headerlink" title="compose"></a>compose</h1><pre><code>export default function compose(...funcs) {
+if (funcs.length === 0) {
+    return arg =&gt; arg
+}
+
+if (funcs.length === 1) {
+    return funcs[0]
+}
+
+return funcs.reduce((a, b) =&gt; (...args) =&gt; a(b(...args)))
+}
+</code></pre><p>主要用于中间件。</p>
+<p>首先过滤参数，只保留函数类型的。</p>
 <p>如果过滤后长度为0，return</p>
 <pre><code>arg =&gt; arg
 </code></pre><p>如果过滤后长度为1，直接把那1个函数返回</p>

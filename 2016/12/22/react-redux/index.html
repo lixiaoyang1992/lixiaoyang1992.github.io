@@ -85,18 +85,18 @@
 
 
 <meta name="description" content="redux要和react结合使用，官方出品的reactjs/react-redux是必不可少的。
-一共只有3个api：Provider, connectAdvanced, connect，非常的精简。">
+一共只有2个api：Provider, connect，非常的精简。本文基于4.x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react-redux源码分析">
 <meta property="og:url" content="http://lixoayang.cn/2016/12/22/react-redux/index.html">
 <meta property="og:site_name" content="当我谈代码时我谈些什么">
 <meta property="og:description" content="redux要和react结合使用，官方出品的reactjs/react-redux是必不可少的。
-一共只有3个api：Provider, connectAdvanced, connect，非常的精简。">
-<meta property="og:updated_time" content="2017-01-11T03:24:11.000Z">
+一共只有2个api：Provider, connect，非常的精简。本文基于4.x">
+<meta property="og:updated_time" content="2017-02-22T09:01:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-redux源码分析">
 <meta name="twitter:description" content="redux要和react结合使用，官方出品的reactjs/react-redux是必不可少的。
-一共只有3个api：Provider, connectAdvanced, connect，非常的精简。">
+一共只有2个api：Provider, connect，非常的精简。本文基于4.x">
 
 
 
@@ -311,8 +311,8 @@
 
       
         <p>redux要和react结合使用，官方出品的<a href="https://github.com/reactjs/react-redux" target="_blank" rel="external">reactjs/react-redux</a>是必不可少的。</p>
-<p>一共只有3个api：Provider, connectAdvanced, connect，非常的精简。<br><a id="more"></a></p>
-<h1 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h1><p>Provider是一个react Component，作用就是调用connect()是可以使用store。</p>
+<p>一共只有2个api：Provider, connect，非常的精简。<br>本文基于4.x<br><a id="more"></a></p>
+<h1 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h1><p>Provider是一个react Component，作用就是把store作为ChildContext,这样后代组件也可以拿到。</p>
 <pre><code>export default class Provider extends Component {
   //使全局都能拿到唯一的store
   getChildContext() {
@@ -325,10 +325,11 @@
   }
 
   render() {
+    //children只能是一个节点
     return Children.only(this.props.children)
   }
 }
-</code></pre><p>Provider store和children是必需的props。</p>
+</code></pre><p>Provider必须声明childContextTypes</p>
 <pre><code>Provider.propTypes = {
   store: storeShape.isRequired,
   children: PropTypes.element.isRequired
@@ -336,62 +337,30 @@
 Provider.childContextTypes = {
   store: storeShape.isRequired
 }
-</code></pre><p>而store的必需项是对应的redux store的参数。</p>
-<p>export default PropTypes.shape({<br>  subscribe: PropTypes.func.isRequired,<br>  dispatch: PropTypes.func.isRequired,<br>  getState: PropTypes.func.isRequired<br>})</p>
-<h1 id="connectAdvanced"><a href="#connectAdvanced" class="headerlink" title="connectAdvanced"></a>connectAdvanced</h1><p>connectAdvanced</p>
-<h1 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h1><p>connect的作用是把一个react component和store关联起来，返回一个新的组件。</p>
-<pre><code>export function createConnect({
-  connectHOC = connectAdvanced,
-  mapStateToPropsFactories = defaultMapStateToPropsFactories,
-  mapDispatchToPropsFactories = defaultMapDispatchToPropsFactories,
-  mergePropsFactories = defaultMergePropsFactories,
-  selectorFactory = defaultSelectorFactory
-} = {}) {
-  return function connect(
-    mapStateToProps,
-    mapDispatchToProps,
-    mergeProps,
-    {
-      pure = true,
-      areStatesEqual = strictEqual,
-      areOwnPropsEqual = shallowEqual,
-      areStatePropsEqual = shallowEqual,
-      areMergedPropsEqual = shallowEqual,
-      ...extraOptions
-    } = {}
-  ) {
-    const initMapStateToProps = match(mapStateToProps, mapStateToPropsFactories, &apos;mapStateToProps&apos;)
-    const initMapDispatchToProps = match(mapDispatchToProps, mapDispatchToPropsFactories, &apos;mapDispatchToProps&apos;)
-    const initMergeProps = match(mergeProps, mergePropsFactories, &apos;mergeProps&apos;)
-
-    return connectHOC(selectorFactory, {
-      // used in error messages
-      methodName: &apos;connect&apos;,
-
-      // used to compute Connect&apos;s displayName from the wrapped component&apos;s displayName.
-      getDisplayName: name =&gt; `Connect(${name})`,
-
-      // if mapStateToProps is falsy, the Connect component doesn&apos;t subscribe to store state changes
-      shouldHandleStateChanges: Boolean(mapStateToProps),
-
-      // passed through to selectorFactory
-      initMapStateToProps,
-      initMapDispatchToProps,
-      initMergeProps,
-      pure,
-      areStatesEqual,
-      areOwnPropsEqual,
-      areStatePropsEqual,
-      areMergedPropsEqual,
-
-      // any extra options args can override defaults of connect or connectAdvanced
-      ...extraOptions
-    })
-  }
-}
-
-export default createConnect()
-//export的是createConnect函数的返回结果
+</code></pre><p>而store的必需项是对应的redux store的subscribe、dispatch和getState。</p>
+<pre><code>export default PropTypes.shape({
+  subscribe: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  getState: PropTypes.func.isRequired
+})
+</code></pre><h1 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h1><p>connect接收四个参数mapStateToProps、mapDispatchToProps、mergeProps和options，返回一个“接收一个组件作为参数，返回一个高阶组件”的函数。</p>
+<p>mapStateToProps默认值</p>
+<pre><code>const defaultMapStateToProps = state =&gt; ({})
+</code></pre><p>或者</p>
+<pre><code>const mapStateToProps = state =&gt; ({
+  loginState: state.loginReducer,
+});
+</code></pre><p>用于从store中获取想要的一部分state</p>
+<p>mapDispatchToProps默认值</p>
+<pre><code>const defaultMapDispatchToProps = dispatch =&gt; ({ dispatch })
+</code></pre><p>或者</p>
+<pre><code>const mapDispatchToProps = dispatch =&gt; bindActionCreators(action, dispatch);
+</code></pre><p>mergeProps默认值</p>
+<pre><code>const defaultMergeProps = (stateProps, dispatchProps, parentProps) =&gt; ({
+  ...parentProps,
+  ...stateProps,
+  ...dispatchProps
+})
 </code></pre>
       
     </div>
@@ -634,7 +603,7 @@ export default createConnect()
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Provider"><span class="nav-number">1.</span> <span class="nav-text">Provider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#connectAdvanced"><span class="nav-number">2.</span> <span class="nav-text">connectAdvanced</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#connect"><span class="nav-number">3.</span> <span class="nav-text">connect</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Provider"><span class="nav-number">1.</span> <span class="nav-text">Provider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#connect"><span class="nav-number">2.</span> <span class="nav-text">connect</span></a></li></ol></div>
             
           </div>
         </section>
