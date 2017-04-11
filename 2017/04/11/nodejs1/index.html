@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="nodejs," />
 
 
 
@@ -84,16 +84,37 @@
 
 
 
-<meta name="description" content="博客迁移到了GitHub。我会坚持写下去！">
+<meta name="description" content="Hello Worldnode.js执行起来非常简单
+console.log(&amp;quot;Hello World&amp;quot;);
+保存这个文件，然后执行就可以了
+node helloworld.js
+HTTP服务器node的一个重要模块 http
+var http = require(&amp;quot;http&amp;quot;);
+
+http.createServer(function(request, r">
 <meta property="og:type" content="article">
-<meta property="og:title" content="迁移">
-<meta property="og:url" content="http://lixoayang.cn/2015/03/26/2015-3-26-blog/index.html">
+<meta property="og:title" content="node.js学习笔记">
+<meta property="og:url" content="http://lixoayang.cn/2017/04/11/nodejs1/index.html">
 <meta property="og:site_name" content="当我谈代码时我谈些什么">
-<meta property="og:description" content="博客迁移到了GitHub。我会坚持写下去！">
-<meta property="og:updated_time" content="2015-11-21T13:06:02.000Z">
+<meta property="og:description" content="Hello Worldnode.js执行起来非常简单
+console.log(&amp;quot;Hello World&amp;quot;);
+保存这个文件，然后执行就可以了
+node helloworld.js
+HTTP服务器node的一个重要模块 http
+var http = require(&amp;quot;http&amp;quot;);
+
+http.createServer(function(request, r">
+<meta property="og:updated_time" content="2017-04-11T15:42:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="迁移">
-<meta name="twitter:description" content="博客迁移到了GitHub。我会坚持写下去！">
+<meta name="twitter:title" content="node.js学习笔记">
+<meta name="twitter:description" content="Hello Worldnode.js执行起来非常简单
+console.log(&amp;quot;Hello World&amp;quot;);
+保存这个文件，然后执行就可以了
+node helloworld.js
+HTTP服务器node的一个重要模块 http
+var http = require(&amp;quot;http&amp;quot;);
+
+http.createServer(function(request, r">
 
 
 
@@ -111,7 +132,7 @@
   };
 </script>
 
-  <title> 迁移 | 当我谈代码时我谈些什么 </title>
+  <title> node.js学习笔记 | 当我谈代码时我谈些什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -241,7 +262,7 @@
             
             
               
-                迁移
+                node.js学习笔记
               
             
           </h1>
@@ -253,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-03-26T00:00:00+08:00" content="2015-03-26">
-              2015-03-26
+            <time itemprop="dateCreated" datetime="2017-04-11T23:33:15+08:00" content="2017-04-11">
+              2017-04-11
             </time>
           </span>
 
@@ -267,8 +288,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随便说说/" itemprop="url" rel="index">
-                    <span itemprop="name">随便说说</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -283,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/03/26/2015-3-26-blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/26/2015-3-26-blog/" itemprop="commentsCount"></span>
+                <a href="/2017/04/11/nodejs1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/11/nodejs1/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -307,8 +328,21 @@
       
 
       
-        <p>博客迁移到了GitHub。<br>我会坚持写下去！</p>
+        <h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><p>node.js执行起来非常简单</p>
+<pre><code>console.log(&quot;Hello World&quot;);
+</code></pre><p>保存这个文件，然后执行就可以了</p>
+<pre><code>node helloworld.js
+</code></pre><h1 id="HTTP服务器"><a href="#HTTP服务器" class="headerlink" title="HTTP服务器"></a>HTTP服务器</h1><p>node的一个重要模块 http</p>
+<pre><code>var http = require(&quot;http&quot;);
 
+http.createServer(function(request, response) {
+  response.writeHead(200, {&quot;Content-Type&quot;: &quot;text/plain&quot;});
+  response.write(&quot;Hello World&quot;);
+  response.end();
+}).listen(8888);
+</code></pre><p>执行，就可以在 <a href="http://localhost:8888" target="_blank" rel="external">http://localhost:8888</a> 访问到页面了</p>
+<pre><code>node server.js
+</code></pre>
       
     </div>
 
@@ -327,18 +361,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/nodejs/" rel="tag">#nodejs</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/02/06/codepush/" rel="next" title="CodePush集成指南">
+                <i class="fa fa-chevron-left"></i> CodePush集成指南
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/03/28/2015-3-28-book/" rel="prev" title="白夜行">
-                白夜行 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -353,10 +393,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/03/26/2015-3-26-blog/"
-     data-title="迁移"
+        <div class="ds-share flat" data-thread-key="2017/04/11/nodejs1/"
+     data-title="node.js学习笔记"
      data-content=""
-     data-url="http://lixoayang.cn/2015/03/26/2015-3-26-blog/">
+     data-url="http://lixoayang.cn/2017/04/11/nodejs1/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -383,8 +423,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/03/26/2015-3-26-blog/"
-           data-title="迁移" data-url="http://lixoayang.cn/2015/03/26/2015-3-26-blog/">
+      <div class="ds-thread" data-thread-key="2017/04/11/nodejs1/"
+           data-title="node.js学习笔记" data-url="http://lixoayang.cn/2017/04/11/nodejs1/">
       </div>
     
   </div>
@@ -540,7 +580,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-World"><span class="nav-number">1.</span> <span class="nav-text">Hello World</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP服务器"><span class="nav-number">2.</span> <span class="nav-text">HTTP服务器</span></a></li></ol></div>
             
           </div>
         </section>
