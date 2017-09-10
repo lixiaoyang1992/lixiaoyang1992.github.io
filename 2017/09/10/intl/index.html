@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="nodejs," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="Hello Worldnode.js执行起来非常简单 console.log(&amp;quot;Hello World&amp;quot;); 保存这个文件，然后执行就可以了 node helloworld.js">
-<meta name="keywords" content="nodejs">
+<meta name="description" content="基于react的前端国际化，当然会用到yahoo/react-intl.">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="node.js学习笔记">
-<meta property="og:url" content="http://lixoayang.cn/2017/04/11/nodejs1/index.html">
+<meta property="og:title" content="前端国际化">
+<meta property="og:url" content="http://lixoayang.cn/2017/09/10/intl/index.html">
 <meta property="og:site_name" content="当我谈代码时我谈些什么">
-<meta property="og:description" content="Hello Worldnode.js执行起来非常简单 console.log(&amp;quot;Hello World&amp;quot;); 保存这个文件，然后执行就可以了 node helloworld.js">
+<meta property="og:description" content="基于react的前端国际化，当然会用到yahoo/react-intl.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-04T00:17:51.000Z">
+<meta property="og:updated_time" content="2017-09-10T15:45:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="node.js学习笔记">
-<meta name="twitter:description" content="Hello Worldnode.js执行起来非常简单 console.log(&amp;quot;Hello World&amp;quot;); 保存这个文件，然后执行就可以了 node helloworld.js">
+<meta name="twitter:title" content="前端国际化">
+<meta name="twitter:description" content="基于react的前端国际化，当然会用到yahoo/react-intl.">
 
 
 
@@ -113,7 +113,7 @@
   };
 </script>
 
-  <title> node.js学习笔记 | 当我谈代码时我谈些什么 </title>
+  <title> 前端国际化 | 当我谈代码时我谈些什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -243,7 +243,7 @@
             
             
               
-                node.js学习笔记
+                前端国际化
               
             
           </h1>
@@ -255,8 +255,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-11T23:33:15+08:00" content="2017-04-11">
-              2017-04-11
+            <time itemprop="dateCreated" datetime="2017-09-10T23:58:34+08:00" content="2017-09-10">
+              2017-09-10
             </time>
           </span>
 
@@ -285,8 +285,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/04/11/nodejs1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/11/nodejs1/" itemprop="commentsCount"></span>
+                <a href="/2017/09/10/intl/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/10/intl/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -309,62 +309,202 @@
       
 
       
-        <h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><p>node.js执行起来非常简单</p>
-<pre><code>console.log(&quot;Hello World&quot;);
-</code></pre><p>保存这个文件，然后执行就可以了</p>
-<pre><code>node helloworld.js
-</code></pre><a id="more"></a>
-<h1 id="HTTP服务器"><a href="#HTTP服务器" class="headerlink" title="HTTP服务器"></a>HTTP服务器</h1><p>node的一个重要模块 http</p>
-<pre><code>var http = require(&quot;http&quot;);
-
-http.createServer(function(request, response) {
-  response.writeHead(200, {&quot;Content-Type&quot;: &quot;text/plain&quot;});
-  response.write(&quot;Hello World&quot;);
-  response.end();
-}).listen(8888);
-</code></pre><p>执行，就可以在 <a href="http://localhost:8888" target="_blank" rel="external">http://localhost:8888</a> 访问到页面了</p>
-<pre><code>node server.js
-</code></pre><p>再稍微封装一下</p>
-<pre><code>1.server.js
-var http = require(&quot;http&quot;);
-
-function start() {
-  function onRequest(request, response) {
-    console.log(&quot;Request received.&quot;);
-    response.writeHead(200, {&quot;Content-Type&quot;: &quot;text/plain&quot;});
-    response.write(&quot;Hello World&quot;);
-    response.end();
-  }
-
-  http.createServer(onRequest).listen(8888);
-  console.log(&quot;Server has started.&quot;);
+        <p>基于react的前端国际化，当然会用到<a href="https://github.com/yahoo/react-intl" target="_blank" rel="external">yahoo/react-intl</a>.<br><a id="more"></a><br>大体的实现原理和react-redux的实现原理类似，最外层包一个Provider，利用getChildContext，将intlConfigPropTypes存起来，在FormattedMessage、FormattedNumber等组件或者调用injectIntl生成的高阶组件中使用，来完成国际化的。<br>使用过程也非常简单，和react-redux的使用方法非常类似。</p>
+<h3 id="创建资源文件"><a href="#创建资源文件" class="headerlink" title="创建资源文件"></a>创建资源文件</h3><p>创建一个locales文件夹，里面放置不同语言的语言文件，如</p>
+<pre><code>//en-US.js
+export default {
+  edit: &apos;edit&apos;,
+  view: &apos;view&apos;,
+  delete: &apos;delete&apos;,
+  &apos;header.usercenter&apos;: &apos;UserCenter&apos;,
 }
 
-exports.start = start;
+//zh-CN.js
+export default {
+  edit: &apos;编辑&apos;,
+  view: &apos;查看&apos;,
+  delete: &apos;删除&apos;,
+  &apos;header.usercenter&apos;: &apos;用户中心&apos;,
+}
+</code></pre><p>就是一个简单对象，我们使用key来作为取文字的唯一标识。</p>
+<h3 id="包裹IntlProvider"><a href="#包裹IntlProvider" class="headerlink" title="包裹IntlProvider"></a>包裹IntlProvider</h3><p>然后在项目的最外层组件上，包裹IntlProvider。<br>IntlProvider是支持多重包裹的，可以实现局部国际化的。</p>
+<pre><code>import React, {Component} from &apos;react&apos;;
+import {IntlProvider, addLocaleData} from &apos;react-intl&apos;;
+import en from &apos;react-intl/locale-data/en&apos;;
+import zh from &apos;react-intl/locale-data/zh&apos;;
+import zh_CN from &apos;../../locales/zh-CN.js&apos;;
+import en_US from &apos;../../locales/en-US.js&apos;;
 
-2.index.js
-var server = require(&quot;./server&quot;);
+addLocaleData([...en, ...zh]);
 
-server.start();
-</code></pre><h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><p>这要依赖node的另一个模块url<br>修改server.js</p>
-<pre><code>var http = require(&quot;http&quot;);
-var url = require(&quot;url&quot;);
+export default class App extends Component {
+  render() {
+    const {language = &apos;zh&apos;} = localStorage;
 
-function start() {
-  function onRequest(request, response) {
-    var pathname = url.parse(request.url).pathname;
-    console.log(&quot;Request for &quot; + pathname + &quot; received.&quot;);
-    response.writeHead(200, {&quot;Content-Type&quot;: &quot;text/plain&quot;});
-    response.write(&quot;Hello World&quot;);
-    response.end();
+    let locale;
+    let messages;
+    if (language === &apos;zh&apos;) {
+      locale = &apos;zh&apos;;
+      messages = zh_CN;
+    } else if (language === &apos;en&apos;) {
+      locale = &apos;en&apos;;
+      messages = en_US;
+    }
+
+    return (
+      &lt;IntlProvider
+        locale={locale}
+        messages={messages}
+      &gt;
+        &lt;App/&gt;
+      &lt;/IntlProvider&gt;
+    );
   }
-
-  http.createServer(onRequest).listen(8888);
-  console.log(&quot;Server has started.&quot;);
+}
+</code></pre><h3 id="组件国际化"><a href="#组件国际化" class="headerlink" title="组件国际化"></a>组件国际化</h3><p>我们的文字在使用时一般会分为两种，一种事在jsx中直接使用，另一种是作为state或者props使用，这两种分别有不同的处理方式</p>
+<p>第一种可以直接用一个国际化组件实现</p>
+<pre><code>render() {
+  return (
+    &lt;div&gt;
+      你好
+    &lt;/div&gt;
+  );
 }
 
-exports.start = start;
-</code></pre><p>这时服务器会对 <a href="http://localhost:8888/start" target="_blank" rel="external">http://localhost:8888/start</a> 和 <a href="http://localhost:8888/end" target="_blank" rel="external">http://localhost:8888/end</a> 输出不同内容了。</p>
+import { FormattedMessage } from &apos;react-intl&apos;;
+...
+render() {
+  return (
+    &lt;div&gt;
+      &lt;FormattedMessage
+          id=&quot;hello&quot;
+          defaultMessage=&quot;你好&quot;
+        /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre><p>第二种就需要高阶组件来实现了</p>
+<pre><code>render() {
+  return (
+    &lt;App value=&apos;你好&apos; /&gt;
+  );
+}
+
+import {injectIntl, defineMessages} from &apos;react-intl&apos;;
+
+const messages = defineMessages({
+  hello: {
+    id: &apos;hello&apos;,
+    defaultMessage: &apos;你好&apos;,
+  },
+});
+
+@injectIntl
+export default class App extends Component {
+  render() {
+    return (
+      &lt;App value={this.props.intl.formatMessage(messages.hello)}/&gt;
+    );
+  }
+}
+</code></pre><h3 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h3><p>IntlProvider在context中放了一个intl。</p>
+<pre><code>export default class IntlProvider extends Component {
+  ......
+  static propTypes = {
+    ...intlConfigPropTypes,
+    children: PropTypes.element.isRequired,
+    initialNow: PropTypes.any,
+  };
+  ......
+  getChildContext() {
+    const config = this.getConfig();
+
+    // Bind intl factories and current config to the format functions.
+    const boundFormatFns = this.getBoundFormatFns(config, this.state);
+
+    const {now, ...formatters} = this.state;
+
+    return {
+      intl: {
+        ...config,
+        ...boundFormatFns,
+        formatters,
+        now,
+      },
+    };
+  }
+}
+</code></pre><p>injectIntl，经典的高阶组件写法，把this.context.intl传递给了WrappedComponent，WrappedComponent就可以使用this.props.intl来调用了。</p>
+<pre><code>export default function injectIntl(WrappedComponent, options = {}) {
+  const {intlPropName = &apos;intl&apos;, withRef = false} = options;
+
+  class InjectIntl extends Component {
+    static displayName = `InjectIntl(${getDisplayName(WrappedComponent)})`;
+
+    static contextTypes = {
+      intl: intlShape,
+    };
+
+    ......
+
+    render() {
+      return (
+        &lt;WrappedComponent
+          {...this.props}
+          {...{[intlPropName]: this.context.intl}}
+          ref={withRef ? &apos;wrappedInstance&apos; : null}
+        /&gt;
+      );
+    }
+  }
+
+  return InjectIntl;
+}
+</code></pre><p>FormattedMessage是利用this.context.intl和传入的id来调用formatMessage得到对应的文字，返回一个Component。<br>其他的number，data，time等也类似。</p>
+<pre><code>export default class FormattedMessage extends Component {
+  render() {
+    const {formatMessage, textComponent: Text} = this.context.intl;
+
+    const {
+      id,
+      description,
+      defaultMessage,
+      values,
+      tagName: Component = Text,
+      children,
+    } = this.props;
+
+    ......
+
+    let descriptor = {id, description, defaultMessage};
+    let formattedMessage = formatMessage(descriptor, tokenizedValues || values);
+
+    let nodes;
+
+    let hasElements = elements &amp;&amp; Object.keys(elements).length &gt; 0;
+    if (hasElements) {
+      // Split the message into parts so the React Element values captured
+      // above can be inserted back into the rendered message. This
+      // approach allows messages to render with React Elements while
+      // keeping React&apos;s virtual diffing working properly.
+      nodes = formattedMessage
+        .split(tokenDelimiter)
+        .filter(part =&gt; !!part)
+        .map(part =&gt; elements[part] || part);
+    } else {
+      nodes = [formattedMessage];
+    }
+
+    if (typeof children === &apos;function&apos;) {
+      return children(...nodes);
+    }
+
+    // Needs to use `createElement()` instead of JSX, otherwise React will
+    // warn about a missing `key` prop with rich-text message formatting.
+    return createElement(Component, null, ...nodes);
+  }
+}
+</code></pre><p>具体的文字转换调用是intl-messageformat这个库。</p>
 
       
     </div>
@@ -386,7 +526,7 @@ exports.start = start;
       
         <div class="post-tags">
           
-            <a href="/tags/nodejs/" rel="tag">#nodejs</a>
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
           
         </div>
       
@@ -395,17 +535,13 @@ exports.start = start;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/06/codepush/" rel="next" title="CodePush集成指南">
-                <i class="fa fa-chevron-left"></i> CodePush集成指南
+              <a href="/2017/04/11/nodejs1/" rel="next" title="node.js学习笔记">
+                <i class="fa fa-chevron-left"></i> node.js学习笔记
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/10/intl/" rel="prev" title="前端国际化">
-                前端国际化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -420,10 +556,10 @@ exports.start = start;
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/04/11/nodejs1/"
-     data-title="node.js学习笔记"
+        <div class="ds-share flat" data-thread-key="2017/09/10/intl/"
+     data-title="前端国际化"
      data-content=""
-     data-url="http://lixoayang.cn/2017/04/11/nodejs1/">
+     data-url="http://lixoayang.cn/2017/09/10/intl/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -450,8 +586,8 @@ exports.start = start;
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/04/11/nodejs1/"
-           data-title="node.js学习笔记" data-url="http://lixoayang.cn/2017/04/11/nodejs1/">
+      <div class="ds-thread" data-thread-key="2017/09/10/intl/"
+           data-title="前端国际化" data-url="http://lixoayang.cn/2017/09/10/intl/">
       </div>
     
   </div>
@@ -607,7 +743,7 @@ exports.start = start;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-World"><span class="nav-number">1.</span> <span class="nav-text">Hello World</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP服务器"><span class="nav-number">2.</span> <span class="nav-text">HTTP服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路由"><span class="nav-number">3.</span> <span class="nav-text">路由</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建资源文件"><span class="nav-number">1.</span> <span class="nav-text">创建资源文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包裹IntlProvider"><span class="nav-number">2.</span> <span class="nav-text">包裹IntlProvider</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件国际化"><span class="nav-number">3.</span> <span class="nav-text">组件国际化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码解析"><span class="nav-number">4.</span> <span class="nav-text">源码解析</span></a></li></ol></div>
             
           </div>
         </section>
