@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="当我谈代码时我谈些什么">
 <meta property="og:description" content="基于react的前端国际化，当然会用到yahoo/react-intl.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-10T15:45:21.000Z">
+<meta property="og:updated_time" content="2017-09-11T02:27:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端国际化">
 <meta name="twitter:description" content="基于react的前端国际化，当然会用到yahoo/react-intl.">
@@ -498,6 +498,7 @@ export default class App extends Component {
   }
 }
 </code></pre><p>具体的文字转换调用是intl-messageformat这个库。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>前端国际化，看起来很高大上，其实一点都不复杂，通用的做法都是把文字资源统一管理，在页面中用id来占位，根据语言使用不同的资源去填充。gui开发的国际化都是相似的，例如android也是这种做法，string会放到resources目录下来管理。或者设计一个特殊的注解之类的来区分不同语言的文字部分。</p>
 
       
     </div>
@@ -713,7 +714,7 @@ export default class App extends Component {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建资源文件"><span class="nav-number">1.</span> <span class="nav-text">创建资源文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包裹IntlProvider"><span class="nav-number">2.</span> <span class="nav-text">包裹IntlProvider</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件国际化"><span class="nav-number">3.</span> <span class="nav-text">组件国际化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码解析"><span class="nav-number">4.</span> <span class="nav-text">源码解析</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建资源文件"><span class="nav-number">1.</span> <span class="nav-text">创建资源文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包裹IntlProvider"><span class="nav-number">2.</span> <span class="nav-text">包裹IntlProvider</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件国际化"><span class="nav-number">3.</span> <span class="nav-text">组件国际化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码解析"><span class="nav-number">4.</span> <span class="nav-text">源码解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
