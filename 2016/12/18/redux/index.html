@@ -1,0 +1,812 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="reactjs," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="如果你使用过react，那你应该听说过或用过另一个库reactjs/redux。 react的核心思想之一是根据state来渲染页面，而state应该是immutable的，redux很好的维护了state。 redux的api一共只用5个，可以说是相当的简洁。">
+<meta name="keywords" content="reactjs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redux源码分析">
+<meta property="og:url" content="http://lixoayang.cn/2016/12/18/redux/index.html">
+<meta property="og:site_name" content="当我谈代码时我谈些什么">
+<meta property="og:description" content="如果你使用过react，那你应该听说过或用过另一个库reactjs/redux。 react的核心思想之一是根据state来渲染页面，而state应该是immutable的，redux很好的维护了state。 redux的api一共只用5个，可以说是相当的简洁。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-02-22T07:31:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redux源码分析">
+<meta name="twitter:description" content="如果你使用过react，那你应该听说过或用过另一个库reactjs/redux。 react的核心思想之一是根据state来渲染页面，而state应该是immutable的，redux很好的维护了state。 redux的api一共只用5个，可以说是相当的简洁。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> redux源码分析 | 当我谈代码时我谈些什么 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">当我谈代码时我谈些什么</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">what do I talk when I talk about code</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                redux源码分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-18T22:51:25+08:00" content="2016-12-18">
+              2016-12-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如果你使用过react，那你应该听说过或用过另一个库<a href="https://github.com/reactjs/redux" target="_blank" rel="external">reactjs/redux</a>。</p>
+<p>react的核心思想之一是根据state来渲染页面，而state应该是immutable的，redux很好的维护了state。</p>
+<p>redux的api一共只用5个，可以说是相当的简洁。<br><a id="more"></a></p>
+<h1 id="createStore"><a href="#createStore" class="headerlink" title="createStore"></a>createStore</h1><pre><code>function createStore(reducer, preloadedState, enhancer)
+</code></pre><p>创建一个redux store来维护state，唯一的修改数据的方法就是dispatch()。<br>store在应用中应该只有一份，这是reudx和flux的区别，使得整个架构更加的精简。<br>为了反映state是如何根据action变化的，应当把多个reducer用combineReducers合并成一个。</p>
+<p>reducer：根据现有的state和action，来生成一个新的state。</p>
+<p>preloadedState：初始化的state。<br>如果你使用了combineReducers，那么preloadedState应当是一个‘拥有所有combineReducers的key’的对象。</p>
+<p>enhancer：对store处理的增强，用来拓展第三方的支持，只支持用applyMiddleware加载中间件。<br>这也是redux的伟大之处。</p>
+<p>看一下return</p>
+<pre><code>return {
+    dispatch,
+    subscribe,
+    getState,
+    replaceReducer,
+    [$$observable]: observable
+}
+</code></pre><p>在之前dispatch({ type: ActionTypes.INIT })，做了一个初始化的操作。</p>
+<h2 id="dispatch"><a href="#dispatch" class="headerlink" title="dispatch"></a>dispatch</h2><p>dispatch发送action，这是唯一的途径来触发state的变化。</p>
+<pre><code>function dispatch(action) {
+    if (!isPlainObject(action)) {
+    throw new Error(
+        &apos;Actions must be plain objects. &apos; +
+        &apos;Use custom middleware for async actions.&apos;
+    )
+    }
+
+    if (typeof action.type === &apos;undefined&apos;) {
+    throw new Error(
+        &apos;Actions may not have an undefined &quot;type&quot; property. &apos; +
+        &apos;Have you misspelled a constant?&apos;
+    )
+    }
+
+    if (isDispatching) {
+    throw new Error(&apos;Reducers may not dispatch actions.&apos;)
+    }
+
+    try {
+    isDispatching = true
+    //更新state
+    currentState = currentReducer(currentState, action)
+    } finally {
+    isDispatching = false
+    }
+
+    //调用监听回调
+    const listeners = currentListeners = nextListeners
+    for (let i = 0; i &lt; listeners.length; i++) {
+    const listener = listeners[i]
+    listener()
+    }
+
+    return action
+}
+</code></pre><p>在dispatch方法中，唯一的参数是action，action应该是一个简单对象，type属性是必备的，其他的数据部分是可选的。<br>dispatch方法首先对action进行了检查，然后是isDispatching的判断，这里做了一个简单的锁，调用了currentReducer来根据currentState和action来生成新的state。<br>然后是listeners监听方法的调用。<br>return结果是action本身。</p>
+<h2 id="subscribe"><a href="#subscribe" class="headerlink" title="subscribe"></a>subscribe</h2><p>添加一个change listener。<br>当action被发送，state tree变化的时候被调用。</p>
+<pre><code>function subscribe(listener) {
+    if (typeof listener !== &apos;function&apos;) {
+    throw new Error(&apos;Expected listener to be a function.&apos;)
+    }
+
+    let isSubscribed = true
+
+    ensureCanMutateNextListeners()
+    nextListeners.push(listener)
+
+    return function unsubscribe() {
+    if (!isSubscribed) {
+        return
+    }
+
+    isSubscribed = false
+
+    ensureCanMutateNextListeners()
+    const index = nextListeners.indexOf(listener)
+    nextListeners.splice(index, 1)
+    }
+}
+</code></pre><p>ensureCanMutateNextListeners将currentListeners拷贝到nextListeners。<br>将参数listener push 到 nextListeners。</p>
+<p>返回的是将参数listener 从 nextListeners去除的函数。</p>
+<h2 id="getState"><a href="#getState" class="headerlink" title="getState"></a>getState</h2><pre><code>function getState() {
+    return currentState
+}
+</code></pre><p>返回currentState。</p>
+<h2 id="replaceReducer"><a href="#replaceReducer" class="headerlink" title="replaceReducer"></a>replaceReducer</h2><p>顾名思义，用nextReducer来替换currentReducer，然后dispatch({ type: ActionTypes.INIT })。<br>可用于动态添加reducer，或者热加载。</p>
+<h2 id="observable"><a href="#observable" class="headerlink" title="observable"></a>observable</h2><p>返回一个订阅函数，用于外部订阅state的变化。<br>这个是给rx的库用的。</p>
+<h1 id="combineReducers"><a href="#combineReducers" class="headerlink" title="combineReducers"></a>combineReducers</h1><p>combineReducers也只有一个参数reducers，常常是这种形式,一个巨大的对象：</p>
+<pre><code>combineReducers({
+    myReducer:reducer,
+    offlineOrder
+})
+</code></pre><p>它的作用是将参数中包含的不同的reducer函数组合成一个reducer函数，这个函数可以调用每一个child函数，并且将它们的结果放到一个state对象中。</p>
+<p>首先按照键值对遍历参数reducers，依次检查值的类型是否为函数,并存放在finalReducers中。<br>然后调用assertReducerSanity来检查每个reducer是否能处两个测试action，需要保证每个reducer都有一个初始state。</p>
+<p>combineReducers返回的也是一个reducer函数，接收旧的state和action，生成新的state。<br>在调用getUnexpectedStateShapeWarningMessage检查过参数之后，依次按照reducers的key，使用对应的state和action来调用对应的reducer方法，将返回结果放到nextState中，并且根据nextStateForKey !== previousStateForKey 前后state是否发生了变化来判断，没变化返回之前的state，变化了返回新的state。</p>
+<h1 id="bindActionCreators"><a href="#bindActionCreators" class="headerlink" title="bindActionCreators"></a>bindActionCreators</h1><pre><code>function bindActionCreator(actionCreator, dispatch) {
+  return (...args) =&gt; dispatch(actionCreator(...args))
+}
+</code></pre><p>返回一个dispatch actionCreator产生的action的函数。</p>
+<pre><code>function bindActionCreators(actionCreators, dispatch)
+</code></pre><p>actionCreators如果是一个function，直接return bindActionCreator</p>
+<p>如果actionCreators是一个对象，按照键值对依次执行bindActionCreator，将返回结果放到boundActionCreators对象中中return回去。</p>
+<h1 id="applyMiddleware"><a href="#applyMiddleware" class="headerlink" title="applyMiddleware"></a>applyMiddleware</h1><pre><code>export default function applyMiddleware(...middlewares) {
+  return (createStore) =&gt; (reducer, preloadedState, enhancer) =&gt; {
+    var store = createStore(reducer, preloadedState, enhancer)
+    var dispatch = store.dispatch
+    var chain = []
+
+    var middlewareAPI = {
+      getState: store.getState,
+      dispatch: (action) =&gt; dispatch(action)
+    }
+    chain = middlewares.map(middleware =&gt; middleware(middlewareAPI))
+    dispatch = compose(...chain)(store.dispatch)
+
+    return {
+      ...store,
+      dispatch
+    }
+  }
+}
+</code></pre><p>这个方法把中间件加入dispatch的过程中，来增强store，例如异步的dispatch，多个dispatch，或者日志的记录。</p>
+<p>redux-thunk是一个非常好的中间件，我也在生产环境中使用。</p>
+<p>由于中间件基本都是异步的，所有在构成store的过程链中，这个函数应该第一个被调用。</p>
+<p>注意，每个中间件都会被给予<code>dispatch</code> 和 <code>getState</code> 函数作为同名参数。</p>
+<p>首先创建store，拿到dispatch函数。</p>
+<p>然后依次执行所有的中间件，参数是dispatch和getState，将返回结果保存在数组中，组合起来，依次增强dispatch函数。</p>
+<p>最后</p>
+<pre><code>return {
+    ...store,
+    dispatch
+  }
+</code></pre><p>这时的dispatch就不是初始的状态，而是在基础上增强了许多其他的功能。</p>
+<h1 id="compose"><a href="#compose" class="headerlink" title="compose"></a>compose</h1><pre><code>export default function compose(...funcs) {
+if (funcs.length === 0) {
+    return arg =&gt; arg
+}
+
+if (funcs.length === 1) {
+    return funcs[0]
+}
+
+return funcs.reduce((a, b) =&gt; (...args) =&gt; a(b(...args)))
+}
+</code></pre><p>主要用于中间件。</p>
+<p>首先过滤参数，只保留函数类型的。</p>
+<p>如果过滤后长度为0，return</p>
+<pre><code>arg =&gt; arg
+</code></pre><p>如果过滤后长度为1，直接把那1个函数返回</p>
+<p>大于1时，return</p>
+<pre><code>funcs.reduce((a, b) =&gt; (...args) =&gt; a(b(...args)))
+</code></pre><p>一个函数执行完了，结果作为参数继续执行下一个函数</p>
+<p>For example, compose(f, g, h) is identical to doing (…args) =&gt; f(g(h(…args))).</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/reactjs/" rel="tag">#reactjs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/02/eslint/" rel="next" title="eslint">
+                <i class="fa fa-chevron-left"></i> eslint
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/22/react-redux/" rel="prev" title="react-redux源码分析">
+                react-redux源码分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Lixiaoyang" />
+          <p class="site-author-name" itemprop="name">Lixiaoyang</p>
+          <p class="site-description motion-element" itemprop="description">inspired by 雷蒙德·卡佛，村上春树</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lixiaoyang1992" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/lixiaoyang1015" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/charles.lee.39750" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/0/106598436346628812375" target="_blank" title="Google+">
+                  
+                    <i class="fa fa-fw fa-google-plus"></i>
+                  
+                  Google+
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2392451751" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/li-xiao-yang-39" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/71555663" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#createStore"><span class="nav-number">1.</span> <span class="nav-text">createStore</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dispatch"><span class="nav-number">1.1.</span> <span class="nav-text">dispatch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#subscribe"><span class="nav-number">1.2.</span> <span class="nav-text">subscribe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getState"><span class="nav-number">1.3.</span> <span class="nav-text">getState</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#replaceReducer"><span class="nav-number">1.4.</span> <span class="nav-text">replaceReducer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#observable"><span class="nav-number">1.5.</span> <span class="nav-text">observable</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#combineReducers"><span class="nav-number">2.</span> <span class="nav-text">combineReducers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bindActionCreators"><span class="nav-number">3.</span> <span class="nav-text">bindActionCreators</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#applyMiddleware"><span class="nav-number">4.</span> <span class="nav-text">applyMiddleware</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#compose"><span class="nav-number">5.</span> <span class="nav-text">compose</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lixiaoyang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
