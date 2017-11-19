@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="react-native," />
+  <meta name="keywords" content="react," />
 
 
 
@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="本项目源码 lixiaoyang1992/zhihu 项目参考了f8 app 的设计。   所有 API 均由 知乎（Zhihu.Inc） 提供，参考开源项目izzyleung/ZhihuDailyPurify，获取与共享之行为或有侵犯知乎权益的嫌疑。若被告知需停止共享与使用，本人会及时删除此页面与整个项目。请您了解相关情况，并遵守知乎协议。">
-<meta name="keywords" content="react-native">
+<meta name="description" content="react这个项目分为多个package，其中核心部分react主要负责虚拟节点，由不同的render将虚拟节点渲染到不同的平台，如react-dom，react-native-renderer等。完全解耦，来实现跨平台。">
+<meta name="keywords" content="react">
 <meta property="og:type" content="article">
-<meta property="og:title" content="用react-native开发知乎日报 1.搭建项目">
-<meta property="og:url" content="http://lixoayang.cn/2016/07/24/zhihu1/index.html">
+<meta property="og:title" content="react源码解析-1初探">
+<meta property="og:url" content="http://lixoayang.cn/2017/11/19/react-source1/index.html">
 <meta property="og:site_name" content="当我谈代码时我谈些什么">
-<meta property="og:description" content="本项目源码 lixiaoyang1992/zhihu 项目参考了f8 app 的设计。   所有 API 均由 知乎（Zhihu.Inc） 提供，参考开源项目izzyleung/ZhihuDailyPurify，获取与共享之行为或有侵犯知乎权益的嫌疑。若被告知需停止共享与使用，本人会及时删除此页面与整个项目。请您了解相关情况，并遵守知乎协议。">
+<meta property="og:description" content="react这个项目分为多个package，其中核心部分react主要负责虚拟节点，由不同的render将虚拟节点渲染到不同的平台，如react-dom，react-native-renderer等。完全解耦，来实现跨平台。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-08-12T08:03:04.000Z">
+<meta property="og:updated_time" content="2017-11-19T14:04:33.160Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用react-native开发知乎日报 1.搭建项目">
-<meta name="twitter:description" content="本项目源码 lixiaoyang1992/zhihu 项目参考了f8 app 的设计。   所有 API 均由 知乎（Zhihu.Inc） 提供，参考开源项目izzyleung/ZhihuDailyPurify，获取与共享之行为或有侵犯知乎权益的嫌疑。若被告知需停止共享与使用，本人会及时删除此页面与整个项目。请您了解相关情况，并遵守知乎协议。">
+<meta name="twitter:title" content="react源码解析-1初探">
+<meta name="twitter:description" content="react这个项目分为多个package，其中核心部分react主要负责虚拟节点，由不同的render将虚拟节点渲染到不同的平台，如react-dom，react-native-renderer等。完全解耦，来实现跨平台。">
 
 
 
@@ -113,7 +113,7 @@
   };
 </script>
 
-  <title> 用react-native开发知乎日报 1.搭建项目 | 当我谈代码时我谈些什么 </title>
+  <title> react源码解析-1初探 | 当我谈代码时我谈些什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -243,7 +243,7 @@
             
             
               
-                用react-native开发知乎日报 1.搭建项目
+                react源码解析-1初探
               
             
           </h1>
@@ -255,30 +255,11 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-24T18:45:48+08:00" content="2016-07-24">
-              2016-07-24
+            <time itemprop="dateCreated" datetime="2017-11-19T14:24:55+08:00" content="2017-11-19">
+              2017-11-19
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -302,68 +283,66 @@
       
 
       
-        <p>本项目源码 <a href="https://github.com/lixiaoyang1992/zhihu" target="_blank" rel="external">lixiaoyang1992/zhihu</a></p>
-<p>项目参考了<a href="https://github.com/fbsamples/f8app" target="_blank" rel="external">f8 app</a> 的设计。  </p>
-<p>所有 API 均由 知乎（Zhihu.Inc） 提供，参考开源项目<a href="https://github.com/izzyleung/ZhihuDailyPurify/wiki/%E7%9F%A5%E4%B9%8E%E6%97%A5%E6%8A%A5-API-%E5%88%86%E6%9E%90" target="_blank" rel="external">izzyleung/ZhihuDailyPurify</a>，获取与共享之行为或有侵犯知乎权益的嫌疑。若被告知需停止共享与使用，本人会及时删除此页面与整个项目。<br>请您了解相关情况，并遵守知乎协议。</p>
-<a id="more"></a>
-<h3 id="一份代码，两个平台"><a href="#一份代码，两个平台" class="headerlink" title="一份代码，两个平台"></a>一份代码，两个平台</h3><p>既然要用react－native了，android和iOS当然要只写一份代码了。  </p>
-<p>初始化项目后，根目录创建js文件夹，作为我们的源码文件夹。</p>
-<p>首先要统一首页，创建js/index.js  </p>
-<pre><code>import React, {Component} from &apos;react&apos;;
-import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View
-} from &apos;react-native&apos;;
+        <p>react这个项目分为多个package，其中核心部分react主要负责虚拟节点，由不同的render将虚拟节点渲染到不同的平台，如react-dom，react-native-renderer等。完全解耦，来实现跨平台。<br><a id="more"></a></p>
+<h1 id="模块声明"><a href="#模块声明" class="headerlink" title="模块声明"></a>模块声明</h1><p>首先看一下react/src/React.js中export了哪些东西。</p>
+<pre><code>var React = {
+  Children: {
+    map,
+    forEach,
+    count,
+    toArray,
+    only,
+  },
 
-export default class zhihu extends Component {
-    render() {
-        return (
-            &lt;View style={styles.container}&gt;
-                &lt;Text style={styles.welcome}&gt;
-                    Welcome to React Native!
-                &lt;/Text&gt;
-                &lt;Text style={styles.instructions}&gt;
-                    To get started, edit index.android.js
-                &lt;/Text&gt;
-                &lt;Text style={styles.instructions}&gt;
-                    Double tap R on your keyboard to reload,{&apos;\n&apos;}
-                    Shake or press menu button for dev menu
-                &lt;/Text&gt;
-            &lt;/View&gt;
-        );
-    }
+  Component,
+  PureComponent,
+  unstable_AsyncComponent: AsyncComponent,
+
+  createElement: __DEV__ ? createElementWithValidation : createElement,
+  cloneElement: __DEV__ ? cloneElementWithValidation : cloneElement,
+  createFactory: __DEV__ ? createFactoryWithValidation : createFactory,
+  isValidElement: isValidElement,
+
+  version: ReactVersion,
+
+  __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: {
+    ReactCurrentOwner,
+    // Used by renderers to avoid bundling object-assign twice in UMD bundles:
+    assign,
+  },
+};
+
+if (enableReactFragment) {
+  React.Fragment = REACT_FRAGMENT_TYPE;
+}
+</code></pre><p>这就是通常情况下我们通过 import react from ‘react’ 所能拿到的react模块包含的所有内容了。<br>虽然现在v16已经发布了，但是实际上还有很多功能是没有发布的，例如enableReactFragment目前是false的，React.Fragment功能目前还没有正式加入react，你只能在react-addons-create-fragment中使用。</p>
+<h1 id="初探"><a href="#初探" class="headerlink" title="初探"></a>初探</h1><h2 id="Children"><a href="#Children" class="headerlink" title="Children"></a>Children</h2><p>ReactChildren下面包含 map,forEach,count,toArray,only 五个方法，明明上和数组的一些方法很像，一般是用来对this.props,children进行一些操作。<br>如在react-dedux的Provider中</p>
+<pre><code>Children.only(this.props.children)
+</code></pre><p>来确保Provider组建下只有一个子组件</p>
+<h2 id="Component，PureComponent，unstable-AsyncComponent"><a href="#Component，PureComponent，unstable-AsyncComponent" class="headerlink" title="Component，PureComponent，unstable_AsyncComponent"></a>Component，PureComponent，unstable_AsyncComponent</h2><p>这些就是我们最常用的组件类了，他们都来自于ReactBaseClasses。</p>
+<p>定义了Component函数，以及setState，forceUpdate等常用函数。dev模式下还有几个废弃的api，这里不说明了。</p>
+<pre><code>function Component(props, context, updater) {
+  this.props = props;
+  this.context = context;
+  this.refs = emptyObject;
+  // We initialize the default updater but the real one gets injected by the
+  // renderer.
+  this.updater = updater || ReactNoopUpdateQueue;
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: &apos;center&apos;,
-        alignItems: &apos;center&apos;,
-        backgroundColor: &apos;#F5FCFF&apos;,
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: &apos;center&apos;,
-        margin: 10,
-    },
-    instructions: {
-        textAlign: &apos;center&apos;,
-        color: &apos;#333333&apos;,
-        marginBottom: 5,
-    },
-});
-</code></pre><p>就是把初始代码挪了个位置。</p>
-<p>把index.ios.js和index.android.js都改为</p>
-<pre><code>import index from &apos;./js/index&apos;
-import {
-    AppRegistry
-} from &apos;react-native&apos;;
-
-AppRegistry.registerComponent(&apos;zhihu&apos;, ()=&gt;index);
-</code></pre><p>这样连个平台就使用同一份代码了。</p>
-<h3 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h3><p>react要和官方推出的flux架构结合使用，redux是一种非常优秀的实现，在之前的文章中介绍过如何使用。</p>
+Component.prototype.isReactComponent = {};
+Component.prototype.setState
+Component.prototype.forceUpdate 
+</code></pre><p>PureComponent基本上是复制的Component，只多了isPureReactComponent。</p>
+<p>AsyncComponent在Component的基础上增加了unstable_isAsyncReactComponent。当然从命名上知道这还是一个不稳定的组件，不建议使用。</p>
+<pre><code>asyncComponentPrototype.render = function() {
+  return this.props.children;
+};
+</code></pre><h2 id="createElement-cloneElement-createFactory-isValidElement"><a href="#createElement-cloneElement-createFactory-isValidElement" class="headerlink" title="createElement,cloneElement,createFactory,isValidElement"></a>createElement,cloneElement,createFactory,isValidElement</h2><p>这几个方法在开发环境下来自ReactElementValidator文件，生产环境来自ReactElement。<br>ReactElementValidator可以在开发环境下检查传递的参数，也可以被其他静态类型检查替代，如flow，typescript等。</p>
+<p>createElementWithValidation ， createElement：创建一个react element。<br>cloneElementWithValidation ， cloneElement：克隆一个react element。<br>createFactoryWithValidation ， createFactory：创建一个制定类型的react element的工厂函数。<br>isValidElement：判断一个对象是否是react元素。</p>
+<h2 id="version"><a href="#version" class="headerlink" title="version"></a>version</h2><p>返回react的版本号</p>
+<h2 id="SECRET-INTERNALS-DO-NOT-USE-OR-YOU-WILL-BE-FIRED"><a href="#SECRET-INTERNALS-DO-NOT-USE-OR-YOU-WILL-BE-FIRED" class="headerlink" title="__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED"></a>__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED</h2><p>里面是react内部访问的部分，不要使用，否则你会被开掉 (^_^)</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>我们对react的代码基本情况有了一定的了解，接下来会每个文件详细分析。<br>react的代码可读性极强，少量的注释能够清晰的解释代码的作用，值得学习。</p>
 
       
     </div>
@@ -385,7 +364,7 @@ AppRegistry.registerComponent(&apos;zhihu&apos;, ()=&gt;index);
       
         <div class="post-tags">
           
-            <a href="/tags/react-native/" rel="tag">#react-native</a>
+            <a href="/tags/react/" rel="tag">#react</a>
           
         </div>
       
@@ -394,17 +373,13 @@ AppRegistry.registerComponent(&apos;zhihu&apos;, ()=&gt;index);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/24/books/" rel="next" title="书单">
-                <i class="fa fa-chevron-left"></i> 书单
+              <a href="/2017/09/10/intl/" rel="next" title="前端国际化">
+                <i class="fa fa-chevron-left"></i> 前端国际化
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/28/zhihu2/" rel="prev" title="用react-native开发知乎日报 2.闪屏页面">
-                用react-native开发知乎日报 2.闪屏页面 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -583,7 +558,7 @@ AppRegistry.registerComponent(&apos;zhihu&apos;, ()=&gt;index);
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一份代码，两个平台"><span class="nav-number">1.</span> <span class="nav-text">一份代码，两个平台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redux"><span class="nav-number">2.</span> <span class="nav-text">redux</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模块声明"><span class="nav-number">1.</span> <span class="nav-text">模块声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初探"><span class="nav-number">2.</span> <span class="nav-text">初探</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Children"><span class="nav-number">2.1.</span> <span class="nav-text">Children</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Component，PureComponent，unstable-AsyncComponent"><span class="nav-number">2.2.</span> <span class="nav-text">Component，PureComponent，unstable_AsyncComponent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createElement-cloneElement-createFactory-isValidElement"><span class="nav-number">2.3.</span> <span class="nav-text">createElement,cloneElement,createFactory,isValidElement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#version"><span class="nav-number">2.4.</span> <span class="nav-text">version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SECRET-INTERNALS-DO-NOT-USE-OR-YOU-WILL-BE-FIRED"><span class="nav-number">2.5.</span> <span class="nav-text">__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
