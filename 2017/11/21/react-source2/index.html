@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="react javascript," />
 
 
 
@@ -84,17 +84,18 @@
 
 
 
-<meta name="description" content="今天一打开iTunesU声音有点不太对，原来白胡子老头生病了。">
+<meta name="description" content="React.Children提供了对this.props.children的操作的函数。">
+<meta name="keywords" content="react javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift学习第二课">
-<meta property="og:url" content="http://lixoayang.cn/2015/03/30/2015-3-30-blog/index.html">
+<meta property="og:title" content="react源码解析-2Children">
+<meta property="og:url" content="http://lixoayang.cn/2017/11/21/react-source2/index.html">
 <meta property="og:site_name" content="当我谈代码时我谈些什么">
-<meta property="og:description" content="今天一打开iTunesU声音有点不太对，原来白胡子老头生病了。">
+<meta property="og:description" content="React.Children提供了对this.props.children的操作的函数。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-04T00:17:51.000Z">
+<meta property="og:updated_time" content="2017-11-21T06:34:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift学习第二课">
-<meta name="twitter:description" content="今天一打开iTunesU声音有点不太对，原来白胡子老头生病了。">
+<meta name="twitter:title" content="react源码解析-2Children">
+<meta name="twitter:description" content="React.Children提供了对this.props.children的操作的函数。">
 
 
 
@@ -112,7 +113,7 @@
   };
 </script>
 
-  <title> Swift学习第二课 | 当我谈代码时我谈些什么 </title>
+  <title> react源码解析-2Children | 当我谈代码时我谈些什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +243,7 @@
             
             
               
-                Swift学习第二课
+                react源码解析-2Children
               
             
           </h1>
@@ -254,30 +255,11 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-03-30T00:00:00+08:00" content="2015-03-30">
-              2015-03-30
+            <time itemprop="dateCreated" datetime="2017-11-21T12:40:38+08:00" content="2017-11-21">
+              2017-11-21
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -301,7 +283,138 @@
       
 
       
-        <p>今天一打开iTunesU声音有点不太对，原来白胡子老头生病了。</p>
+        <p>React.Children提供了对this.props.children的操作的函数。<br><a id="more"></a></p>
+<p>react/src/ReactChildren文件export的函数如下</p>
+<pre><code>export {
+  forEachChildren as forEach,
+  mapChildren as map,
+  countChildren as count,
+  onlyChild as only,
+  toArray,
+};
+</code></pre><h1 id="forEachChildren"><a href="#forEachChildren" class="headerlink" title="forEachChildren"></a>forEachChildren</h1><pre><code>function forEachChildren(children, forEachFunc, forEachContext) {
+  if (children == null) {
+    return children;
+  }
+  var traverseContext = getPooledTraverseContext(
+    null,
+    null,
+    forEachFunc,
+    forEachContext,
+  );
+  traverseAllChildren(children, forEachSingleChild, traverseContext);
+  releaseTraverseContext(traverseContext);
+}
+</code></pre><p>traverseContext在一个池中获取了一个遍历的上下文对象，这里只是把forEachFunc和forEachContext封装到一个对象里。</p>
+<p>traverseAllChildren中调用了traverseAllChildrenImpl。</p>
+<pre><code>function traverseAllChildrenImpl(
+  children,
+  nameSoFar,
+  callback,
+  traverseContext,
+) {
+  ...
+}
+</code></pre><p>traverseAllChildrenImpl的参数children如果是数组，会遍历children，会把每一个child递归调用自身。<br>参数children是一个单独的react element或portal（16新增类型）时会调用callback</p>
+<pre><code>callback(
+  traverseContext,
+  children,
+  // If it&apos;s the only child, treat the name as if it was wrapped in an array
+  // so that it&apos;s consistent if the number of children grows.
+  nameSoFar === &apos;&apos; ? SEPARATOR + getComponentKey(children, 0) : nameSoFar,
+);
+</code></pre><p>forEachChildren的回调函数是forEachSingleChild，它的内容如下，这里重新生成的key值没有用到</p>
+<pre><code>function forEachSingleChild(bookKeeping, child, name) {
+  var {func, context} = bookKeeping;
+  func.call(context, child, bookKeeping.count++);
+}
+</code></pre><p>它首先在bookKeeping（遍历上下文）里，拿到我们在forEachChildren传入的遍历函数和上下文，用call调用一下，我们在下面就可以拿到child和index了。</p>
+<pre><code>React.Children.forEach(childrenArr,(child,index)=&gt;{
+  ...
+});
+</code></pre><p>最后释放上下文对象</p>
+<h1 id="mapChildren"><a href="#mapChildren" class="headerlink" title="mapChildren"></a>mapChildren</h1><pre><code>function mapChildren(children, func, context) {
+  if (children == null) {
+    return children;
+  }
+  var result = [];
+  mapIntoWithKeyPrefixInternal(children, result, null, func, context);
+  return result;
+}
+</code></pre><p>mapIntoWithKeyPrefixInternal的内容如下，和forEachChildren基本一致，增加了存放返回值的数组和escapedPrefix=‘’。</p>
+<pre><code>function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
+  var escapedPrefix = &apos;&apos;;
+  if (prefix != null) {
+    escapedPrefix = escapeUserProvidedKey(prefix) + &apos;/&apos;;
+  }
+  var traverseContext = getPooledTraverseContext(
+    array,
+    escapedPrefix,
+    func,
+    context,
+  );
+  traverseAllChildren(children, mapSingleChildIntoContext, traverseContext);
+  releaseTraverseContext(traverseContext);
+}
+</code></pre><p>不同之处在于traverseAllChildren的callback是mapSingleChildIntoContext。</p>
+<pre><code>function mapSingleChildIntoContext(bookKeeping, child, childKey) {
+  var {result, keyPrefix, func, context} = bookKeeping;
+
+  var mappedChild = func.call(context, child, bookKeeping.count++);
+  if (Array.isArray(mappedChild)) {
+    mapIntoWithKeyPrefixInternal(
+      mappedChild,
+      result,
+      childKey,
+      emptyFunction.thatReturnsArgument,
+    );
+  } else if (mappedChild != null) {
+    if (isValidElement(mappedChild)) {
+      mappedChild = cloneAndReplaceKey(
+        mappedChild,
+        // Keep both the (mapped) and old keys if they differ, just as
+        // traverseAllChildren used to do for objects as children
+        keyPrefix +
+          (mappedChild.key &amp;&amp; (!child || child.key !== mappedChild.key)
+            ? escapeUserProvidedKey(mappedChild.key) + &apos;/&apos;
+            : &apos;&apos;) +
+          childKey,
+      );
+    }
+    result.push(mappedChild);
+  }
+}
+</code></pre><p>var mappedChild = func.call(context, child, bookKeeping.count++)后如果是数组，再将结果数组通过mapIntoWithKeyPrefixInternal递归一遍。(之后的key值会加上.$)<br>得到单独的元素时，将结果clone并且重设一遍key值，最后将结果push进result。</p>
+<h1 id="countChildren"><a href="#countChildren" class="headerlink" title="countChildren"></a>countChildren</h1><pre><code>function countChildren(children, context) {
+  return traverseAllChildren(children, emptyFunction.thatReturnsNull, null);
+}
+</code></pre><p>traverseAllChildren，traverseAllChildrenImpl时有计数，将结果返回就好了。</p>
+<h1 id="onlyChild"><a href="#onlyChild" class="headerlink" title="onlyChild"></a>onlyChild</h1><pre><code>function onlyChild(children) {
+  invariant(
+    isValidElement(children),
+    &apos;React.Children.only expected to receive a single React element child.&apos;,
+  );
+  return children;
+}
+</code></pre><p>通过isValidElement判断传入的参数是否是“一个”react元素，否则就报错。</p>
+<pre><code>export function isValidElement(object) {
+  return (
+    typeof object === &apos;object&apos; &amp;&amp;
+    object !== null &amp;&amp;
+    object.$$typeof === REACT_ELEMENT_TYPE
+  );
+}
+</code></pre><h1 id="toArray"><a href="#toArray" class="headerlink" title="toArray"></a>toArray</h1><pre><code>function toArray(children) {
+  var result = [];
+  mapIntoWithKeyPrefixInternal(
+    children,
+    result,
+    null,
+    emptyFunction.thatReturnsArgument,
+  );
+  return result;
+}
+</code></pre><p>和map类似，返回一个重设过key的元素的数组。</p>
 
       
     </div>
@@ -321,22 +434,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/react-javascript/" rel="tag">#react javascript</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/03/29/2015-3-29-blog/" rel="next" title="Swift学习第一天">
-                <i class="fa fa-chevron-left"></i> Swift学习第一天
+              <a href="/2017/11/19/react-source1/" rel="next" title="react源码解析-1初探">
+                <i class="fa fa-chevron-left"></i> react源码解析-1初探
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/04/01/2015-4-1-blog/" rel="prev" title="centos部署">
-                centos部署 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -515,7 +630,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#forEachChildren"><span class="nav-number">1.</span> <span class="nav-text">forEachChildren</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mapChildren"><span class="nav-number">2.</span> <span class="nav-text">mapChildren</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#countChildren"><span class="nav-number">3.</span> <span class="nav-text">countChildren</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#onlyChild"><span class="nav-number">4.</span> <span class="nav-text">onlyChild</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#toArray"><span class="nav-number">5.</span> <span class="nav-text">toArray</span></a></li></ol></div>
             
           </div>
         </section>
