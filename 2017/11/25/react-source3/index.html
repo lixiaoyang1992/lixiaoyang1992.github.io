@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="React.Children提供了对this.props.children的操作的函数。">
+<meta name="description" content="之前说过ReactBaseClasses中包含了我们常用的组件类Component, PureComponent, AsyncComponent。">
 <meta name="keywords" content="react javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react源码解析-2Children">
-<meta property="og:url" content="http://lixoayang.cn/2017/11/21/react-source2/index.html">
+<meta property="og:title" content="react源码解析-3ReactBaseClasses">
+<meta property="og:url" content="http://lixoayang.cn/2017/11/25/react-source3/index.html">
 <meta property="og:site_name" content="当我谈代码时我谈些什么">
-<meta property="og:description" content="React.Children提供了对this.props.children的操作的函数。">
+<meta property="og:description" content="之前说过ReactBaseClasses中包含了我们常用的组件类Component, PureComponent, AsyncComponent。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-21T15:20:42.737Z">
+<meta property="og:updated_time" content="2017-11-25T09:24:11.720Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="react源码解析-2Children">
-<meta name="twitter:description" content="React.Children提供了对this.props.children的操作的函数。">
+<meta name="twitter:title" content="react源码解析-3ReactBaseClasses">
+<meta name="twitter:description" content="之前说过ReactBaseClasses中包含了我们常用的组件类Component, PureComponent, AsyncComponent。">
 
 
 
@@ -113,7 +113,7 @@
   };
 </script>
 
-  <title> react源码解析-2Children | 当我谈代码时我谈些什么 </title>
+  <title> react源码解析-3ReactBaseClasses | 当我谈代码时我谈些什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -243,7 +243,7 @@
             
             
               
-                react源码解析-2Children
+                react源码解析-3ReactBaseClasses
               
             
           </h1>
@@ -255,8 +255,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-21T12:40:38+08:00" content="2017-11-21">
-              2017-11-21
+            <time itemprop="dateCreated" datetime="2017-11-25T14:58:47+08:00" content="2017-11-25">
+              2017-11-25
             </time>
           </span>
 
@@ -283,139 +283,125 @@
       
 
       
-        <p>React.Children提供了对this.props.children的操作的函数。<br><a id="more"></a></p>
-<p>react/src/ReactChildren文件export的函数如下</p>
-<pre><code>export {
-  forEachChildren as forEach,
-  mapChildren as map,
-  countChildren as count,
-  onlyChild as only,
-  toArray,
-};
-</code></pre><h1 id="forEachChildren"><a href="#forEachChildren" class="headerlink" title="forEachChildren"></a>forEachChildren</h1><pre><code>function forEachChildren(children, forEachFunc, forEachContext) {
-  if (children == null) {
-    return children;
-  }
-  var traverseContext = getPooledTraverseContext(
-    null,
-    null,
-    forEachFunc,
-    forEachContext,
-  );
-  traverseAllChildren(children, forEachSingleChild, traverseContext);
-  releaseTraverseContext(traverseContext);
+        <p>之前说过ReactBaseClasses中包含了我们常用的组件类Component, PureComponent, AsyncComponent。<br><a id="more"></a></p>
+<h1 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h1><p>这里的代码非常简单，和我们熟悉的Component很不一样，我们熟悉的生命周期等都没有。原因是真正的updater会由renderer来注入，等到react-dom的时候再来分析。</p>
+<pre><code>function Component(props, context, updater) {
+  this.props = props;
+  this.context = context;
+  this.refs = emptyObject;
+  // We initialize the default updater but the real one gets injected by the
+  // renderer.
+  this.updater = updater || ReactNoopUpdateQueue;
 }
-</code></pre><p>traverseContext在一个池中获取了一个遍历的上下文对象，这里只是把forEachFunc和forEachContext封装到一个对象里。</p>
-<p>traverseAllChildren中调用了traverseAllChildrenImpl。</p>
-<pre><code>function traverseAllChildrenImpl(
-  children,
-  nameSoFar,
-  callback,
-  traverseContext,
-) {
-  ...
-}
-</code></pre><p>traverseAllChildrenImpl的参数children如果是数组，会遍历children，会把每一个child递归调用自身。<br>参数children是一个单独的react element或portal（16新增类型）时会调用callback</p>
-<pre><code>callback(
-  traverseContext,
-  children,
-  // If it&apos;s the only child, treat the name as if it was wrapped in an array
-  // so that it&apos;s consistent if the number of children grows.
-  nameSoFar === &apos;&apos; ? SEPARATOR + getComponentKey(children, 0) : nameSoFar,
-);
-</code></pre><p>forEachChildren的回调函数是forEachSingleChild，它的内容如下，这里重新生成的key值没有用到</p>
-<pre><code>function forEachSingleChild(bookKeeping, child, name) {
-  var {func, context} = bookKeeping;
-  func.call(context, child, bookKeeping.count++);
-}
-</code></pre><p>它首先在bookKeeping（遍历上下文）里，拿到我们在forEachChildren传入的遍历函数和上下文，用call调用一下，我们在下面就可以拿到child和index了。</p>
-<pre><code>React.Children.forEach(childrenArr,(child,index)=&gt;{
-  ...
-});
-</code></pre><p>最后释放上下文对象</p>
-<h1 id="mapChildren"><a href="#mapChildren" class="headerlink" title="mapChildren"></a>mapChildren</h1><pre><code>function mapChildren(children, func, context) {
-  if (children == null) {
-    return children;
-  }
-  var result = [];
-  mapIntoWithKeyPrefixInternal(children, result, null, func, context);
-  return result;
-}
-</code></pre><p>mapIntoWithKeyPrefixInternal的内容如下，和forEachChildren基本一致，增加了存放返回值的数组和escapedPrefix=‘’。</p>
-<pre><code>function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
-  var escapedPrefix = &apos;&apos;;
-  if (prefix != null) {
-    escapedPrefix = escapeUserProvidedKey(prefix) + &apos;/&apos;;
-  }
-  var traverseContext = getPooledTraverseContext(
-    array,
-    escapedPrefix,
-    func,
-    context,
-  );
-  traverseAllChildren(children, mapSingleChildIntoContext, traverseContext);
-  releaseTraverseContext(traverseContext);
-}
-</code></pre><p>不同之处在于traverseAllChildren的callback是mapSingleChildIntoContext。</p>
-<pre><code>function mapSingleChildIntoContext(bookKeeping, child, childKey) {
-  var {result, keyPrefix, func, context} = bookKeeping;
 
-  var mappedChild = func.call(context, child, bookKeeping.count++);
-  if (Array.isArray(mappedChild)) {
-    mapIntoWithKeyPrefixInternal(
-      mappedChild,
-      result,
-      childKey,
-      emptyFunction.thatReturnsArgument,
-    );
-  } else if (mappedChild != null) {
-    if (isValidElement(mappedChild)) {
-      mappedChild = cloneAndReplaceKey(
-        mappedChild,
-        // Keep both the (mapped) and old keys if they differ, just as
-        // traverseAllChildren used to do for objects as children
-        keyPrefix +
-          (mappedChild.key &amp;&amp; (!child || child.key !== mappedChild.key)
-            ? escapeUserProvidedKey(mappedChild.key) + &apos;/&apos;
-            : &apos;&apos;) +
-          childKey,
-      );
-    }
-    result.push(mappedChild);
-  }
-}
-</code></pre><p>var mappedChild = func.call(context, child, bookKeeping.count++)后如果是数组，再将结果数组通过mapIntoWithKeyPrefixInternal递归一遍。(之后的key值会加上.$)<br>得到单独的元素时，将结果clone并且重设一遍key值，最后将结果push进result。</p>
-<h1 id="countChildren"><a href="#countChildren" class="headerlink" title="countChildren"></a>countChildren</h1><pre><code>function countChildren(children, context) {
-  return traverseAllChildren(children, emptyFunction.thatReturnsNull, null);
-}
-</code></pre><p>traverseAllChildren，traverseAllChildrenImpl时有计数，将结果返回就好了。</p>
-<h1 id="onlyChild"><a href="#onlyChild" class="headerlink" title="onlyChild"></a>onlyChild</h1><pre><code>function onlyChild(children) {
+Component.prototype.isReactComponent = {};
+
+Component.prototype.setState = function(partialState, callback) {
   invariant(
-    isValidElement(children),
-    &apos;React.Children.only expected to receive a single React element child.&apos;,
+    typeof partialState === &apos;object&apos; ||
+      typeof partialState === &apos;function&apos; ||
+      partialState == null,
+    &apos;setState(...): takes an object of state variables to update or a &apos; +
+      &apos;function which returns an object of state variables.&apos;,
   );
-  return children;
-}
-</code></pre><p>通过isValidElement判断传入的参数是否是“一个”react元素，否则就报错。</p>
-<pre><code>export function isValidElement(object) {
-  return (
-    typeof object === &apos;object&apos; &amp;&amp;
-    object !== null &amp;&amp;
-    object.$$typeof === REACT_ELEMENT_TYPE
-  );
-}
-</code></pre><h1 id="toArray"><a href="#toArray" class="headerlink" title="toArray"></a>toArray</h1><pre><code>function toArray(children) {
-  var result = [];
-  mapIntoWithKeyPrefixInternal(
-    children,
-    result,
-    null,
-    emptyFunction.thatReturnsArgument,
-  );
-  return result;
-}
-</code></pre><p>和map类似，返回一个重设过key的元素的数组。</p>
+  this.updater.enqueueSetState(this, partialState, callback, &apos;setState&apos;);
+};
 
+Component.prototype.forceUpdate = function(callback) {
+  this.updater.enqueueForceUpdate(this, callback, &apos;forceUpdate&apos;);
+};
+</code></pre><h1 id="ReactNoopUpdateQueue"><a href="#ReactNoopUpdateQueue" class="headerlink" title="ReactNoopUpdateQueue"></a>ReactNoopUpdateQueue</h1><p>我们也可以看看ReactNoopUpdateQueue和warnNoop。<br>isMounted：检查组件是否mounted过了<br>enqueueForceUpdate：强制更新，注意它的调用时机，否则还是用setState比较好<br>enqueueReplaceState：完全替换state，使用它或setState来改变state，并且把<code>this.state</code>当作不可变对象，并且<code>this.state</code>不会立即更改<br>enqueueSetState：设置state的子集</p>
+<pre><code>var ReactNoopUpdateQueue = {
+
+  isMounted: function(publicInstance) {
+    return false;
+  },
+
+  enqueueForceUpdate: function(publicInstance, callback, callerName) {
+    warnNoop(publicInstance, &apos;forceUpdate&apos;);
+  },
+
+  enqueueReplaceState: function(
+    publicInstance,
+    completeState,
+    callback,
+    callerName,
+  ) {
+    warnNoop(publicInstance, &apos;replaceState&apos;);
+  },
+
+  enqueueSetState: function(
+    publicInstance,
+    partialState,
+    callback,
+    callerName,
+  ) {
+    warnNoop(publicInstance, &apos;setState&apos;);
+  },
+
+};
+
+
+function warnNoop(publicInstance, callerName) {
+  if (__DEV__) {
+    var constructor = publicInstance.constructor;
+    const componentName =
+      (constructor &amp;&amp; (constructor.displayName || constructor.name)) ||
+      &apos;ReactClass&apos;;
+    const warningKey = `${componentName}.${callerName}`;
+    if (didWarnStateUpdateForUnmountedComponent[warningKey]) {
+      return;
+    }
+    warning(
+      false,
+      &apos;%s(...): Can only update a mounted or mounting component. &apos; +
+        &apos;This usually means you called %s() on an unmounted component. &apos; +
+        &apos;This is a no-op.\n\nPlease check the code for the %s component.&apos;,
+      callerName,
+      callerName,
+      componentName,
+    );
+    didWarnStateUpdateForUnmountedComponent[warningKey] = true;
+  }
+}
+</code></pre><h1 id="PureComponent"><a href="#PureComponent" class="headerlink" title="PureComponent"></a>PureComponent</h1><p>PureComponent继承了Component，并添加了isPureReactComponent方法</p>
+<pre><code>function PureComponent(props, context, updater) {
+  // Duplicated from Component.
+  this.props = props;
+  this.context = context;
+  this.refs = emptyObject;
+  // We initialize the default updater but the real one gets injected by the
+  // renderer.
+  this.updater = updater || ReactNoopUpdateQueue;
+}
+
+function ComponentDummy() {}
+ComponentDummy.prototype = Component.prototype;
+var pureComponentPrototype = (PureComponent.prototype = new ComponentDummy());
+pureComponentPrototype.constructor = PureComponent;
+// Avoid an extra prototype jump for these methods.
+Object.assign(pureComponentPrototype, Component.prototype);
+pureComponentPrototype.isPureReactComponent = true;
+</code></pre><h1 id="AsyncComponent"><a href="#AsyncComponent" class="headerlink" title="AsyncComponent"></a>AsyncComponent</h1><p>大同小异AsyncComponent也继承了Component，并添加了unstable_isAsyncReactComponent方法，并指定了render返回children</p>
+<pre><code>function AsyncComponent(props, context, updater) {
+  // Duplicated from Component.
+  this.props = props;
+  this.context = context;
+  this.refs = emptyObject;
+  // We initialize the default updater but the real one gets injected by the
+  // renderer.
+  this.updater = updater || ReactNoopUpdateQueue;
+}
+
+var asyncComponentPrototype = (AsyncComponent.prototype = new ComponentDummy());
+asyncComponentPrototype.constructor = AsyncComponent;
+// Avoid an extra prototype jump for these methods.
+Object.assign(asyncComponentPrototype, Component.prototype);
+asyncComponentPrototype.unstable_isAsyncReactComponent = true;
+asyncComponentPrototype.render = function() {
+  return this.props.children;
+};
+</code></pre>
       
     </div>
 
@@ -445,17 +431,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/19/react-source1/" rel="next" title="react源码解析-1初探">
-                <i class="fa fa-chevron-left"></i> react源码解析-1初探
+              <a href="/2017/11/21/react-source2/" rel="next" title="react源码解析-2Children">
+                <i class="fa fa-chevron-left"></i> react源码解析-2Children
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/25/react-source3/" rel="prev" title="react源码解析-3ReactBaseClasses">
-                react源码解析-3ReactBaseClasses <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -634,7 +616,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#forEachChildren"><span class="nav-number">1.</span> <span class="nav-text">forEachChildren</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mapChildren"><span class="nav-number">2.</span> <span class="nav-text">mapChildren</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#countChildren"><span class="nav-number">3.</span> <span class="nav-text">countChildren</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#onlyChild"><span class="nav-number">4.</span> <span class="nav-text">onlyChild</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#toArray"><span class="nav-number">5.</span> <span class="nav-text">toArray</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Component"><span class="nav-number">1.</span> <span class="nav-text">Component</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ReactNoopUpdateQueue"><span class="nav-number">2.</span> <span class="nav-text">ReactNoopUpdateQueue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PureComponent"><span class="nav-number">3.</span> <span class="nav-text">PureComponent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AsyncComponent"><span class="nav-number">4.</span> <span class="nav-text">AsyncComponent</span></a></li></ol></div>
             
           </div>
         </section>
