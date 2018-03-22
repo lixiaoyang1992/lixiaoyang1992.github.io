@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="当我谈代码时我谈些什么">
 <meta property="og:description" content="基于react的前端国际化，当然会用到yahoo/react-intl.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-11T02:27:07.000Z">
+<meta property="og:updated_time" content="2017-09-11T15:37:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端国际化">
 <meta name="twitter:description" content="基于react的前端国际化，当然会用到yahoo/react-intl.">
@@ -205,6 +205,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
 
       
     </ul>
@@ -302,7 +312,7 @@
       
 
       
-        <p>基于react的前端国际化，当然会用到<a href="https://github.com/yahoo/react-intl" target="_blank" rel="external">yahoo/react-intl</a>.<br><a id="more"></a><br>大体的实现原理和react-redux的实现原理类似，最外层包一个Provider，利用getChildContext，将intlConfigPropTypes存起来，在FormattedMessage、FormattedNumber等组件或者调用injectIntl生成的高阶组件中使用，来完成国际化的。<br>使用过程也非常简单，和react-redux的使用方法非常类似。</p>
+        <p>基于react的前端国际化，当然会用到<a href="https://github.com/yahoo/react-intl" target="_blank" rel="noopener">yahoo/react-intl</a>.<br><a id="more"></a><br>大体的实现原理和react-redux的实现原理类似，最外层包一个Provider，利用getChildContext，将intlConfigPropTypes存起来，在FormattedMessage、FormattedNumber等组件或者调用injectIntl生成的高阶组件中使用，来完成国际化的。<br>使用过程也非常简单，和react-redux的使用方法非常类似。</p>
 <h3 id="创建资源文件"><a href="#创建资源文件" class="headerlink" title="创建资源文件"></a>创建资源文件</h3><p>创建一个locales文件夹，里面放置不同语言的语言文件，如</p>
 <pre><code>//en-US.js
 export default {
@@ -607,7 +617,7 @@ export default class App extends Component {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">34</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -737,7 +747,7 @@ export default class App extends Component {
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
