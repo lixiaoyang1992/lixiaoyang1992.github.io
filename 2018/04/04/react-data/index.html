@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="react," />
 
 
 
@@ -84,16 +84,18 @@
 
 
 
-<meta name="description" content="inspired by 雷蒙德·卡佛，村上春树">
-<meta property="og:type" content="website">
-<meta property="og:title" content="当我谈代码时我谈些什么">
-<meta property="og:url" content="http://lixoayang.cn/archives/2016/08/index.html">
+<meta name="description" content="本文基于 react16.3 讲一下 state,props,context 三种数据使用方式。">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react 中的数据">
+<meta property="og:url" content="http://lixoayang.cn/2018/04/04/react-data/index.html">
 <meta property="og:site_name" content="当我谈代码时我谈些什么">
-<meta property="og:description" content="inspired by 雷蒙德·卡佛，村上春树">
+<meta property="og:description" content="本文基于 react16.3 讲一下 state,props,context 三种数据使用方式。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-09T15:04:35.873Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="当我谈代码时我谈些什么">
-<meta name="twitter:description" content="inspired by 雷蒙德·卡佛，村上春树">
+<meta name="twitter:title" content="react 中的数据">
+<meta name="twitter:description" content="本文基于 react16.3 讲一下 state,props,context 三种数据使用方式。">
 
 
 
@@ -111,7 +113,7 @@
   };
 </script>
 
-  <title> 归档 | 当我谈代码时我谈些什么 </title>
+  <title> react 中的数据 | 当我谈代码时我谈些什么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -132,7 +134,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -230,139 +232,166 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-      
-      OK! 目前共计 36 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/23/zhihu4/" itemprop="url">
-              
-                <span itemprop="name">用react-native开发知乎日报 4.点击事件</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-23T09:21:03+08:00"
-              content="2016-08-23" >
-          08-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/12/zhihu3/" itemprop="url">
-              
-                <span itemprop="name">用react-native开发知乎日报 3.首页列表</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-12T19:51:02+08:00"
-              content="2016-08-12" >
-          08-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/07/Love/" itemprop="url">
-              
-                <span itemprop="name">好想把你写进我的代码里</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-07T20:51:02+08:00"
-              content="2016-08-07" >
-          08-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                react 中的数据
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-04-04T14:14:26+08:00" content="2018-04-04">
+              2018-04-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文基于 react16.3 讲一下 state,props,context 三种数据使用方式。</p>
+<a id="more"></a>
+<h1 id="state"><a href="#state" class="headerlink" title="state"></a>state</h1><p>state 是组件自身的状态。不允许直接修改，只能通过 setState 更新.</p>
+<p>setState 会将旧的状态和新的合并，所以在调用时是需要将更新的数据传入就行。</p>
+<p>为了性能，setState 函数会将多个修改做合并成一次修改，所以根据 state 原有状态而来的变更应当使用函数来修改，如</p>
+<pre><code>this.setState((prevState, props) =&gt; ({
+  counter: prevState.counter + props.increment
+}));
+</code></pre><h1 id="props"><a href="#props" class="headerlink" title="props"></a>props</h1><p>props 用于父组件向子组件传入参数。props 也是只读的。</p>
+<p>props 可以用 prop-types 进行类型校验。</p>
+<h1 id="context"><a href="#context" class="headerlink" title="context"></a>context</h1><p>context 用于跨越多级组件传递数据。</p>
+<p>在 16.3 中，推出了新的 context API。</p>
+<h2 id="legacy"><a href="#legacy" class="headerlink" title="legacy"></a>legacy</h2><p>旧版的使用需要定义 childContextTypes 和 getChildContext 来设置和获取 context。<br>react-redux，react-router 都使用这个 API。</p>
+<p>如果没有定义 childContextTypes，context 就是一个空对象。</p>
+<h2 id="16-3"><a href="#16-3" class="headerlink" title="16.3"></a>16.3</h2><p>新版中加入了 React.createContext API，更优雅的实现了数据的传递。</p>
+<h3 id="React-createContext"><a href="#React-createContext" class="headerlink" title="React.createContext"></a>React.createContext</h3><pre><code>const {Provider, Consumer} = React.createContext(defaultValue);
+</code></pre><p>生成的 Provider, Consumer 用来传递 context。</p>
+<h3 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h3><pre><code>&lt;Provider value={/* some value */}&gt;
+</code></pre><p>Provider 包裹在 Consumer 的外部，供其订阅 context 的变化。<br>一个 Provider 可以对应多个 Consumer。</p>
+<h3 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h3><pre><code>&lt;Consumer&gt;
+  {value =&gt; /* render something based on the context value */}
+&lt;/Consumer&gt;
+</code></pre><p>Consumer 组件订阅了 context 的变化。<br>Consumer 需要一个函数作为 child。这个函数收到 context 作为参数，返回一个 react 节点。<br>Consumer 会寻找最近的 Provider 里面的 value 使用。<br>当没有 Provider 时，createContext 中的 defaultValue 是 Consumer 获取到的 context。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag">#react</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/22/books/" rel="next" title="书单">
+                <i class="fa fa-chevron-left"></i> 书单
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/05/react-lifecycles/" rel="prev" title="react 生命周期">
+                react 生命周期 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -370,6 +399,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -389,8 +422,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -506,6 +548,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#state"><span class="nav-number">1.</span> <span class="nav-text">state</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#props"><span class="nav-number">2.</span> <span class="nav-text">props</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#context"><span class="nav-number">3.</span> <span class="nav-text">context</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#legacy"><span class="nav-number">3.1.</span> <span class="nav-text">legacy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-3"><span class="nav-number">3.2.</span> <span class="nav-text">16.3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#React-createContext"><span class="nav-number">3.2.1.</span> <span class="nav-text">React.createContext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Provider"><span class="nav-number">3.2.2.</span> <span class="nav-text">Provider</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Consumer"><span class="nav-number">3.2.3.</span> <span class="nav-text">Consumer</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -608,11 +661,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
